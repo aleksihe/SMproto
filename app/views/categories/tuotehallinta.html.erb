@@ -1,0 +1,23 @@
+<div class="tuoteryhma_luonti">
+<%= form_for(@category) do |f| %>
+
+	<%= f.label :kuvaus %>
+	<%= f.text_field :kuvaus %>
+
+	<%= f.submit "Luo tuoteyhmä" %>
+<% end %>
+</div>
+<div class="tuoteryhmat">
+	<% if @categories.any? %>
+	<table>
+		<tr>
+			<td>Tuoteryhmä</td><td></td> 
+		</tr>	
+		<% @categories.each do |category| %>
+			<tr>
+				<td><%= category.kuvaus %></td><td><%= link_to "delete", category, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
+			</tr> 
+		<% end %>
+	</table>	
+	<% end %>
+</div>

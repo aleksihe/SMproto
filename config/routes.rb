@@ -1,5 +1,7 @@
 SMproto::Application.routes.draw do
 
+ resources :categories
+
   root :to => 'pages#esimies_main'
  # get "pages/esimies_main"
 
@@ -8,6 +10,7 @@ SMproto::Application.routes.draw do
   match '/kokonaismyynti', to: 'pages#kokonaismyynti'
   match '/myyntiryhmat', to: 'pages#myyntiryhmat'
   match '/kilpailut', to: 'pages#kilpailut'
+  match '/tuotehallinta', to: 'categories#tuotehallinta'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
