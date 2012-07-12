@@ -1,7 +1,9 @@
 SMproto::Application.routes.draw do
-  get "pages/esimies_main"
 
   root :to => 'pages#esimies_main'
+ # get "pages/esimies_main"
+
+  
   
   match '/kokonaismyynti', to: 'pages#kokonaismyynti'
   match '/myyntiryhmat', to: 'pages#myyntiryhmat'
