@@ -1,0 +1,154 @@
+/*@import "bootstrap";*/
+
+
+
+/* header */
+.header{
+  width: 1200px;
+  height: 87px;
+  background-image: url('ylaraami.jpg');
+}
+
+/* container */
+
+.container{
+  width: 1140px;
+  height: 632px;
+  position: absolute;
+  top: 87px;
+  left: 60px;
+}
+
+
+/* footer */
+.footer{
+  width: 1200px;
+  height: 181px;
+  background-image: url('alaraami.jpg');
+  position: absolute;
+  top: 719px;
+  text-align: right;
+  
+  h2 {
+    padding: 10px;
+    font-family: verdana;
+    font-style: italic;
+    color: #800517;
+  }
+}
+
+/* vasen raami*/
+.vasenraami{
+  width: 55px;
+  height: 632px;
+  background-image: url('vasenraami.jpg');  
+}
+
+/* esimies palkit */
+.vasenpalkki{
+ 
+  border:2px solid;
+  border-radius:25px;
+  text-align: center;
+  width: 150px;
+
+  position: absolute;
+  left: 60px;
+  top: 80px;
+  background-color: black; 
+  
+}
+
+.oikeapalkki{
+  h3 {
+   color: white;
+   font-family: verdana;
+   font-size: 15px;
+  }  
+  border:2px solid;
+  border-radius:25px;
+  text-align: center;
+  width: 150px;
+  height : 430px;
+  position: absolute;
+  right: 0px;
+  top: 80px;
+  background-color: black; 
+  
+}
+
+/*esimies päälinkit*/
+.main_päälinkit{
+  width: 600px;
+  height: 300px;
+  position: absolute;
+  top: 80px;
+  right: 268px;
+}
+
+.vy{
+  text-align: right;
+  padding-top: 10px;
+  width: 300px;
+  height: 150px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.oy{
+  text-align: left;
+  padding-top: 10px;
+  width: 300px;
+  height: 150px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.va{
+  text-align: right;
+  padding-top: 10px;
+  width: 300px;
+  height: 150px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.oa{
+  text-align: left;
+  padding-top: 10px;
+  width: 300px;
+  height: 150px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+/* esimies main sisalto */
+.main_sisältö{
+  width: 600px;
+  height: 240px;
+  position: absolute;
+  bottom: 10px;
+  right: 268px;
+}
+
+/*placeholder*/
+.placeholder{
+  p {
+    font-family: verdana;
+  }
+  text-align: center;
+  vertical-align: middle;
+  background-color: #F2F2F2;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  box-shadow: 10px 10px 5px #888888;
+ 
+}
+

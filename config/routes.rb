@@ -1,4 +1,11 @@
 SMproto::Application.routes.draw do
+  get "pages/esimies_main"
+
+  root :to => 'pages#esimies_main'
+  
+  match '/kokonaismyynti', to: 'pages#kokonaismyynti'
+  match '/myyntiryhmat', to: 'pages#myyntiryhmat'
+  match '/kilpailut', to: 'pages#kilpailut'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
