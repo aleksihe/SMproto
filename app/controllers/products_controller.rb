@@ -5,8 +5,14 @@ class ProductsController < ApplicationController
 
   def create
      @product = Product.new(params[:product])
-     @product.save
-     redirect_to tuotehallinta_path
+     if @product.save
+       redirect_to tuotehallinta_path
+     else
+       @categories = Category.all
+       @category = Category.new
+       @products = Product.all
+       render 'categories/tuotehallinta'
+     end
   end
 
   def destroy

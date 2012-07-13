@@ -22,7 +22,7 @@
 
 <div class="tuoteryhma_luonti">
 <%= form_for(@category) do |f| %>
-
+<%= render 'shared/error_messages', object: f.object %>	
 	<%= f.label :kuvaus %>
 	<%= f.text_field :kuvaus %>
 

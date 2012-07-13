@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
   attr_accessible :kuvaus
-  has_many :products
+  validates :kuvaus, presence: true
+  has_many :products, dependent: :destroy
 end

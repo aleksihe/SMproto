@@ -8,8 +8,15 @@ class CategoriesController < ApplicationController
   
   def create
     @category = Category.new(params[:category])
-    @category.save
-    redirect_to tuotehallinta_path
+    
+    if @category.save
+      redirect_to tuotehallinta_path
+    else
+      @categories = Category.all
+      @product = Product.new
+      @products = Product.all
+      render 'tuotehallinta'
+    end
   end
   
   def destroy
@@ -19,18 +26,10 @@ class CategoriesController < ApplicationController
   
 end
 
-#def destroy
-#    if !User.find(params[:id]).admin?
-#      User.find(params[:id]).destroy
-#      flash[:success] = "User destroyed."
-#      redirect_to users_path  
-#    else
-#      redirect_to users_path, notice: "Don't be stupid!"
-#    end      
-#  end
+
 #def create
-#   @user = User.new(params[:user])
-#  if @user.save
+#    @user = User.new(params[:user])
+#    if @user.save
 #     sign_in @user
 #     flash[:success] = "Welcome to the Sample App!"
 #     redirect_to @user

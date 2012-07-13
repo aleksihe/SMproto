@@ -1,6 +1,6 @@
 
 <%= form_for(@product) do |f| %>
-		
+<%= render 'shared/error_messages', object: f.object %>		
 		<%= f.label :kuvaus %>
 		<%= f.text_field :kuvaus %> <br />
 		
@@ -11,7 +11,7 @@
 		<%= f.text_field :provisio %><br />
 		
 		<%= f.label :tuoteryhmä %>
-		<%= select("product", "category_id", Category.all.collect {|c| [ c.kuvaus, c.id ] }, {:prompt => 'Valitse tuoteryhmä'})%>
+		<%= select("product", "category_id", Category.all.collect {|c| [ c.kuvaus, c.id ] })%>
 		
 		<%= f.submit "Luo tuote" %>
 		

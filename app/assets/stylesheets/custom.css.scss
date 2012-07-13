@@ -30,10 +30,13 @@
   text-align: right;
   
   h2 {
-    padding: 10px;
-    font-family: verdana;
-    font-style: italic;
-    color: #800517;
+    a{
+      padding: 10px;
+      font-family: verdana;
+      font-style: italic;
+      color: #800517;
+      text-decoration:none 
+    }
   }
 }
 
@@ -176,4 +179,10 @@
  position: absolute;
  top: 80px;
  right: 70px; 
+}
+
+/*debug*/
+.debug{
+  position: absolute;
+  bottom: 0px
 }
