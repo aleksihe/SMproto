@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
   def tuotehallinta
     @category = Category.new
     @categories = Category.all
+    @product = Product.new
+    @products = Product.all
   end
   
   def create

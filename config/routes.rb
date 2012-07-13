@@ -1,6 +1,9 @@
 SMproto::Application.routes.draw do
 
+  
+
  resources :categories
+ resources :products
 
   root :to => 'pages#esimies_main'
  # get "pages/esimies_main"

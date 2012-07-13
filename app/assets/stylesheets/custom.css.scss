@@ -157,11 +157,23 @@
 .tuoteryhma_luonti{
   position: absolute;
   bottom: 250px;
-  left: 70px;
+  left: 220px;
 }
 
 .tuoteryhmat{
  position: absolute;
  bottom: 250px;
+ right: 70px; 
+}
+
+.tuote_luonti{
+  position: absolute;
+  top: 80px;
+  left: 220px;  
+}
+
+.tuotteet{
+ position: absolute;
+ top: 80px;
  right: 70px; 
 }

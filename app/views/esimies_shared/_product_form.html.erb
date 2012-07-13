@@ -1,0 +1,18 @@
+
+<%= form_for(@product) do |f| %>
+		
+		<%= f.label :kuvaus %>
+		<%= f.text_field :kuvaus %> <br />
+		
+		<%= f.label :hinta %>
+		<%= f.text_field :hinta %>	<br />
+		
+		<%= f.label :provisio %>
+		<%= f.text_field :provisio %><br />
+		
+		<%= f.label :tuoteryhmä %>
+		<%= select("product", "category_id", Category.all.collect {|c| [ c.kuvaus, c.id ] }, {:prompt => 'Valitse tuoteryhmä'})%>
+		
+		<%= f.submit "Luo tuote" %>
+		
+<% end %>
