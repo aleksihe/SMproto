@@ -1,23 +1,30 @@
+		
 <%= render 'esimies_shared/vasenpalkki' %>
-<h2>Yritys</h2>
-<%= render 'esimies_shared/oikeapalkki' %>
-<p>esimies_main.html</p>
+	<div class="span8">	
+		<div class="row">
+			<div class="span3 offset2">
+				<%= link_to image_tag("paalinkki_kokonaismyynti.JPG", alt: "kokonaismyynti", :mouseover =>"paalinkki_kokonaismyynti_hover.JPG"), kokonaismyynti_path %>	
+			</div>
+			<div class="span3">
+				<%= link_to image_tag("paalinkki_myyntiryhmat.JPG", alt: "myyntiryhmät", :mouseover =>"paalinkki_myyntiryhmat_hover.JPG"), myyntiryhmat_path %>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="span3 offset2 ">	
+				<%= image_tag ("paalinkki_placeholder.JPG")%>
+			</div>
+			<div class="span3">
+				<%= link_to image_tag("paalinkki_kilpailut.JPG", alt: "kilpailut", :mouseover =>"paalinkki_kilpailut_hover.JPG"), kilpailut_path %>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="main_sisältö">
+				<%= render 'esimies_shared/placeholder'%>
+			</div>
+		</div>
+	</div>
+	<div class="span2">
+		<%= render 'esimies_shared/oikeapalkki' %>
+	</div>
 
-<div class="main_päälinkit">
-	<div class="vy">
-		<%= link_to image_tag("paalinkki_kokonaismyynti.JPG", alt: "kokonaismyynti", :mouseover =>"paalinkki_kokonaismyynti_hover.JPG"), kokonaismyynti_path %>	
-	</div>
-	<div class="oy">
-		<%= link_to image_tag("paalinkki_myyntiryhmat.JPG", alt: "myyntiryhmät", :mouseover =>"paalinkki_myyntiryhmat_hover.JPG"), myyntiryhmat_path %>
-	</div>
-	<div class="va">
-		<%= image_tag ("paalinkki_placeholder.JPG")%>
-	</div>
-	<div class="oa">
-		<%= link_to image_tag("paalinkki_kilpailut.JPG", alt: "kilpailut", :mouseover =>"paalinkki_kilpailut_hover.JPG"), kilpailut_path %>
-	</div>
-</div>
-
-<div class="main_sisältö">
-	<%= render 'esimies_shared/placeholder'%>
-</div>

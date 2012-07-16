@@ -1,45 +1,70 @@
 <%= render 'esimies_shared/vasenpalkki' %>
-<div class="tuote_luonti">
-	<%= render 'esimies_shared/product_form' %>
-</div>
-
-<div class="tuotteet">
-	<% if @products.any? %>
-	<table>
-		<tr>
-			<td>Tuote</td><td>Tuoteryhmä</td><td></td> 
-		</tr>	
-		<% @products.each do |product| %>
-			<tr>
-				<td><%= product.kuvaus %></td>
-				<td><%= product.category.kuvaus %></td>
-				<td><%= link_to "delete", product, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
-			</tr> 
+<div class="span10">
+	<div class="row-fluid" id="tuotteet">
+	<div class= "row">
+		<div class="span 4 offset4"><h4>Tuotteet</h4></div>
+	</div>
+		<div class="span5">
+			<%= render 'esimies_shared/product_form' %>
+		</div>
+	
+		<div class="span6">
+			<% if @products.any? %>
+			<table class="table table-condensed table-bordered">
+				<colgroup>
+		          <col class="span5">
+		          <col class="span5">
+		          <col class="span1">
+		        </colgroup>
+				<thead>
+					<tr>
+						<th>Tuote</th><th>Tuoteryhmä</th><th></th> 
+					</tr>	
+				</thead>
+				<% @products.each do |product| %>
+					<tr>
+						<td><%= product.kuvaus %></td>
+						<td><%= product.category.kuvaus %></td>
+						<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), product, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
+					</tr> 
+				<% end %>
+			</table>	
+			<% end %>
+		</div>
+	</div>
+	
+	<div class="row-fluid" id="tuoteryhmat">
+	<div class= "row">
+		<div class="span 4 offset4"><h4>Tuoteryhmät</h4></div>
+	</div>
+		<div class="span5">
+		<%= form_for(@category) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>	
+			<%= f.label :kuvaus %>
+			<%= f.text_field :kuvaus %>
+		
+			<%= f.submit "Luo tuoteyhmä", class: "btn btn-inverse" %>
 		<% end %>
-	</table>	
-	<% end %>
-</div>
-
-<div class="tuoteryhma_luonti">
-<%= form_for(@category) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>	
-	<%= f.label :kuvaus %>
-	<%= f.text_field :kuvaus %>
-
-	<%= f.submit "Luo tuoteyhmä" %>
-<% end %>
-</div>
-<div class="tuoteryhmat">
-	<% if @categories.any? %>
-	<table>
-		<tr>
-			<td>Tuoteryhmä</td><td></td> 
-		</tr>	
-		<% @categories.each do |category| %>
-			<tr>
-				<td><%= category.kuvaus %></td><td><%= link_to "delete", category, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
-			</tr> 
-		<% end %>
-	</table>	
-	<% end %>
+		</div>
+		<div class="span6">
+			<% if @categories.any? %>
+			<table class="table table-condensed table-bordered">
+				<colgroup>
+		          <col class="span10">
+		          <col class="span1">
+		        </colgroup>
+				<thead>
+					<tr>
+						<th>Tuoteryhmä</th><th></th> 
+					</tr>	
+				</thead>
+				<% @categories.each do |category| %>
+					<tr>
+						<td><%= category.kuvaus %></td><td><%= link_to image_tag( "roskis.jpg", alt: "delete"), category, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
+					</tr> 
+				<% end %>
+			</table>	
+			<% end %>
+		</div>
+	</div>
 </div>

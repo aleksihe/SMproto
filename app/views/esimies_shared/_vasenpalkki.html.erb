@@ -1,19 +1,22 @@
-<div class="vasenpalkki">
-	<tr>
-		<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
-	</tr>
-	<tr>
-		<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
-	</tr>
-	<tr>
-		<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
-	</tr>
-	<tr>
-		<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
-	</tr>	
-	<% if !current_page?('/') %> <!-- muuta tämä kun root page muutuuu!-->
-	<tr>
-		<td><%= link_to image_tag("sivulinkki_etusivulle.JPG", alt: "Etusivulle", :mouseover =>"sivulinkki_etusivulle_hover.JPG"), root_path %></td>
-	</tr>
-	<% end %>	
+<div class="span2">	
+	<div class="vasenpalkki">
+		<tr> <td><h3>Yritys</h3></td></tr>
+		<tr>
+			<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
+		</tr>
+		<tr>
+			<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
+		</tr>
+		<tr>
+			<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
+		</tr>
+		<tr>
+			<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
+		</tr>	
+		<% if !current_page?('/') %> <!-- muuta tämä kun root page muutuuu!-->
+		<tr>
+			<td><%= link_to image_tag("sivulinkki_etusivulle.JPG", alt: "Etusivulle", :mouseover =>"sivulinkki_etusivulle_hover.JPG"), root_path %></td>
+		</tr>
+		<% end %>	
+	</div>
 </div>

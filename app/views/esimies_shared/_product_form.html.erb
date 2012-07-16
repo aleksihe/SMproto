@@ -11,8 +11,7 @@
 		<%= f.text_field :provisio %><br />
 		
 		<%= f.label :tuoteryhmä %>
-		<%= select("product", "category_id", Category.all.collect {|c| [ c.kuvaus, c.id ] })%>
+		<%= select("product", "category_id", Category.all.collect {|c| [ c.kuvaus, c.id ] })%> <br />
 		
-		<%= f.submit "Luo tuote" %>
-		
+		<%= f.submit "Luo tuote", class: "btn btn-inverse" %>
 <% end %>
