@@ -23,9 +23,7 @@
 		<div class="span11">
 		  <div class="row-fluid">	
 		      <%= yield %> 
-		      <div class="debug">
-		      <%= debug(params) if Rails.env.development? %>
-		      </div>
+		      
 	      </div>
 		</div>    
 	  </div>
@@ -33,7 +31,10 @@
 	    <div class="span12">
 		    <div id="footer">    	
 		    	<h2><%= link_to "SaleMate", root_path %></h2>
-			</div>  
+			</div> 
+			<div class="debug">
+		      <%= debug(params) if Rails.env.development? %>
+		      </div> 
 		</div>
 	  </div>
 	 </div>	 

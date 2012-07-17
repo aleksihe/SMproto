@@ -8,12 +8,12 @@ class ProductsController < ApplicationController
      if @product.save
        redirect_to tuotehallinta_path
      else
-       flash[:error] = "Lomakkeessa oli virhe"
+       flash[:error] = "Tuotelomakkeessa oli virhe!"
        @categories = Category.all
        @category = Category.new
        @products = Product.all
        @product = Product.new
-       render 'categories/tuotehallinta'
+       redirect_to tuotehallinta_path
      end
   end
 

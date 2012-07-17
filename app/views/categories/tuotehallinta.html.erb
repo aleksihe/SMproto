@@ -12,18 +12,22 @@
 			<% if @products.any? %>
 			<table class="table table-condensed table-bordered">
 				<colgroup>
-		          <col class="span5">
-		          <col class="span5">
+		          <col class="span4">
+		          <col class="span1">
+		          <col class="span1">
+		          <col class="span4">
 		          <col class="span1">
 		        </colgroup>
 				<thead>
 					<tr>
-						<th>Tuote</th><th>Tuoteryhmä</th><th></th> 
+						<th>Tuote</th><th>Hinta(€)</th><th>Provisio(€)</th><th>Tuoteryhmä</th><th></th> 
 					</tr>	
 				</thead>
 				<% @products.each do |product| %>
 					<tr>
 						<td><%= product.kuvaus %></td>
+						<td><%= product.hinta %></td>
+						<td><%= product.provisio %></td>
 						<td><%= product.category.kuvaus %></td>
 						<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), product, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
 					</tr> 
@@ -39,7 +43,6 @@
 	</div>
 		<div class="span5">
 		<%= form_for(@category) do |f| %>
-		<%= render 'shared/error_messages', object: f.object %>	
 			<%= f.label :kuvaus %>
 			<%= f.text_field :kuvaus %>
 		
@@ -50,17 +53,20 @@
 			<% if @categories.any? %>
 			<table class="table table-condensed table-bordered">
 				<colgroup>
-		          <col class="span10">
+		          <col class="span7">
+		          <col class="span3">
 		          <col class="span1">
 		        </colgroup>
 				<thead>
 					<tr>
-						<th>Tuoteryhmä</th><th></th> 
+						<th>Tuoteryhmä</th><th>Tuotteet(kpl)</th><th></th> 
 					</tr>	
 				</thead>
 				<% @categories.each do |category| %>
 					<tr>
-						<td><%= category.kuvaus %></td><td><%= link_to image_tag( "roskis.jpg", alt: "delete"), category, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
+						<td><%= category.kuvaus %></td>
+						<td><%= category.products.count %>
+						<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), category, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
 					</tr> 
 				<% end %>
 			</table>	

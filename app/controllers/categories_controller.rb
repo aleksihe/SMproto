@@ -12,10 +12,12 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to tuotehallinta_path
     else
+      flash[:error] = "Tuoteryhmalomakkeessa oli virhe!"
       @categories = Category.all
       @product = Product.new
       @products = Product.all
-      render 'tuotehallinta'
+      @category = Category.new
+      redirect_to tuotehallinta_path
     end
   end
   

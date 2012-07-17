@@ -154,3 +154,13 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 5px;
   @include box_sizing;
 }
+
+/*errormessage*/
+.error {
+  color: red;
+  font-size: 14px;
+  width: 100px;
+  padding-top: 15px;
+}
+
+
