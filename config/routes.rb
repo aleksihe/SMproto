@@ -18,6 +18,7 @@ SMproto::Application.routes.draw do
   match '/kilpailut', to: 'pages#kilpailut'
   match '/tuotehallinta', to: 'categories#tuotehallinta'
   match '/signout', to: 'sessions#destroy', via: :delete
+  match '/users_index', to: 'users#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
