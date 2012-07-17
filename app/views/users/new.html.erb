@@ -1,0 +1,21 @@
+<h1>Users#new</h1>
+
+<%= form_for(@user) do |f| %>
+
+      <%= f.label :nimi %>
+      <%= f.text_field :nimi %>
+
+      <%= f.label :tunnus %>
+      <%= f.text_field :tunnus %>
+
+	  
+	  <%= hidden_field_tag(:esimies, true)%>
+	  		
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Luo esimies", class: "btn btn-large btn-primary" %>
+    <% end %>
