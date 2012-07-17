@@ -12,6 +12,7 @@
 	  <div class="row-fluid">	
 	  	<div class="span12">
 		  	<div id="header">
+		  		<p>Heipähei <%= current_user.tunnus %>
 		  	</div>
 		</div>
 	  </div>
@@ -30,7 +31,7 @@
 	  <div class="row-fluid">
 	    <div class="span12">
 		    <div id="footer">    	
-		    	<h2><%= link_to "SaleMate", root_path %></h2>
+		    	<h2><%= link_to "SaleMate", esimies_main_path %></h2>
 			</div> 
 			<div class="debug">
 		      <%= debug(params) if Rails.env.development? %>

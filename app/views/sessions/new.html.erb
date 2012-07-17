@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="span8 offset2">
+		<div class="tervetuloa">
+			<p>Tervetuloa tutustumaan SaleMaten prototyyppiin!</p>
+		</div>
+		<div class="signin">
+			<p>Kirjaudu sisään, valitse esimies tai myyjä!</p>
+			<%= render 'shared/messages'%>
+			<%= form_for(:session, url: sessions_path) do |f| %>
+				
+				<%= f.label :tunnus %>
+				<%= f.text_field :tunnus %>
+				
+				<%= f.label :password %>
+				<%= f.password_field :password %>
+				
+				<%= f.submit "Sign in", class: "btn btn-inverse" %>			
+		
+			<% end %>	
+		</div>
+	</div>
+</div>

@@ -9,7 +9,7 @@
       <%= f.text_field :tunnus %>
 
 	  
-	  <%= hidden_field_tag(:esimies, true)%>
+	  <%= f.hidden_field :esimies, :value => true %>
 	  		
       <%= f.label :password %>
       <%= f.password_field :password %>

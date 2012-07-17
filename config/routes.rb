@@ -7,15 +7,18 @@ SMproto::Application.routes.draw do
  resources :categories
  resources :products
  resources :users
-  root :to => 'pages#esimies_main'
+ resources :sessions, only: [:new, :create, :destroy]
+  root :to => 'sessions#new'
  # get "pages/esimies_main"
 
   
-  
+  match '/esimies_main', to: 'pages#esimies_main'
   match '/kokonaismyynti', to: 'pages#kokonaismyynti'
   match '/myyntiryhmat', to: 'pages#myyntiryhmat'
   match '/kilpailut', to: 'pages#kilpailut'
   match '/tuotehallinta', to: 'categories#tuotehallinta'
+  match '/signout', to: 'sessions#destroy', via: :delete
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

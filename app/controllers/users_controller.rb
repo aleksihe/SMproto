@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       redirect_to root_path
-      flash[:notice] = "Hei esimies!"
+      flash[:notice] = "Esimies luotu!"
       else
         flash[:error] = "Kayttajalomakkeessa oli virhe!"
         redirect_to root_path
