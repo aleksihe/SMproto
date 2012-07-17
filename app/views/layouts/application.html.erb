@@ -12,7 +12,9 @@
 	  <div class="row-fluid">	
 	  	<div class="span12">
 		  	<div id="header">
-		  		
+		  		<% if signed_in? %>
+				  <p>Moi <%= current_user.tunnus %> </p>
+				<% end %>		  		
 		  	</div>
 		</div>
 	  </div>
