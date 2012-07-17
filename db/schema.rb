@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712104536) do
+ActiveRecord::Schema.define(:version => 20120717071205) do
 
   create_table "categories", :force => true do |t|
     t.text     "kuvaus"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(:version => 20120712104536) do
     t.integer  "category_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "nimi"
+    t.string   "tunnus"
+    t.string   "password_digest"
+    t.boolean  "esimies"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end
