@@ -10,16 +10,17 @@
 		<tr>
 			<td><%= link_to image_tag("sivulinkki_placeholder.JPG") %></td>
 		</tr>
+		<% if !current_page?('/esimies_main') %> 
+		<tr>
+			<td><%= link_to image_tag("sivulinkki_etusivulle.JPG", alt: "Etusivulle", :mouseover =>"sivulinkki_etusivulle_hover.JPG"), esimies_main_path %></td>
+		</tr>
+		<% end %>	
 		<% if signed_in? %>
 		<tr>
 			<td><%= link_to image_tag("sivulinkki_kirjaudu_ulos.JPG", alt: "Ulos kirjautuminen", :mouseover =>"sivulinkki_kirjaudu_ulos_hover.JPG"), signout_path, method: "delete" %></td>
 		</tr>
 		<% end %>	
-		<% if !current_page?('/') %> 
-		<tr>
-			<td><%= link_to image_tag("sivulinkki_etusivulle.JPG", alt: "Etusivulle", :mouseover =>"sivulinkki_etusivulle_hover.JPG"), esimies_main_path %></td>
-		</tr>
-		<% end %>	
+		
 	</div>
 
 	<%= render 'shared/messages'%>

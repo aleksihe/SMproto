@@ -1,22 +1,58 @@
 <div class="row">
-	<div class="span8 offset2">
+	<div class="span6 offset3">
 		<div class="tervetuloa">
-			<p>Tervetuloa tutustumaan SaleMaten prototyyppiin!</p>
+			<h3>Tervetuloa tutustumaan SaleMaten prototyyppiin!</h3>
 		</div>
+	</div>
+</div>
+<div class="row">
+<div class="span5 offset1">
 		<div class="signin">
-			<p>Kirjaudu sisään, valitse esimies tai myyjä!</p>
+			<p>Valitse tunnus oikealla olevasta listasta ja kirjaudu sisään!</p>
 			<%= render 'shared/messages'%>
 			<%= form_for(:session, url: sessions_path) do |f| %>
 				
 				<%= f.label :tunnus %>
 				<%= f.text_field :tunnus %>
 				
-				<%= f.label :password %>
-				<%= f.password_field :password %>
+				<%= f.label :Salasana %>
+				<%= f.password_field :password %> <br />
 				
 				<%= f.submit "Kirjaudu sisään!", class: "btn btn-inverse" %>			
 		
 			<% end %>	
+		</div>
+</div>
+	<div class="span5">
+		<div class="kayttajalista">
+			<% if @users.any? %>
+			<table class="table table-bordered table-condensed">
+				<colgroup>
+		          <col class="span1">
+		          <col class="span1">
+		          <col class="span2">
+		          <col class="span1">
+		        </colgroup>
+				<thead>
+					<tr>
+						<th>Tunnus</th><th>Salasana</th><th>Nimi</th><th>Asema</th>
+					</tr>	
+				</thead>
+				<% @users.each do |user| %>
+					<tr>
+						<td><%= user.tunnus %></td>
+						<td><%= user.tunnus %></td>
+						<td><%= user.nimi %></td>
+						<td><% if user.esimies  %>
+							Esimies
+							<% else %>
+							Myyjä
+							<% end %>							
+						</td>
+					</tr> 
+				<% end %>
+			</table>	
+			<% end %>
 		</div>
 	</div>
 </div>

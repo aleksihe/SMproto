@@ -6,10 +6,13 @@
       <%= f.text_field :nimi %>
 
       <%= f.label :tunnus %>
-      <%= f.text_field :tunnus %>
-
+      <%= f.text_field :tunnus %><br />
 	  
-	  <%= f.hidden_field :esimies, :value => true %>
+	  <%= f.radio_button(:esimies, true) %>
+	  <%= f.label :asema, "Esimies" %> 
+	  
+	  <%= f.radio_button(:esimies, false) %>
+	  <%= f.label :asema, "Myyjä" %>
 	  		
       <%= f.label :password %>
       <%= f.password_field :password %>
@@ -17,5 +20,5 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Luo esimies", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Luo käyttäjä", class: "btn btn-large btn-primary" %>
     <% end %>
