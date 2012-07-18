@@ -1,0 +1,21 @@
+<%= form_for(@myyja) do |f| %>
+
+      <%= f.label :nimi %>
+      <%= f.text_field :nimi %>
+
+      <%= f.label :tunnus %>
+      <%= f.text_field :tunnus %><br />
+	  
+	  <%= f.hidden_field :esimies, :value => false %>
+	  
+	  <%= f.label :myyjäryhmä %>
+	  <%= select("user", "salegroup_id", Salegroup.all.collect {|c| [ c.nimi, c.id ] })%> <br />
+  		
+      <%= f.label :salasana%>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Salasana uudelleen" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Luo myyjä", class: "btn btn-large btn-primary" %>
+    <% end %>

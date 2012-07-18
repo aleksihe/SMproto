@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       end
     else
       flash.now[:error] = "Tarkistappas tunnus ja salasana!"
-      render 'new'
+      redirect_to new_session_path
     end
   end
   

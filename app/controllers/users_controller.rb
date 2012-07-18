@@ -12,13 +12,14 @@ class UsersController < ApplicationController
     if @user.save
       if @user.esimies
           flash.now[:notice] = "Esimies luotu!"
+          redirect_to new_user_path
         else
           flash.now[:notice] = "Myyja luotu!"
+          redirect_to myyjahallinta_path
       end
-      redirect_to new_user_path
       else
         flash[:error] = "Kayttajalomakkeessa oli virhe!"
-        redirect_to root_path
+        redirect_to myyjahallinta_path
     end
   end
   def index
@@ -27,6 +28,6 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    redirect_to users_index_path
+    redirect_to myyjahallinta_path
   end  
 end

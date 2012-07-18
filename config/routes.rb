@@ -1,12 +1,17 @@
 SMproto::Application.routes.draw do
 
-  
+
+
+  get "salegroups/create"
+
+  get "salegroups/destroy"
 
   get "users/new"
 
  resources :categories
  resources :products
  resources :users
+ resources :salegroups
  resources :sessions, only: [:new, :create, :destroy]
   root :to => 'sessions#new'
  # get "pages/esimies_main"
@@ -17,6 +22,7 @@ SMproto::Application.routes.draw do
   match '/myyntiryhmat', to: 'pages#myyntiryhmat'
   match '/kilpailut', to: 'pages#kilpailut'
   match '/tuotehallinta', to: 'categories#tuotehallinta'
+  match '/myyjahallinta', to: 'salegroups#myyjahallinta'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/users_index', to: 'users#index'
   

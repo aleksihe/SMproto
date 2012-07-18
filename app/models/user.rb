@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   validates :nimi, presence: true
   validates :tunnus, presence: true, length: { minimum: 6 }
+    
 end
