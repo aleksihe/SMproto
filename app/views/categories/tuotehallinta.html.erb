@@ -1,39 +1,41 @@
 <%= render 'esimies_shared/vasenpalkki' %>
 <div class="span10">
 	<div class="row-fluid" id="tuotteet">
-	<div class= "row">
-		<div class="span 4 offset4"><h4>Tuotteet</h4></div>
-	</div>
-		<div class="span5">
-			<%= render 'esimies_shared/product_form' %>
+		<div class= "row">
+			<div class="span 4 offset4"><h4>Tuotteet</h4></div>
 		</div>
-	
-		<div class="span6">
-			<% if @products.any? %>
-			<table class="table table-condensed table-bordered">
-				<colgroup>
-		          <col class="span4">
-		          <col class="span1">
-		          <col class="span1">
-		          <col class="span4">
-		          <col class="span1">
-		        </colgroup>
-				<thead>
-					<tr>
-						<th>Tuote</th><th>Hinta(€)</th><th>Provisio(€)</th><th>Tuoteryhmä</th><th></th> 
-					</tr>	
-				</thead>
-				<% @products.each do |product| %>
-					<tr>
-						<td><%= product.kuvaus %></td>
-						<td><%= product.hinta %></td>
-						<td><%= product.provisio %></td>
-						<td><%= product.category.kuvaus %></td>
-						<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), product, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
-					</tr> 
+		<div class="row">
+			<div class="span5">
+				<%= render 'esimies_shared/product_form' %>
+			</div>
+		
+			<div class="span6">
+				<% if @products.any? %>
+				<table class="table table-condensed table-bordered">
+					<colgroup>
+			          <col class="span4">
+			          <col class="span1">
+			          <col class="span1">
+			          <col class="span4">
+			          <col class="span1">
+			        </colgroup>
+					<thead>
+						<tr>
+							<th>Tuote</th><th>Hinta(€)</th><th>Provisio(€)</th><th>Tuoteryhmä</th><th></th> 
+						</tr>	
+					</thead>
+					<% @products.each do |product| %>
+						<tr>
+							<td><%= product.kuvaus %></td>
+							<td><%= product.hinta %></td>
+							<td><%= product.provisio %></td>
+							<td><%= product.category.kuvaus %></td>
+							<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), product, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
+						</tr> 
+					<% end %>
+				</table>	
 				<% end %>
-			</table>	
-			<% end %>
+			</div>
 		</div>
 	</div>
 	
@@ -42,12 +44,13 @@
 		<div class="span 4 offset4"><h4>Tuoteryhmät</h4></div>
 	</div>
 		<div class="span5">
-		<%= form_for(@category) do |f| %>
-			<%= f.label :kuvaus %>
-			<%= f.text_field :kuvaus %>
-		
-			<%= f.submit "Luo tuoteyhmä", class: "btn btn-inverse" %>
-		<% end %>
+			<div class="form form-inline">
+				<%= form_for(@category) do |f| %>
+					<%= f.label :kuvaus %>
+					<%= f.text_field :kuvaus, class: "input-medium" %><br />				
+					<%= f.submit "Luo tuoteyhmä", class: "btn btn-inverse" %>
+				<% end %>
+			</div>
 		</div>
 		<div class="span6">
 			<% if @categories.any? %>
@@ -61,7 +64,7 @@
 					<tr>
 						<th>Tuoteryhmä</th><th>Tuotteet(kpl)</th><th></th> 
 					</tr>	
-				</thead>
+				</thead>			
 				<% @categories.each do |category| %>
 					<tr>
 						<td><%= category.kuvaus %></td>

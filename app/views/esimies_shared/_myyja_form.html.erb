@@ -1,21 +1,24 @@
+<div class="form form-inline">
 <%= form_for(@myyja) do |f| %>
 
-      <%= f.label :nimi %>
-      <%= f.text_field :nimi %>
+      <%= f.label :nimi %> 
+      <%= f.text_field :nimi, class: "input-medium" %><br />
 
       <%= f.label :tunnus %>
-      <%= f.text_field :tunnus %><br />
+      <%= f.text_field :tunnus, class: "input-medium"  %><br />
 	  
 	  <%= f.hidden_field :esimies, :value => false %>
 	  
-	  <%= f.label :myyjäryhmä %>
-	  <%= select("user", "salegroup_id", Salegroup.all.collect {|c| [ c.nimi, c.id ] })%> <br />
-  		
+	  <%= f.label :myyntiryhmä %>
+	 <!-- <%= select("user", "salegroup_id", Salegroup.all.collect {|c| [ c.nimi, c.id ] }) %><br /> -->
+	  <%= select_tag "user[salegroup_id]", options_from_collection_for_select(@salegroups,"id", "nimi"), :class => 'input-medium', :prompt => "Valitse ryhmä" %><br />
+	  
       <%= f.label :salasana%>
-      <%= f.password_field :password %>
+      <%= f.password_field :password, class: "input-medium"  %><br />
 
       <%= f.label :password_confirmation, "Salasana uudelleen" %>
-      <%= f.password_field :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "input-medium"  %><br />
 
-      <%= f.submit "Luo myyjä", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Luo myyjä", class: "btn btn-inverse" %>
     <% end %>
+</div>

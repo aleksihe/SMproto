@@ -1,16 +1,17 @@
-
+<div class="form form-inline">
 <%= form_for(@product) do |f| %>		
 		<%= f.label :kuvaus %>
-		<%= f.text_field :kuvaus %> <br />
+		<%= f.text_field :kuvaus, class: "input-medium" %><br />
 		
 		<%= f.label :hinta %>
-		<%= f.text_field :hinta %>	<br />
+		<%= f.text_field :hinta, class: "input-medium" %><br />
 		
 		<%= f.label :provisio %>
-		<%= f.text_field :provisio %><br />
+		<%= f.text_field :provisio, class: "input-medium" %><br />
 		
 		<%= f.label :tuoteryhmä %>
-		<%= select("product", "category_id", Category.all.collect {|c| [ c.kuvaus, c.id ] })%> <br />
-		
+		<%= select_tag "product[category_id]", options_from_collection_for_select(@categories,"id", "kuvaus"), :class => 'input-medium', :prompt => "Valitse ryhmä" %><br />
+				
 		<%= f.submit "Luo tuote", class: "btn btn-inverse" %>
 <% end %>
+</div>

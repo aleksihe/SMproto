@@ -11,6 +11,14 @@
 
 body {
   width: 1200px;
+  font-family: Verdana;
+}
+
+
+/*forms*/
+.form{
+  text-align: right;
+  padding-right: 20px;
 }
 
 /* header */
@@ -30,7 +38,6 @@ body {
   h2 {
     a{
       padding: 10px;
-      font-family: Verdana;
       font-style: italic;
       color: #800517;
       text-decoration:none 
@@ -49,7 +56,6 @@ body {
 .vasenpalkki{
  h3{
    color: white;
-   font-family: verdana;
    font-style: italic;
    }
   border:2px solid;
@@ -63,7 +69,6 @@ body {
 .oikeapalkki{
   h3 {
    color: white;
-   font-family: Verdana;
    font-size: 15px;
   }  
   border:2px solid;
@@ -83,7 +88,6 @@ body {
 /*placeholder*/
 .placeholder{
   p {
-    font-family: Verdana;
   }
   text-align: center;
   vertical-align: middle;
@@ -202,13 +206,10 @@ input, textarea, select, .uneditable-input {
 /*signin page*/
 .tervetuloa{
   padding-top: 20px;
-  font-family: Verdana;
 }
 .signin {
-  font-family: Verdana;
   padding-top: 50px;
 }
 .kayttajalista{
-  font-family: Verdana;
   padding-top: 50px;
 }

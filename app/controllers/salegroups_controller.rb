@@ -4,6 +4,7 @@ class SalegroupsController < ApplicationController
     @myyja = User.new
     @salegroup = Salegroup.new
     @salegroups = Salegroup.all
+    @categories = Category.all
   end
 
   def create
@@ -11,6 +12,9 @@ class SalegroupsController < ApplicationController
     
     if @salegroup.save
       flash[:notice] = "Myyjaryhma luotu!"
+      @category = Category.find(@salegroup.category_id)
+      @category.update_attributes(:salegroup_id => @salegroup.id)
+      
       redirect_to myyjahallinta_path
     else
       flash[:error] = "Myyjaryhmalomakkeessa oli virhe!"
