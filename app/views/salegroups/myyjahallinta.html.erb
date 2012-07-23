@@ -62,18 +62,20 @@
 			<% if @salegroups.any? %>
 			<table class="table table-condensed table-bordered">
 				<colgroup>
-		          <col class="span5">
-		          <col class="span5">
-		          <col class="span1"
+		          <col class="span4">
+		          <col class="span3">
+		          <col class="span3">
+		          <col class="span1">
 		        </colgroup>
 				<thead>
 					<tr>
-						<th>Myyntiryhmä</th><th>Tuoteryhmä</th><th></th>
+						<th>Myyntiryhmä</th><th>Myyjiä(kpl)</th><th>Tuoteryhmä</th><th></th>
 					</tr>	
 				</thead>
 				<% @salegroups.each do |salegroup| %>
 					<tr>
 						<td><%= salegroup.nimi %></td>
+						<td><%= salegroup.users.count %></td>
 						<td>
 						<% if salegroup.category %>
 							<%= salegroup.category.kuvaus %>
