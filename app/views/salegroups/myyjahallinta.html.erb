@@ -13,8 +13,8 @@
 				<% if @myyjat.any? %>
 				<table class="table table-condensed table-bordered">
 					<colgroup>
-			          <col class="span5">
-			          <col class="span5">
+			          <col class="span6">
+			          <col class="span4">
 			          <col class="span1">		         
 			        </colgroup>
 					<thead>
@@ -25,18 +25,19 @@
 					<% @myyjat.each do |myyja| %>
 						<tr>
 							<td><%= myyja.nimi %></td>
-							<td>
-							<% if myyja.salegroup%>
-							<%= myyja.salegroup.nimi %>
-							<% else %>
-							Ei ryhmää
-							<% end %>	
-							</td>					
+							<td>								
+								<%= form_tag('users/' + myyja.id.to_s, :method => :put) do %>
+									<%= select_tag "user[salegroup_id]", options_from_collection_for_select(@salegroups,"id", "nimi", myyja.salegroup_id),  
+									:include_blank => true,  
+									:onchange => "this.form.submit();",
+									:class => 'input-medium' %>	
+								<% end %>																
+							</td>				
 							<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), myyja, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
 						</tr> 
-					<% end %>
-				</table>	
-				<% end %>
+					<% end %>			
+				</table>
+				<% end %>				
 			</div>
 		</div>
 	</div>

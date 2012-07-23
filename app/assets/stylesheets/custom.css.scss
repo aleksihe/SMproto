@@ -150,6 +150,10 @@ body {
     display: block;
     max-height: 250px;
     overflow-y: auto;
+    form{
+      height: 20px;
+      margin-bottom: 4px;
+    }
   }
 }
 
@@ -213,3 +217,4 @@ input, textarea, select, .uneditable-input {
 .kayttajalista{
   padding-top: 50px;
 }
+

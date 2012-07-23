@@ -10,7 +10,6 @@
 	  <%= f.hidden_field :esimies, :value => false %>
 	  
 	  <%= f.label :myyntiryhmä %>
-	 <!-- <%= select("user", "salegroup_id", Salegroup.all.collect {|c| [ c.nimi, c.id ] }) %><br /> -->
 	  <%= select_tag "user[salegroup_id]", options_from_collection_for_select(@salegroups,"id", "nimi"), :class => 'input-medium', :prompt => "Valitse ryhmä" %><br />
 	  
       <%= f.label :salasana%>

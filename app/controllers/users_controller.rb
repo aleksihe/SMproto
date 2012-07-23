@@ -22,8 +22,18 @@ class UsersController < ApplicationController
         redirect_to myyjahallinta_path
     end
   end
+  
   def index
     @users = User.all
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attribute(:salegroup_id, params[:user][:salegroup_id])
+      redirect_to myyjahallinta_path
+    else
+      redirect_to myyjahallinta_path
+    end
   end
 
   def destroy
