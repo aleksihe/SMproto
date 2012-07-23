@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         redirect_to myyja_main_path
       end
     else
-      flash.now[:error] = "Tarkistappas tunnus ja salasana!"
+      flash[:error] = "Tarkistappas tunnus ja salasana!"
       redirect_to new_session_path
     end
   end

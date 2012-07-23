@@ -9,7 +9,6 @@
 <div class="span5 offset1">
 		<div class="signin">
 			<p>Valitse tunnus oikealla olevasta listasta ja kirjaudu sisään!</p>
-			<%= render 'shared/messages'%>
 			<%= form_for(:session, url: sessions_path) do |f| %>
 				
 				<%= f.label :tunnus %>
@@ -22,6 +21,7 @@
 		
 			<% end %>	
 		</div>
+		<%= render 'shared/messages'%>
 </div>
 	<div class="span5">
 		<div class="kayttajalista">
