@@ -78,7 +78,17 @@ body {
   background-color: black; 
   
 }
-
+/* myyja palkki */
+.vasenpalkki_myyja{
+ h3{
+   color: black;
+   font-style: italic;
+   }
+  border:2px solid;
+  border-radius:25px;
+  text-align: center;
+  padding: 10px;
+}
 
 /* esimies main sisalto */
 .main_sisältö{
@@ -217,4 +227,29 @@ input, textarea, select, .uneditable-input {
 .kayttajalista{
   padding-top: 50px;
 }
+/*myyja myynti*/
+.myyntipv{
+  padding-top: 10px;
+  margin-top: 5px;
+  height: 400px;
+  border:2px solid;
+  border-radius:25px;
+  text-align: center;
+}
 
+.myyntikk{
+  padding-top: 10px;
+  margin-top: 5px;
+  height: 400px;
+  border:2px solid;
+  border-radius:25px;
+  text-align: center;
+}
+.osaamisluvut{
+  padding-top: 10px;
+  margin-top: 5px;
+  height: 400px;
+  border:2px solid;
+  border-radius:25px;
+  text-align: center;
+}

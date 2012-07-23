@@ -18,6 +18,7 @@ SMproto::Application.routes.draw do
 
   
   match '/esimies_main', to: 'pages#esimies_main'
+  match '/myyja_main', to: 'pages#myyja_main'
   match '/kokonaismyynti', to: 'pages#kokonaismyynti'
   match '/myyntiryhmat', to: 'pages#myyntiryhmat'
   match '/kilpailut', to: 'pages#kilpailut'

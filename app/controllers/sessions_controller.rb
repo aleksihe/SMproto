@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
       if user.esimies
         redirect_to esimies_main_path
       else
-        redirect_to esimies_main_path
-       # redirect_to myyja_main_path
+        redirect_to myyja_main_path
       end
     else
       flash.now[:error] = "Tarkistappas tunnus ja salasana!"

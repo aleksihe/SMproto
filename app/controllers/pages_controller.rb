@@ -7,4 +7,6 @@ class PagesController < ApplicationController
   end
   def kilpailut
   end
+  def myyja_main
+  end
 end
