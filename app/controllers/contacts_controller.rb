@@ -11,7 +11,7 @@ class ContactsController < ApplicationController
       if @contact.save
         if @contact.tilaus
           @product = Product.find(params[:tuote])
-          @order = Order.new(:contact_id => @contact.id, :hinta => @product.hinta, :provisio => @product.provisio, :kuvaus => @product.kuvaus)
+          @order = Order.new(:contact_id => @contact.id, :hinta => @product.hinta, :provisio => @product.provisio, :kuvaus => @product.kuvaus, :user_id => @contact.user_id)
           
           if @order.save        
               redirect_to myyja_main_path
