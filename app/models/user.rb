@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :esimies, :nimi, :password, :password_confirmation, :tunnus, :salegroup_id
   belongs_to :salegroup
+  has_many :contacts
   has_secure_password
  
   

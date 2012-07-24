@@ -11,13 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719094658) do
+ActiveRecord::Schema.define(:version => 20120724081844) do
 
   create_table "categories", :force => true do |t|
     t.text     "kuvaus"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "salegroup_id"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.boolean  "tilaus"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "contact_id"
+    t.integer  "hinta"
+    t.integer  "provisio"
+    t.string   "kuvaus"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "products", :force => true do |t|

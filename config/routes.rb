@@ -2,9 +2,17 @@ SMproto::Application.routes.draw do
 
 
 
-  get "salegroups/create"
+  #get "contacts/index"
 
-  get "salegroups/destroy"
+  #get "contacts/create"
+
+  #get "contacts/update"
+
+ # get "contacts/destroy"
+
+ #get "salegroups/create"
+
+ # get "salegroups/destroy"
 
   get "users/new"
 
@@ -12,6 +20,7 @@ SMproto::Application.routes.draw do
  resources :products
  resources :users
  resources :salegroups
+ resources :contacts
  resources :sessions, only: [:new, :create, :destroy]
   root :to => 'sessions#new'
  # get "pages/esimies_main"

@@ -2,7 +2,15 @@
 	<div class="vasenpalkki_myyja">
 		<tr> <td><h3>Kontaktit</h3></td></tr>
 		<tr>
-			<td><%= image_tag "tilaus.jpg", :mouseover =>"tilaus_hover.JPG" %></td>	
+			<td><%= form_tag('/contacts') do %>
+				<%= image_submit_tag "tilaus.jpg", :mouseover =>"tilaus_hover.JPG" %>
+				<%= hidden_field_tag 'user_id', current_user.id %>
+				<%= hidden_field_tag 'tilaus', true %>
+				<%= select_tag "tuote", options_from_collection_for_select(@products,"id", "kuvaus"),    
+									:prompt => 'Valitse tuote',
+									:class => 'input-medium' %> 
+				<% end %>
+			</td>	
 		</tr>
 		<tr>
 			<td><%= image_tag "ei_tilausta.jpg", :mouseover =>"ei_tilausta_hover.JPG" %></td>	
