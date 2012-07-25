@@ -3,7 +3,7 @@
 		<tr> <td><h3>Kontaktit</h3></td></tr>
 		<tr>
 			<td><%= form_tag('/contacts') do %>
-				<%= image_submit_tag "tilaus.jpg", :mouseover =>"tilaus_hover.JPG" %>
+				<%= image_submit_tag "tilaus.jpg", :onmouseover =>"this.src='assets/tilaus_hover.JPG'", :onmouseout => "this.src='assets/tilaus.jpg'" %>
 				<%= hidden_field_tag 'user_id', current_user.id %>
 				<%= hidden_field_tag 'tilaus', true %>
 				<%= select_tag "tuote", options_from_collection_for_select(@products,"id", "kuvaus"),    
@@ -13,7 +13,12 @@
 			</td>	
 		</tr>
 		<tr>
-			<td><%= image_tag "ei_tilausta.jpg", :mouseover =>"ei_tilausta_hover.JPG" %></td>	
+			<td><%= form_tag('/contacts') do %>
+				<%= image_submit_tag "ei_tilausta.jpg", :onmouseover =>"this.src='assets/ei_tilausta_hover.JPG'", :onmouseout => "this.src='assets/ei_tilausta.jpg'" %>
+				<%= hidden_field_tag 'user_id', current_user.id %>
+				<%= hidden_field_tag 'tilaus', false %>
+				<% end %>
+			</td>	
 		</tr>
 	</div>
 

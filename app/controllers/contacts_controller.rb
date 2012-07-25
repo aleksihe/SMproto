@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   def create
-    if params[:tuote] == ""
+    if params[:tilaus] && params[:tuote] == ""
       flash[:error] = "Valitse tuote!"
       redirect_to myyja_main_path
       
@@ -15,14 +15,17 @@ class ContactsController < ApplicationController
           
           if @order.save        
               redirect_to myyja_main_path
+          else    
+              flash[:error] = "Tilauksen tallentaminen epaonnistui!"
           end
-          
-        end      
-      end  
-    end
-    
-    
-    
+        else
+            redirect_to myyja_main_path    
+        end
+       else
+         flash[:error] = "Kontaktin tallentaminen epaonnistui!"
+         redirect_to myyja_main_path                  
+       end  
+     end
   end
 
   def update
