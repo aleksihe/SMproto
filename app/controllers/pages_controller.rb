@@ -12,6 +12,14 @@ class PagesController < ApplicationController
     @contacts_today = current_user.contacts_today
     @sales_today = current_user.sales_today
     @provisio_today = current_user.provisio_today
-    @provisio_palkkakausi = current_user.provisio_palkkakausi
+    @provisio_month = current_user.provisio_month
+    @sales_month = current_user.sales_month
+    @contacts_month = current_user.contacts_month
+    @pull_today = current_user.pull_today
+    @kmprovisio_today = current_user.kmprovisio_today
+    @pull_month = current_user.pull_month
+    @kmprovisio_month = current_user.kmprovisio_month
+    @contacts_avg = current_user.contacts_avg
+    @provisio_arvio = current_user.provisio_arvio
   end
 end

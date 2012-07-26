@@ -47,12 +47,88 @@
 		</div>
 		<div class="span4">
 			<div class="myyntikk">
-				
+				<div class="row">
+					<h3>Tässä kuussa</h3><br />
+				</div>
+				<div class="row-fluid">					
+					<div class="span4" id="myyntikk" style="width:84px; height:300px">
+					</div>
+					<div class="span4" id="kontaktitkk" style="width:84px; height:300px">
+					</div>
+					<div class="span4" id="provisiokk" style="width:84px; height:300px">
+					</div>
+				</div>
+				<div class="row-fluid">					
+					<div class="span4">
+						<p>Myynti</p>
+						<p><%= @sales_month %> €</p>
+					</div>
+					<div class="span4">
+						<p>Kontaktit</p>
+						<p><%= @contacts_month %> kpl </p> 
+					</div>
+					<div class="span4">
+						<p>Provisio</p>
+						<p><%= @provisio_month %> €</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="span4">
 			<div class="osaamisluvut">
-				<p>osaamisluvut</p>
+				<div class="row-fluid">
+					<h3>Osaamisluvut</h3><br />	
+				</div>
+				<div class="row">
+					<div class="span10 osaamistoday">
+						<table class="table table-bordered table-condensed">
+							<colgroup>
+					          <col class="span4">
+					          <col class="span4">				                
+					        </colgroup>
+							<thead>
+								<tr>
+									<th>Tänään</th><th><%= Date.today %></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Pull%</td><td><%= @pull_today %></td>
+								</tr>
+								<tr>
+									<td>Provisio ka. (€)</td><td><%= @kmprovisio_today %></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span10 osaamismonth">
+						<table class="table table-bordered table-condensed">
+							<colgroup>
+					          <col class="span4">
+					          <col class="span4">						                      
+					        </colgroup>
+							<thead>
+								<tr>
+									<th>Tässä kuussa</th><th><%= Date.today %></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Pull%</td><td><%= @pull_month %></td>
+								</tr>
+								<tr>
+									<td>Provisio ka. (€)</td><td><%= @kmprovisio_month %></td>
+								</tr>
+								<tr>
+									<td>Kontaktit/pv</td><td><%= @contacts_avg %></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<%= @provisio_arvio.round(1) %>
+				</div>
 			</div>
 		</div>
 	</div>	
@@ -64,6 +140,9 @@ $(function () {
     var d1_tavoite = [[0, 1500]];
     var d2 = [[0, <%= @contacts_today %>]];
     var d3 = [[0, <%= @provisio_today %>]];
+    var d4 = [[0, <%= @sales_month %>]];
+    var d5 = [[0, <%= @contacts_month %>]];
+    var d6 = [[0, <%= @provisio_month %>]];
     
     $.plot($("#myynti"), [
     {	
@@ -121,6 +200,61 @@ $(function () {
     		ticks: 10,
     		min: 0,
     		max: 500,
+    	}
+    });
+    
+    
+    $.plot($("#myyntikk"), [
+    {	
+    	data: d4,
+    	bars: { show: true },
+    	color: "#E01B1B"
+    }    
+    ], {
+    	xaxis: {
+    		show: false
+    	},
+    	
+    	yaxis: {
+    		ticks: 10,
+    		min: 0,
+    		max: 100000,
+    	}
+    });
+    
+    $.plot($("#kontaktitkk"), [
+    {	
+    	data: d5,
+    	bars: { show: true },
+    	color: "#222"
+    }
+    ], {
+    	xaxis: {
+    		show: false
+    	},
+    	
+    	yaxis: {
+    		ticks: 10,
+    		min: 0,
+    		max: 1300,
+    	}
+    });
+    
+    $.plot($("#provisiokk"), [
+    {	
+    	data: d6,
+    	bars: { show: true },
+    	color: "#111"
+    }
+    ], {
+    	xaxis: {
+    		show: false
+    	},
+    	
+    	yaxis: {
+    		ticks: 10,
+    		min: 0,
+    		max: 6000,
     	}
     });
      
