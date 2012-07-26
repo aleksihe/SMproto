@@ -64,6 +64,8 @@ GEM
     faker (1.0.1)
       i18n (~> 0.4)
     ffi (1.1.0-x86-mingw32)
+    flot-rails (0.0.2)
+      jquery-rails
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.4)
@@ -161,6 +163,7 @@ DEPENDENCIES
   coffee-rails (= 3.2.2)
   factory_girl_rails (= 1.4.0)
   faker (= 1.0.1)
+  flot-rails
   jquery-rails (= 2.0.0)
   pg (= 0.12.2)
   rails (= 3.2.7.rc1)
