@@ -1,12 +1,24 @@
 class PagesController < ApplicationController
   def esimies_main
   end
+  
   def kokonaismyynti
   end
+  
   def myyntiryhmat
+    @salegroups = Salegroup.all
+    if params[:salegroup_id].nil? || params[:salegroup_id] == ""
+      @salegroup = Salegroup.first    
+    else
+      @salegroup = Salegroup.find(params[:salegroup_id])
+    end
+    @myyjat = User.where(:salegroup_id => @salegroup.id)
+    
   end
+  
   def kilpailut
   end
+  
   def myyja_main
     @products = Category.find(Salegroup.find(current_user.salegroup_id).category_id).products
     @contacts_today = current_user.contacts_today
