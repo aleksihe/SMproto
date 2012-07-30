@@ -11,58 +11,69 @@ class User < ActiveRecord::Base
   validates :nimi, presence: true
   validates :tunnus, presence: true, length: { minimum: 6 }
     
-    def contacts_today
-      self.contacts.where('DATE(created_at) = ?', Date.today).count
-    end
-    def sales_today
-     self.orders.where('DATE(created_at) = ?', Date.today).sum('hinta') 
-    end
-    def provisio_today
-      self.orders.where('DATE(created_at) = ?', Date.today).sum('provisio')
-    end
-    def provisio_month
-      self.orders.where('created_at >= ? and created_at <= ?', Time.zone.now.beginning_of_month, Time.zone.now.end_of_month).sum('provisio')
-    end
-    def contacts_month
-      self.contacts.where('created_at >= ? and created_at <= ?', Time.zone.now.beginning_of_month, Time.zone.now.end_of_month).count
-    end
-    def sales_month
-     self.orders.where('created_at >= ? and created_at <= ?', Time.zone.now.beginning_of_month, Time.zone.now.end_of_month).sum('hinta') 
-    end
-    def pull_today
-      if self.contacts_today == 0
-        0
+    #first = date beginning, last = date end
+    def contacts_count(first, last)
+      if last.nil?
+        self.contacts.where('DATE(created_at) = ?', first).count
       else
-        ((self.orders.where('DATE(created_at) = ?', Date.today).count / self.contacts_today.to_f) * 100).to_i
+        self.contacts.where('created_at >= ? and created_at <= ?', first, last).count
+      end  
+    end
+    
+    def sales_sum(first, last)
+      if last.nil?
+        self.orders.where('DATE(created_at) = ?', first).sum('hinta') 
+      else
+        self.orders.where('created_at >= ? and created_at <= ?', first, last).sum('hinta')
       end    
     end
-    def kmprovisio_today
-      if self.orders.where('DATE(created_at) = ?', Date.today).count == 0
-        0
+    
+    def provisio_sum(first, last)
+      if last.nil?
+        self.orders.where('DATE(created_at) = ?', first).sum('provisio')
       else
-        self.orders.where('DATE(created_at) = ?', Date.today).average('provisio').round(1)
-      end     
+        self.orders.where('created_at >= ? and created_at <= ?', first, last).sum('provisio')
+      end    
     end
-    def pull_month
-      if self.contacts_month == 0
-        0
+    
+    def pull(first, last)
+      if last.nil?
+        if self.contacts_count(first, nil) == 0
+          0
+        else
+          ((self.orders.where('DATE(created_at) = ?', first).count / self.contacts_count(first, nil).to_f) * 100).to_i
+        end
       else
-        ((self.orders.where('created_at >= ? and created_at <= ?', Time.zone.now.beginning_of_month, Time.zone.now.end_of_month).count / self.contacts_month.to_f) * 100).to_i
-      end
+        if self.contacts_count(first, last) == 0
+          0
+        else
+          ((self.orders.where('created_at >= ? and created_at <= ?', first, last).count / self.contacts_count(first, last).to_f) * 100).to_i
+        end
+      end        
     end
-    def kmprovisio_month
-      if self.orders.where('created_at >= ? and created_at <= ?', Time.zone.now.beginning_of_month, Time.zone.now.end_of_month).count == 0
-        0
+    
+    def kmprovisio(first, last)
+      if last.nil?
+        if self.orders.where('DATE(created_at) = ?', first).count == 0
+          0
+        else
+          self.orders.where('DATE(created_at) = ?', first).average('provisio').to_f.round(1)
+        end 
       else
-        self.orders.where('created_at >= ? and created_at <= ?', Time.zone.now.beginning_of_month, Time.zone.now.end_of_month).average('provisio').round(1)
-      end      
+        if self.orders.where('created_at >= ? and created_at <= ?', first, last).count == 0
+          0
+        else
+          self.orders.where('created_at >= ? and created_at <= ?', first, last).average('provisio').to_f.round(1)
+        end
+      end        
+    end 
+      
+    def contacts_avg(first, last)
+      (self.contacts.where('created_at >= ? and created_at <= ?', first, last).count / first.business_days_until(last).to_f).round(1)
     end
-    def contacts_avg
+    
+    def provisio_arvio(first, last)
       date = Date.today
-      (self.contacts.where('created_at >= ? and created_at <= ?', Time.zone.now.beginning_of_month, Date.today).count / date.beginning_of_month.business_days_until(date).to_f).round(1)
-    end
-    def provisio_arvio
-      date = Date.today
-      self.provisio_month - self.provisio_today + (self.contacts_avg * (self.pull_month/100) * self.kmprovisio_month * (date.business_days_until(date.end_of_month)+1) )
+      self.provisio_sum(first, last) + (self.contacts_avg(first, date) * (self.pull(first, date)/100.0) * self.kmprovisio(first, date) * date.business_days_until(last) )
     end
 end
