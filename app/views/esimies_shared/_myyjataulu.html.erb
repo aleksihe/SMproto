@@ -1,0 +1,29 @@
+<table class="table table-condensed table-bordered table-pieni">
+	<colgroup>
+      <col class="span1">
+      <col class="span1">
+      <col class="span1">
+      <col class="span1">
+      <col class="span1">
+      <col class="span1">		         
+    </colgroup>
+	<thead>
+		<tr>
+			<th>Myyjä</th><th>Myynti €</th><th>Kontaktit/pv</th><th>Pull %</th><th>Provisio €</th><th></th>
+		</tr>	
+	</thead>
+	<% @myyjat.each do |myyja| %>
+		<% if aika = "Tänään" %>
+		<tr>
+			<td><%= myyja.nimi %></td>
+			<td><%= myyja.sales_sum(Date.today, nil) %></td>				
+			<td><%= myyja.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today) %></td>
+			<td><%= myyja.pull(Date.today, nil) %></td>
+			<td><%= myyja.provisio_sum(Date.today, nil) %></td>				
+			<td></td>
+		</tr>
+		<% else %>
+		
+		<% end %> 
+	<% end %>			
+</table>

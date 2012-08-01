@@ -1,3 +1,4 @@
+#coding: utf-8
 class PagesController < ApplicationController
   def esimies_main
   end
@@ -6,13 +7,19 @@ class PagesController < ApplicationController
   end
   
   def myyntiryhmat
+    @aika = "Tänään"
     @salegroups = Salegroup.all
-    if params[:salegroup_id].nil? || params[:salegroup_id] == ""
-      @salegroup = Salegroup.first    
-    else
-      @salegroup = Salegroup.find(params[:salegroup_id])
-    end
-    @myyjat = User.where(:salegroup_id => @salegroup.id)
+    
+    respond_to do |format|
+      format.html{
+        @salegroup = Salegroup.first
+        @myyjat = User.where(:salegroup_id => @salegroup.id)
+      }
+      format.js{
+        @salegroup = Salegroup.find(params[:salegroup_id])
+        @myyjat = User.where(:salegroup_id => @salegroup.id)
+      }
+    end   
     
   end
   
