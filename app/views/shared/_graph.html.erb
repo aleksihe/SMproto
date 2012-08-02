@@ -1,0 +1,6 @@
+<%= @aika %>
+<% if @aika == "Tänään" %>
+ <%= render :partial => 'shared/graph_tanaan', :locals => { :myyja => User.find(2), :width => 50, :height => 200} %>
+<% elsif @aika == "Tämä kuu" %>
+ <%= render :partial => 'shared/graph_kuukausi', :locals => { :myyja => User.find(2), :width => 50, :height => 200} %>
+<% end %>

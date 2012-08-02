@@ -1,0 +1,95 @@
+<% @sales_month = myyja.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %>
+<% @contacts_month = myyja.contacts_count(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %>
+<% @provisio_month = myyja.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %>
+<div class="row-fluid">					
+	<div class="span4" id="myynti" style="width:<%= width %>px; height:<%= height %>px">
+	</div>
+	<div class="span4" id="kontaktit" style="width:<%= width %>px; height:<%= height %>px">
+	</div>
+	<div class="span4" id="provisio" style="width:<%= width %>px; height:<%= height %>px">
+	</div>
+</div>
+<div class="row-fluid">					
+	<div class="span4">
+		<p>Myynti</p>
+		<p><%= @sales_month %> €</p>
+	</div>
+	<div class="span4">
+		<p>Kontaktit</p>
+		<p><%= @contacts_month %> kpl </p> 
+	</div>
+	<div class="span4">
+		<p>Provisio</p>
+		<p><%= @provisio_month %> €</p>
+	</div>
+</div>
+<script type="text/javascript">
+$(function () {
+	
+    var d1 = [[0, <%= @sales_month %>]];
+    var d1_tavoite = [[0, 1500]];
+    var d2 = [[0, <%= @contacts_month %>]];
+    var d3 = [[0, <%= @provisio_month %>]];
+   
+    
+    $.plot($("#myynti"), [
+    {	
+    	data: d1,
+    	bars: { show: true },
+    	color: "#E01B1B"
+    },
+    {	
+    	data: d1_tavoite,
+    	bars: { show: true },
+    	color: "#D0E01B"
+    }
+    ], {
+    	xaxis: {
+    		show: false
+    	},
+    	
+    	yaxis: {
+    		ticks: 10,
+    		min: 0,
+    		max: 2000,
+    	}
+    });
+    
+    $.plot($("#kontaktit"), [
+    {	
+    	data: d2,
+    	bars: { show: true },
+    	color: "#222"
+    }
+    ], {
+    	xaxis: {
+    		show: false
+    	},
+    	
+    	yaxis: {
+    		ticks: 10,
+    		min: 0,
+    		max: 60,
+    	}
+    });
+    
+    $.plot($("#provisio"), [
+    {	
+    	data: d3,
+    	bars: { show: true },
+    	color: "#111"
+    }
+    ], {
+    	xaxis: {
+    		show: false
+    	},
+    	
+    	yaxis: {
+    		ticks: 10,
+    		min: 0,
+    		max: 500,
+    	}
+    });
+     
+});
+</script>
