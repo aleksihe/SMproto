@@ -1,5 +1,3 @@
-<%= form_tag '/myyntiryhmat', remote: true do %>
-	<%= select_tag "salegroup_id", options_from_collection_for_select(@salegroups,"id", "nimi", @salegroup.id),   
-	:class => 'input-medium',
-	:id => 'ryhmavalinta' %>	
+<%= form_tag '/ryhmavaihto', remote: true, :id => 'ryhmavalinta_formi'  do %>
+	<div id="ryhmavalinta" class="input-medium"><%= select_tag "salegroup_id", options_from_collection_for_select(@salegroups,"id", "nimi", @salegroup.id) %></div>
 <% end %>

@@ -7,19 +7,15 @@ class PagesController < ApplicationController
   end
   
   def myyntiryhmat
-    @aika = "Tänään"
+    @aika = cookies[:aika] || "Tänään"
     @salegroups = Salegroup.all
-    
-    respond_to do |format|
-      format.html{
-        @salegroup = Salegroup.first
-        @myyjat = User.where(:salegroup_id => @salegroup.id)
-      }
-      format.js{
-        @salegroup = Salegroup.find(params[:salegroup_id])
-        @myyjat = User.where(:salegroup_id => @salegroup.id)
-      }
-    end   
+    if !cookies[:salegroup_id].nil?
+      @salegroup = Salegroup.find(cookies[:salegroup_id])
+    else
+       @salegroup = Salegroup.first
+    end
+   
+    @myyjat = User.where(:salegroup_id => @salegroup.id)  
     
   end
   

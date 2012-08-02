@@ -1,0 +1,20 @@
+<div class="span2">
+	<%= form_tag '/aikavaihto', remote: true do %>
+		<div><%= hidden_field_tag 'aika', 'Tänään' %></div>
+		<% if @aika == "Tänään"%>
+		<%= submit_tag 'Tänään', :class => "btn btn-primary", :disabled => true %>
+		<% else %>
+		<%= submit_tag 'Tänään', :class =>"btn"%>
+		<% end %>
+	<% end %>
+</div>		
+<div class="span2">
+	<%= form_tag '/aikavaihto', remote: true do %>
+		<div><%= hidden_field_tag 'aika', 'Tämä kuu' %></div>
+		<% if @aika == "Tämä kuu"%>
+		<%= submit_tag 'Tämä kuu', :class => "btn btn-primary", :disabled => true %>
+		<% else %>
+		<%= submit_tag 'Tämä kuu', :class =>"btn" %>
+		<% end %>
+	<% end %>
+</div>

@@ -1,6 +1,7 @@
 SMproto::Application.routes.draw do
 
 
+  get "myyntiryhmat/myyjavaihto"
 
   #get "contacts/index"
 
@@ -35,7 +36,8 @@ SMproto::Application.routes.draw do
   match '/myyjahallinta', to: 'salegroups#myyjahallinta'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/users_index', to: 'users#index'
-  
+  match '/ryhmavaihto', to: 'myyntiryhmat#ryhmavaihto', via: :post
+  match '/aikavaihto', to: 'myyntiryhmat#aikavaihto', via: :post
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

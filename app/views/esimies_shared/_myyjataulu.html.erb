@@ -1,3 +1,5 @@
+<%= @salegroup.nimi %>
+<%= @aika %>
 <table class="table table-condensed table-bordered table-pieni">
 	<colgroup>
       <col class="span1">
@@ -13,7 +15,7 @@
 		</tr>	
 	</thead>
 	<% @myyjat.each do |myyja| %>
-		<% if aika = "Tänään" %>
+		<% if @aika == "Tänään" %>
 		<tr>
 			<td><%= myyja.nimi %></td>
 			<td><%= myyja.sales_sum(Date.today, nil) %></td>				
@@ -22,8 +24,15 @@
 			<td><%= myyja.provisio_sum(Date.today, nil) %></td>				
 			<td></td>
 		</tr>
-		<% else %>
-		
+		<% elsif @aika == "Tämä kuu" %>
+		<tr>
+			<td><%= myyja.nimi %></td>
+			<td><%= myyja.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %></td>				
+			<td><%= myyja.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today) %></td>
+			<td><%= myyja.pull(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %></td>
+			<td><%= myyja.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %></td>				
+			<td></td>
+		</tr>		
 		<% end %> 
 	<% end %>			
 </table>

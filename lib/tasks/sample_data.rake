@@ -14,10 +14,14 @@ def make_categories
   Category.create!( kuvaus: "Lehdet",
                     salegroup_id: nil        
                   )
+  Category.create!( kuvaus: "Liittymät",
+                    salegroup_id: nil        
+                  )
 end
 
 def make_products
   lehdet = Category.find_by_kuvaus("Lehdet")
+  liittymat = Category.find_by_kuvaus("Liittymät")
    Product.create!( kuvaus: "Aku Ankka 7kk",
                     hinta: 37,
                     provisio: 10,
@@ -37,18 +41,28 @@ def make_products
                     hinta: 35,
                     provisio: 9,
                     category_id: lehdet.id                    
-                  )                                               
+                  ) 
+    Product.create!( kuvaus: "Puhepaketti 250",
+                    hinta: 20,
+                    provisio: 9,
+                    category_id: liittymat.id                    
+                  )                                              
 end
 
 def make_salegroups
   lehdet = Category.find_by_kuvaus("Lehdet")
+  liittymat = Category.find_by_kuvaus("Liittymät")
     Salegroup.create!(  nimi: "Lehtikauppiaat",
                         category_id: lehdet.id                      
                      )
+    Salegroup.create!(  nimi: "Liittymäkauppiaat",
+                        category_id: liittymat.id                      
+                     )                 
 end
 
 def make_users
   lehtimyyjat = Salegroup.find_by_nimi("Lehtikauppiaat")
+  liittymamyyjat = Salegroup.find_by_nimi("Liittymäkauppiaat")
    User.create!(  nimi: "Raikku Raikuttaja",
                   tunnus: "rairai",
                   password: "rairai",
@@ -90,7 +104,14 @@ def make_users
                   password_confirmation: "tenteh",
                   esimies: false,
                   salegroup_id: lehtimyyjat.id
-                )                                                                
+                )   
+   User.create!(  nimi: "Kuisma Kuiskailija",
+                  tunnus: "kuikui",
+                  password: "kuikui",
+                  password_confirmation: "kuikui",
+                  esimies: false,
+                  salegroup_id: liittymamyyjat.id
+                )                                                             
 end
 
 def make_contacts
@@ -98,7 +119,11 @@ def make_contacts
   lehtimyyjat = User.where(:salegroup_id => ryhma.id)
   tuotteet = Product.where(:category_id => ryhma.category_id)
   
-  paivat = 25
+  ryhma2 = Salegroup.find_by_nimi("Liittymäkauppiaat")
+  liittymamyyjat = User.where(:salegroup_id => ryhma2.id)
+  tuotteet2 = Product.where(:category_id => ryhma2.category_id)
+  
+  paivat = 4
   
   
   
@@ -110,6 +135,38 @@ def make_contacts
       kontaktit.times do
         if rand(0..100) < pull
           tuote = tuotteet[rand(tuotteet.length)]
+          Contact.create!(
+                    tilaus: true,
+                    user_id: myyja.id,
+                    created_at: paiva,
+                    updated_at: paiva                                     
+          )
+          Order.create!(
+                    contact_id: Contact.last.id,  
+                    hinta: tuote.hinta,
+                    provisio: tuote.provisio,
+                    kuvaus: tuote.kuvaus,
+                    created_at: paiva,
+                    updated_at: paiva,
+                    user_id:  myyja.id
+          )
+          
+        else
+          Contact.create!(
+                    tilaus: false,
+                    user_id: myyja.id,
+                    created_at: paiva,
+                    updated_at: paiva                                     
+          )
+        end  
+      end
+    end
+    liittymamyyjat.each do |myyja|
+      kontaktit = rand(20..50)
+      pull = rand(0..25)
+      kontaktit.times do
+        if rand(0..100) < pull
+          tuote = tuotteet2[rand(tuotteet2.length)]
           Contact.create!(
                     tilaus: true,
                     user_id: myyja.id,

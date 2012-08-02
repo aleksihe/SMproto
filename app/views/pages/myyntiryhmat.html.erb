@@ -11,12 +11,13 @@
 		</div>		
 	</div>
 	<div class="row-fluid">
-		<div class="span2">			
-			<%= render 'esimies_shared/ryhmavalinta'%>				
+		<div class="span3">	
+			<div id="ryhmavalinta_form">		
+			<%= render 'esimies_shared/ryhmavalinta'%>	
+			</div>			
 		</div>
-		<div class="span2">
-		</div>
-		<div class="span2">
+		<div id="aikavalinta">		
+			<%= render 'esimies_shared/aikavalinta' %>	
 		</div>
 		<div class="span2">
 		</div>
@@ -26,9 +27,8 @@
 	<div class="row-fluid">
 		<div class="span8">		
 			<div id="myyjataulu">
-				<%= @salegroup.nimi %>
 				<% if @myyjat.any? %>
-				<%= render 'esimies_shared/myyjataulu', :aika => @aika %>
+				<%= render 'esimies_shared/myyjataulu' %>
 				<% end %>		
 			</div>		
 		</div>
@@ -41,6 +41,6 @@
 </div>
 <script type="text/javascript">
   $('#ryhmavalinta').change(function(){
-  	$('#ryhmavalinta').submit()
+  	$('#ryhmavalinta_formi').submit()
   });
 </script>
