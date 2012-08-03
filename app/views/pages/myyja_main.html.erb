@@ -21,28 +21,7 @@
 				<div class="row">
 					<h3>Tänään</h3><br />
 				</div>
-				<div class="row-fluid">					
-					<div class="span4" id="myynti" style="width:84px; height:300px">
-					</div>
-					<div class="span4" id="kontaktit" style="width:84px; height:300px">
-					</div>
-					<div class="span4" id="provisio" style="width:84px; height:300px">
-					</div>
-				</div>
-				<div class="row-fluid">					
-					<div class="span4">
-						<p>Myynti</p>
-						<p><%= @sales_today %> €</p>
-					</div>
-					<div class="span4">
-						<p>Kontaktit</p>
-						<p><%= @contacts_today %> kpl </p> 
-					</div>
-					<div class="span4">
-						<p>Provisio</p>
-						<p><%= @provisio_today %> €</p>
-					</div>
-				</div>
+				 <%= render :partial => 'shared/graph_tanaan', :locals => { :myyja => current_user, :width => 84, :height => 300} %>
 			</div>
 		</div>
 		<div class="span4">
@@ -50,28 +29,7 @@
 				<div class="row">
 					<h3>Tässä kuussa</h3><br />
 				</div>
-				<div class="row-fluid">					
-					<div class="span4" id="myyntikk" style="width:84px; height:300px">
-					</div>
-					<div class="span4" id="kontaktitkk" style="width:84px; height:300px">
-					</div>
-					<div class="span4" id="provisiokk" style="width:84px; height:300px">
-					</div>
-				</div>
-				<div class="row-fluid">					
-					<div class="span4">
-						<p>Myynti</p>
-						<p><%= @sales_month %> €</p>
-					</div>
-					<div class="span4">
-						<p>Kontaktit</p>
-						<p><%= @contacts_month %> kpl </p> 
-					</div>
-					<div class="span4">
-						<p>Provisio</p>
-						<p><%= @provisio_month %> €</p>
-					</div>
-				</div>
+				<%= render :partial => 'shared/graph_kuukausi', :locals => { :myyja => current_user, :width => 84, :height => 300} %>
 			</div>
 		</div>
 		<div class="span4">
@@ -133,130 +91,4 @@
 		</div>
 	</div>	
 </div>
-	 <script type="text/javascript">
-$(function () {
 	
-    var d1 = [[0, <%= @sales_today %>]];
-    var d1_tavoite = [[0, 1500]];
-    var d2 = [[0, <%= @contacts_today %>]];
-    var d3 = [[0, <%= @provisio_today %>]];
-    var d4 = [[0, <%= @sales_month %>]];
-    var d5 = [[0, <%= @contacts_month %>]];
-    var d6 = [[0, <%= @provisio_month %>]];
-    
-    $.plot($("#myynti"), [
-    {	
-    	data: d1,
-    	bars: { show: true },
-    	color: "#E01B1B"
-    },
-    {	
-    	data: d1_tavoite,
-    	bars: { show: true },
-    	color: "#D0E01B"
-    }
-    ], {
-    	xaxis: {
-    		show: false
-    	},
-    	
-    	yaxis: {
-    		ticks: 10,
-    		min: 0,
-    		max: 2000,
-    	}
-    });
-    
-    $.plot($("#kontaktit"), [
-    {	
-    	data: d2,
-    	bars: { show: true },
-    	color: "#222"
-    }
-    ], {
-    	xaxis: {
-    		show: false
-    	},
-    	
-    	yaxis: {
-    		ticks: 10,
-    		min: 0,
-    		max: 60,
-    	}
-    });
-    
-    $.plot($("#provisio"), [
-    {	
-    	data: d3,
-    	bars: { show: true },
-    	color: "#111"
-    }
-    ], {
-    	xaxis: {
-    		show: false
-    	},
-    	
-    	yaxis: {
-    		ticks: 10,
-    		min: 0,
-    		max: 500,
-    	}
-    });
-    
-    
-    $.plot($("#myyntikk"), [
-    {	
-    	data: d4,
-    	bars: { show: true },
-    	color: "#E01B1B"
-    }    
-    ], {
-    	xaxis: {
-    		show: false
-    	},
-    	
-    	yaxis: {
-    		ticks: 10,
-    		min: 0,
-    		max: 100000,
-    	}
-    });
-    
-    $.plot($("#kontaktitkk"), [
-    {	
-    	data: d5,
-    	bars: { show: true },
-    	color: "#222"
-    }
-    ], {
-    	xaxis: {
-    		show: false
-    	},
-    	
-    	yaxis: {
-    		ticks: 10,
-    		min: 0,
-    		max: 1300,
-    	}
-    });
-    
-    $.plot($("#provisiokk"), [
-    {	
-    	data: d6,
-    	bars: { show: true },
-    	color: "#111"
-    }
-    ], {
-    	xaxis: {
-    		show: false
-    	},
-    	
-    	yaxis: {
-    		ticks: 10,
-    		min: 0,
-    		max: 6000,
-    	}
-    });
-     
-});
-</script>
