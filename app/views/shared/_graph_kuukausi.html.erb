@@ -27,7 +27,7 @@
 $(function () {
 	
     var d1 = [[0, <%= @sales_month %>]];
-    var d1_tavoite = [[0, 1500]];
+    var d1_tavoite = [[0, 30000]];
     var d2 = [[0, <%= @contacts_month %>]];
     var d3 = [[0, <%= @provisio_month %>]];
    
@@ -51,7 +51,7 @@ $(function () {
     	yaxis: {
     		ticks: 10,
     		min: 0,
-    		max: 2000,
+    		max: 44000,
     	}
     });
     
@@ -69,7 +69,7 @@ $(function () {
     	yaxis: {
     		ticks: 10,
     		min: 0,
-    		max: 60,
+    		max: 1000,
     	}
     });
     
@@ -87,7 +87,7 @@ $(function () {
     	yaxis: {
     		ticks: 10,
     		min: 0,
-    		max: 500,
+    		max: 6000,
     	}
     });
      

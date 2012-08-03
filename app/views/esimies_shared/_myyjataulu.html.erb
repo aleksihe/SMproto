@@ -22,7 +22,16 @@
 			<td><%= myyja.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today) %></td>
 			<td><%= myyja.pull(Date.today, nil) %></td>
 			<td><%= myyja.provisio_sum(Date.today, nil) %></td>				
-			<td></td>
+			<td>
+				<%= form_tag '/myyjavaihto', remote: true, :class => "image-submit-tag" do %>
+					<%= hidden_field_tag 'myyja_id', myyja.id %>
+					<% if myyja == @myyja_valittu %>
+			   			<%= image_submit_tag "bar_graph_selected.jpg", :disabled => true  %>
+				   	<% else %>	
+						<%= image_submit_tag "bar_graph.JPG", :onmouseover => "this.src='assets/bar_graph_hover.JPG'", :onmouseout => "this.src='assets/bar_graph.JPG'" %>
+					<% end %>
+				<% end %>
+			</td>
 		</tr>
 		<% elsif @aika == "Tämä kuu" %>
 		<tr>
@@ -31,7 +40,16 @@
 			<td><%= myyja.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today) %></td>
 			<td><%= myyja.pull(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %></td>
 			<td><%= myyja.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %></td>				
-			<td></td>
+			<td>				
+					<%= form_tag '/myyjavaihto', remote: true, :class => "image-submit-tag" do %>
+						<%= hidden_field_tag 'myyja_id', myyja.id %>
+						<% if myyja == @myyja_valittu %>
+				   			<%= image_submit_tag "bar_graph_selected.jpg", :disabled => true  %>
+					   	<% else %>	
+							<%= image_submit_tag "bar_graph.JPG", :onmouseover => "this.src='assets/bar_graph_hover.JPG'", :onmouseout => "this.src='assets/bar_graph.JPG'" %>
+						<% end %>
+					<% end %>					
+			</td>
 		</tr>		
 		<% end %> 
 	<% end %>			

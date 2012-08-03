@@ -14,9 +14,15 @@ class PagesController < ApplicationController
     else
        @salegroup = Salegroup.first
     end
-   
-    @myyjat = User.where(:salegroup_id => @salegroup.id)  
     
+    @myyjat = User.where(:salegroup_id => @salegroup.id)
+    
+    if !cookies[:myyja_id].nil?
+      @myyja_valittu = User.find(cookies[:myyja_id])
+    else
+       @myyja_valittu = @myyjat.first
+       cookies[:myyja_id] = @myyja_valittu.id
+    end   
   end
   
   def kilpailut

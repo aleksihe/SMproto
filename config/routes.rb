@@ -1,8 +1,5 @@
 SMproto::Application.routes.draw do
 
-
-  get "myyntiryhmat/myyjavaihto"
-
   #get "contacts/index"
 
   #get "contacts/create"
@@ -38,6 +35,7 @@ SMproto::Application.routes.draw do
   match '/users_index', to: 'users#index'
   match '/ryhmavaihto', to: 'myyntiryhmat#ryhmavaihto', via: :post
   match '/aikavaihto', to: 'myyntiryhmat#aikavaihto', via: :post
+  match '/myyjavaihto', to: 'myyntiryhmat#myyjavaihto', via: :post
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
