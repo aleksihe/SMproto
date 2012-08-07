@@ -77,10 +77,11 @@
 						<td><%= salegroup.nimi %></td>
 						<td><%= salegroup.users.count %></td>
 						<td>
-						<% if salegroup.category %>
-							<%= salegroup.category.kuvaus %>
-							<% else %>
-							Ei tuoteryhmää
+						<%= form_tag('salegroups/' + salegroup.id.to_s, :method => :put) do %>
+									<%= select_tag "salegroup[category_id]", options_from_collection_for_select(@categories,"id", "kuvaus", salegroup.category_id),  
+									:include_blank => true,  
+									:onchange => "this.form.submit();",
+									:class => 'input-medium' %>	
 						<% end %>
 						</td>
 						<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), salegroup, method: :delete,  data: { confirm: "Oletko varma?" } %></td>

@@ -22,6 +22,15 @@ class SalegroupsController < ApplicationController
     end
   end
 
+  def update
+    @salegroup = Salegroup.find(params[:id])
+    if @salegroup.update_attribute(:category_id, params[:salegroup][:category_id])
+      redirect_to myyjahallinta_path
+    else
+      redirect_to myyjahallinta_path
+    end
+  end
+
   def destroy
     Salegroup.find(params[:id]).destroy
     redirect_to myyjahallinta_path
