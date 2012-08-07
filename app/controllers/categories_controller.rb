@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
   def tuotehallinta
     @category = Category.new
-    @categories = Category.all
+    @categories = Category.order("LOWER(kuvaus)")
     @product = Product.new
-    @products = Product.all
+    @products = Product.order("category_id, LOWER(kuvaus)")
   end
   
   def create
@@ -13,9 +13,9 @@ class CategoriesController < ApplicationController
       redirect_to tuotehallinta_path
     else
       flash[:error] = "Tuoteryhmalomakkeessa oli virhe!"
-      @categories = Category.all
+      @categories = Category.order("LOWER(kuvaus)")
       @product = Product.new
-      @products = Product.all
+      @products = Product.order("category_id, LOWER(kuvaus)")
       @category = Category.new
       redirect_to tuotehallinta_path
     end

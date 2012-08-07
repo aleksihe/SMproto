@@ -17,6 +17,15 @@ class PagesController < ApplicationController
     
     @myyjat = User.where(:salegroup_id => @salegroup.id)
     
+    #myyjien järjestys
+    if @aika == "Tänään"
+      @myyjat.sort!{|myyja2, myyja1| myyja1.sales_sum(Date.today, nil) <=> myyja2.sales_sum(Date.today, nil)}
+    elsif @aika == "Tämä kuu"
+      @myyjat.sort!{|myyja2, myyja1| myyja1.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) <=> myyja2.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)}
+    end
+    
+    
+    
     if !cookies[:myyja_id].nil?
       @myyja_valittu = User.find(cookies[:myyja_id])
     else

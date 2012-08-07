@@ -9,9 +9,9 @@ class ProductsController < ApplicationController
        redirect_to tuotehallinta_path
      else
        flash[:error] = "Tuotelomakkeessa oli virhe!"
-       @categories = Category.all
+       @categories = Category.order("LOWER(kuvaus)")
        @category = Category.new
-       @products = Product.all
+       @products = Product.order("category_id, LOWER(kuvaus)")
        @product = Product.new
        redirect_to tuotehallinta_path
      end

@@ -1,10 +1,10 @@
 class SalegroupsController < ApplicationController
   def myyjahallinta
-    @myyjat = User.where(:esimies => false)
+    @myyjat = User.where(:esimies => false).order("salegroup_id, LOWER(nimi)")
     @myyja = User.new
     @salegroup = Salegroup.new
-    @salegroups = Salegroup.all
-    @categories = Category.all
+    @salegroups = Salegroup.order("LOWER(nimi)")
+    @categories = Category.order("LOWER(kuvaus)")
   end
 
   def create

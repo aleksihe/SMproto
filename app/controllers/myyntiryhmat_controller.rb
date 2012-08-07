@@ -2,11 +2,19 @@
 class MyyntiryhmatController < ApplicationController
 
   def ryhmavaihto
-    @salegroups = Salegroup.all
+    @salegroups = Salegroup.order("LOWER(nimi)")
     @salegroup = Salegroup.find(params[:salegroup_id])
     cookies[:salegroup_id] = params[:salegroup_id]
     @aika = cookies[:aika] || "Tänään"
     @myyjat = User.where(:salegroup_id => @salegroup.id) 
+    
+    #myyjien järjestys
+    if @aika == "Tänään"
+      @myyjat.sort!{|myyja2, myyja1| myyja1.sales_sum(Date.today, nil) <=> myyja2.sales_sum(Date.today, nil)}
+    elsif @aika == "Tämä kuu"
+      @myyjat.sort!{|myyja2, myyja1| myyja1.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) <=> myyja2.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)}
+    end
+    
     @myyja_valittu = @myyjat.first
     cookies[:myyja_id] = @myyja_valittu.id
     respond_to do |format|
@@ -25,6 +33,13 @@ class MyyntiryhmatController < ApplicationController
       @salegroup = Salegroup.first
     end
     @myyjat = User.where(:salegroup_id => @salegroup.id)
+    
+    #myyjien järjestys
+    if @aika == "Tänään"
+      @myyjat.sort!{|myyja2, myyja1| myyja1.sales_sum(Date.today, nil) <=> myyja2.sales_sum(Date.today, nil)}
+    elsif @aika == "Tämä kuu"
+      @myyjat.sort!{|myyja2, myyja1| myyja1.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) <=> myyja2.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)}
+    end
     
     if !cookies[:myyja_id].nil?
       @myyja_valittu = User.find(cookies[:myyja_id])
