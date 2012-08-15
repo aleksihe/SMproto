@@ -201,6 +201,17 @@ body {
     }
   }
 }
+
+/*contactit*/
+#kontaktitaulu{
+  .table {
+    display: block;
+    max-height: 500px;
+    overflow-y: auto;
+    margin: 0px;
+   }
+}
+
 /*debug*/
 .debug{
   position: absolute;

@@ -36,6 +36,10 @@ SMproto::Application.routes.draw do
   match '/ryhmavaihto', to: 'myyntiryhmat#ryhmavaihto', via: :post
   match '/aikavaihto', to: 'myyntiryhmat#aikavaihto', via: :post
   match '/myyjavaihto', to: 'myyntiryhmat#myyjavaihto', via: :post
+  match '/contact_ryhmavaihto', to: 'contacts#contact_ryhmavaihto', via: :post
+  match '/contact_myyjavaihto', to: 'contacts#contact_myyjavaihto', via: :post
+  match '/contact_aikavaihto', to: 'contacts#contact_aikavaihto', via: :post
+  match '/kontaktit', to: "contacts#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

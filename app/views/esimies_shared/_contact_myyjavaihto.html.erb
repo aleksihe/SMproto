@@ -1,0 +1,17 @@
+<% if cookies[:user_id] == "" %>
+<% @valittu = "" %>
+<% else %>
+<% @valittu = cookies[:user_id] %>	
+<% end %>
+
+<%= form_tag '/contact_myyjavaihto', remote: true, :id => 'myyjavaihto_form' do%>
+					<div id="myyjavaihto" class="input-medium"><%= select_tag "user_id", options_from_collection_for_select(@myyjat,"id", "nimi", @valittu),
+						:prompt => "Kaikki myyjät"
+						%></div>
+				<% end %>
+<script type="text/javascript">
+
+  $('#myyjavaihto').change(function(){
+  	$('#myyjavaihto_form').submit()
+  });
+</script>

@@ -123,7 +123,7 @@ def make_contacts
   liittymamyyjat = User.where(:salegroup_id => ryhma2.id)
   tuotteet2 = Product.where(:category_id => ryhma2.category_id)
   
-  paivat = 4
+  paivat = 2
   
   
   
@@ -137,6 +137,7 @@ def make_contacts
           tuote = tuotteet[rand(tuotteet.length)]
           Contact.create!(
                     tilaus: true,
+                    salegroup_id: myyja.salegroup_id,
                     user_id: myyja.id,
                     created_at: paiva,
                     updated_at: paiva                                     
@@ -154,6 +155,7 @@ def make_contacts
         else
           Contact.create!(
                     tilaus: false,
+                    salegroup_id: myyja.salegroup_id,
                     user_id: myyja.id,
                     created_at: paiva,
                     updated_at: paiva                                     
@@ -170,6 +172,7 @@ def make_contacts
           Contact.create!(
                     tilaus: true,
                     user_id: myyja.id,
+                    salegroup_id: myyja.salegroup_id,
                     created_at: paiva,
                     updated_at: paiva                                     
           )
@@ -187,6 +190,7 @@ def make_contacts
           Contact.create!(
                     tilaus: false,
                     user_id: myyja.id,
+                    salegroup_id: myyja.salegroup_id,
                     created_at: paiva,
                     updated_at: paiva                                     
           )

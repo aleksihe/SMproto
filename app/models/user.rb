@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates :nimi, presence: true
   validates :tunnus, presence: true, length: { minimum: 6 }, :uniqueness => true
     
+       
     #first = date beginning, last = date end
     def contacts_count(first, last)
       if last.nil?

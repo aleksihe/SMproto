@@ -1,0 +1,6 @@
+<%= form_tag '/contact_ryhmavaihto', remote: true, :id => 'ryhmavalinta_form' do%>
+<div id="ryhmavalinta2" class="input-medium"><%= select_tag "salegroup_id", options_from_collection_for_select(@salegroups,"id", "nimi",@salegroup.id)%></div>
+<% end %>
+
+
+
