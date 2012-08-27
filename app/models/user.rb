@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :salegroup
   has_many :contacts
   has_many :orders
+  has_and_belongs_to_many :competitions
   has_secure_password
  
   

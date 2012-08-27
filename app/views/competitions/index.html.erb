@@ -1,0 +1,22 @@
+<h1>Competitions#index</h1>
+
+<% if @competitions.any? %>
+	<% @competitions.each do |c|%>
+		<p>Nimi: <%= c.nimi %> </p>
+		<p>Alkaa <%= c.alku %> </p>
+		<p>Loppuu <%= c.loppu %> </p>
+		<p>Palkintosijoja on <%= c.palkintosijat %> </p>
+		<% c.prizes.each do |p|%>
+			<p><%= p.kuvaus %></p>
+			<p><%= p.arvo %> </p>
+		<% end %>
+		<p> </p>
+		<p>Kilpailun logiikka: <%=c.logiikkastring(c.logiikka) %> </p>
+		<p>Säännöt: <%= c.saannot %> </p>
+		<p>kilpailijat</p>
+		<% c.users.each do |u|%>
+		<p><%= u.nimi %></p>
+					<% end %>
+		<%= link_to image_tag( "roskis.jpg", alt: "delete"), c, method: :delete,  data: { confirm: "Oletko varma?" } %>
+	<%end%>
+<% end %>

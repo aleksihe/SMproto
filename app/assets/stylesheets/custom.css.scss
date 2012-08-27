@@ -289,3 +289,34 @@ input, textarea, select, .uneditable-input {
 .osaamismonth{
   margin-left: 33px;
 }
+
+
+
+/*kilpailun luonti*/
+
+#kilpailun_luonti{
+ 
+  li{
+    list-style: none;
+    padding-left:0px;    
+  }
+}
+#prizes{
+ ol{
+    margin-left: 0px;   
+    
+  }
+  li.fl{
+    float: left; margin-right: 2em;
+  }
+  
+}
+#osallistujat{
+   ol{
+    margin-left: 0px;   
+  }
+  li.choice input{
+    display:inline;
+    margin-right: 5px;
+  }
+}

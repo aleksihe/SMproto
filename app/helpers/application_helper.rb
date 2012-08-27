@@ -14,4 +14,5 @@ module ApplicationHelper
    end
    date_time.day.to_s + "." + date_time.month.to_s + "." + date_time.year.to_s + " " + @tunnit + ":" + @minuutit   
  end
+ 
 end

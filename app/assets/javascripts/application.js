@@ -12,6 +12,55 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery-ui-timepicker-addon.js
+//= require jquery-ui-sliderAccess.js
 //= require_tree .
+//= require cocoon
+
+
+/*datepicker*/
+$(function() {
+	$('.ui-datetime-picker').datetimepicker({
+		timeFormat: 'hh:mm',
+		stepHour: 1,
+		stepMinute: 1
+	});
+	
+	$.datepicker.regional['fi'] = {clearText: 'Tyhjennä', clearStatus: '',
+		closeText: 'Sulje', closeStatus: '',
+		prevText: '<Edellinen', prevStatus: '',
+		nextText: 'Seuraava>', nextStatus: '',
+		currentText: 'Nykyinen', currentStatus: '',
+		monthNames: ['Tammikuu','Helmikuu','Maaliskuu','Huhtikuu','Toukokuu','Kesäkuu',
+		'Heinäkuu','Elokuu','Syyskuu','Lokakuu','Marraskuu','Joulukuu'],
+		monthNamesShort: ['Tammi','Helmi','Maalis','Huhti','Touko','Kesä',
+		'Heinä','Elo','Syys','Loka','Marras','Joulu'],
+		monthStatus: '', yearStatus: '',
+		weekHeader: 'Vko', weekStatus: '',
+		dayNames: ['Sunnuntai','Maanantai','Tiistai','Keskiviikko','Torstai','Perjantai','Lauantai'],
+		dayNamesShort: ['Su','Ma','Ti','Ke','To','Pe','La'],
+		dayNamesMin: ['Su','Ma','Ti','Ke','To','Pe','La'],
+		dayStatus: '', dateStatus: '',
+		dateFormat: 'dd/mm/yy', firstDay: 1, 
+		initStatus: 'Valitse päivä', isRTL: false};
+	$.datepicker.setDefaults($.datepicker.regional['fi']);
+	
+	$.timepicker.regional['fi'] = {
+	timeOnlyTitle: 'Valitse aika',
+	timeText: 'Aika',
+	hourText: 'Tunti',
+	minuteText: 'Мinuutti',
+	secondText: 'Sekunti',
+	millisecText: 'Millisekunti',
+	currentText: 'Nyt',
+	closeText: 'Valmis',
+	ampm: false
+	};
+	$.timepicker.setDefaults($.timepicker.regional['fi']);
+	
+	
+});
+
 
 

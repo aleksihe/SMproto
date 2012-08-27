@@ -11,13 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813103456) do
+ActiveRecord::Schema.define(:version => 20120823113730) do
 
   create_table "categories", :force => true do |t|
     t.text     "kuvaus"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "salegroup_id"
+  end
+
+  create_table "competitions", :force => true do |t|
+    t.string   "nimi"
+    t.datetime "alku"
+    t.datetime "loppu"
+    t.integer  "palkintosijat"
+    t.text     "saannot"
+    t.integer  "logiikka"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "competitions_users", :force => true do |t|
+    t.integer "user_id"
+    t.integer "competition_id"
   end
 
   create_table "contacts", :force => true do |t|
@@ -36,6 +52,21 @@ ActiveRecord::Schema.define(:version => 20120813103456) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
+  end
+
+  create_table "participations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "competition_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "prizes", :force => true do |t|
+    t.integer  "competition_id"
+    t.string   "kuvaus"
+    t.decimal  "arvo"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "products", :force => true do |t|

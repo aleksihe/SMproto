@@ -1,19 +1,11 @@
 SMproto::Application.routes.draw do
 
-  #get "contacts/index"
 
-  #get "contacts/create"
 
-  #get "contacts/update"
+  
 
- # get "contacts/destroy"
 
- #get "salegroups/create"
-
- # get "salegroups/destroy"
-
-  get "users/new"
-
+ resources :competitions
  resources :categories
  resources :products
  resources :users
@@ -40,6 +32,8 @@ SMproto::Application.routes.draw do
   match '/contact_myyjavaihto', to: 'contacts#contact_myyjavaihto', via: :post
   match '/contact_aikavaihto', to: 'contacts#contact_aikavaihto', via: :post
   match '/kontaktit', to: "contacts#index"
+  match '/competitions_new', to: "competitions#new"
+  match '/competitions', to: "competitions#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
