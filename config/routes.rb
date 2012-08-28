@@ -34,6 +34,7 @@ SMproto::Application.routes.draw do
   match '/kontaktit', to: "contacts#index"
   match '/competitions_new', to: "competitions#new"
   match '/competitions', to: "competitions#index"
+  match '/kilpailuvaihto', to: "competitions#kilpailuvaihto"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

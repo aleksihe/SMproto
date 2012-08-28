@@ -1,0 +1,21 @@
+<table class="table table-bordered table-condensed">
+	<colgroup>
+      <col class="span2">
+      <col class="span2">
+      <col class="span2">    	         
+    </colgroup>
+	<thead>
+		<tr>
+			<th>#</th><th>Palkinto</th><th>Arvo €</th>
+		</tr>	
+	</thead>
+	<% @counter = 1 %>
+	<% @palkinnot.each do |p| %>
+		<tr>
+			<td><%= @counter %></td>
+			<td><%= p.kuvaus %></td>		
+			<td><%= p.arvo %></td>							
+		</tr>
+		<% @counter += 1%>
+	<% end %>
+</table>

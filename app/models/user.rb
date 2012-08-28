@@ -78,4 +78,20 @@ class User < ActiveRecord::Base
       date = Date.today
       self.provisio_sum(first, last) + (self.contacts_avg(first, date) * (self.pull(first, date)/100.0) * self.kmprovisio(first, date) * date.business_days_until(last) )
     end
+    
+    def orders_count(first,last)
+       self.orders.where('created_at >= ? and created_at <= ?', first, last).count
+    end
+    
+    def sort_logiikka(logiikka,alku,loppu)
+      if logiikka == 1
+        self.sort{|a,b| b.sales_sum(alku,loppu) <=> a.sales_sum(alku,loppu)}
+      end
+      if logiikka == 2
+        self.sort{|a,b| b.orders_count(alku,loppu) <=> a.orders_count(alku,loppu)}
+      end
+      if logiikka == 3
+        self.sort{|a,b| b.provisio_sum(alku,loppu) <=> a.provisio_sum(alku,loppu)}
+      end
+    end
 end
