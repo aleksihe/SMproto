@@ -83,15 +83,4 @@ class User < ActiveRecord::Base
        self.orders.where('created_at >= ? and created_at <= ?', first, last).count
     end
     
-    def sort_logiikka(logiikka,alku,loppu)
-      if logiikka == 1
-        self.sort{|a,b| b.sales_sum(alku,loppu) <=> a.sales_sum(alku,loppu)}
-      end
-      if logiikka == 2
-        self.sort{|a,b| b.orders_count(alku,loppu) <=> a.orders_count(alku,loppu)}
-      end
-      if logiikka == 3
-        self.sort{|a,b| b.provisio_sum(alku,loppu) <=> a.provisio_sum(alku,loppu)}
-      end
-    end
 end

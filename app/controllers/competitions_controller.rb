@@ -33,7 +33,6 @@ class CompetitionsController < ApplicationController
       @saannot = @competition.saannot
       @palkinnot = @competition.prizes
       @palkinnot.sort!{|a,b| b.arvo <=> a.arvo }
-      
     end  
       
   end
