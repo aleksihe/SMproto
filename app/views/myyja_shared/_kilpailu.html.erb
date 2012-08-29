@@ -19,9 +19,13 @@
 				</thead>
 				<% @osallistujat.each do |o| %>
 						<td><%= @counter %></td>
-						<td><%= o.nimi %></td>
-						<td><%= o.sales_sum(@kilpailu.alku, @kilpailu.loppu)%></td>				
-													
+						<% if o.id == current_user.id %>
+							<td><font color="green"><%= o.nimi %></font></td>
+							<td><font color="green"><%= o.sales_sum(@kilpailu.alku, @kilpailu.loppu)%></font></td>				
+						<% else %>	
+							<td><%= o.nimi %></td>
+							<td><%= o.sales_sum(@kilpailu.alku, @kilpailu.loppu)%></td>
+						<% end %>							
 					</tr>
 					<%@counter += 1%>
 				<% end %>
@@ -34,9 +38,13 @@
 				</thead>
 				<% @osallistujat.each do |o| %>
 						<td><%= @counter %></td>
-						<td><%= o.nimi %></td>
-						<td><%= o.orders_count(@kilpailu.alku, @kilpailu.loppu)%></td>				
-														
+						<% if o.id == current_user.id %>
+							<td><font color="green"><%= o.nimi %></font></td>
+							<td><font color="green"><%= o.orders_count(@kilpailu.alku, @kilpailu.loppu)%></font></td>				
+						<% else %>	
+							<td><%= o.nimi %></td>
+							<td><%= o.orders_count(@kilpailu.alku, @kilpailu.loppu)%></td>	
+						<% end %>							
 					</tr>
 					<%@counter += 1%>
 				<% end %>

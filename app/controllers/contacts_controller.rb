@@ -15,16 +15,16 @@ class ContactsController < ApplicationController
           @order = Order.new(:contact_id => @contact.id, :hinta => @product.hinta, :provisio => @product.provisio, :kuvaus => @product.kuvaus, :user_id => @contact.user_id)
           
           if @order.save        
-              redirect_to myyja_main_path
+              redirect_to(:back)
           else    
               flash[:error] = "Tilauksen tallentaminen epaonnistui!"
           end
         else
-            redirect_to myyja_main_path    
+            redirect_to(:back)    
         end
        else
          flash[:error] = "Kontaktin tallentaminen epaonnistui!"
-         redirect_to myyja_main_path                  
+         redirect_to(:back)                 
        end  
      end
   end

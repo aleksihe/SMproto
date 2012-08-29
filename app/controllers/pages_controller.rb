@@ -39,12 +39,30 @@ class PagesController < ApplicationController
      @provisio_month = current_user.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
      @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)
       if !@kilpailut.empty?
-       @kilpailu = @kilpailut.first
+       if !cookies[:kilpailu_id].nil?
+         @kilpailu = Competition.find(cookies[:kilpailu_id])
+       else
+        @kilpailu = @kilpailut.first
+       end
+       
        @osallistujat = @kilpailu.users
        @saannot = @kilpailu.saannot
        @palkinnot = @kilpailu.prizes
        @palkinnot.sort!{|a,b| b.arvo <=> a.arvo }
       end
+  end
+  
+  def kilpailuvaihto
+    @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)
+    @kilpailu = Competition.find(params[:competition_id])
+      cookies[:kilpailu_id] = params[:competition_id]
+    @osallistujat = @kilpailu.users
+    @saannot = @kilpailu.saannot
+    @palkinnot = @kilpailu.prizes
+    @palkinnot.sort!{|a,b| b.arvo <=> a.arvo }
+    respond_to do |format|
+      format.js
+    end
   end
   
   def myyja_main
