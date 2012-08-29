@@ -1,0 +1,12 @@
+<% @kilpailut.each do |k|%>
+<div class="span2">
+	<%= form_tag '/kilpailuvaihto_myyja', remote: true do %>
+		<div><%= hidden_field_tag 'competition_id', k.id %></div>
+		<% if k.id == @kilpailu.id %>
+		<%= submit_tag k.nimi, :class => "btn btn-primary", :disabled => true %>
+		<% else %>
+		<%= submit_tag k.nimi, :class =>"btn"%>
+		<% end %>
+	<% end %>
+</div>
+<% end %>		

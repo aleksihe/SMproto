@@ -332,3 +332,27 @@ input, textarea, select, .uneditable-input {
   background-color: white; 
 
 }
+
+/*kokonaismyynti*/
+
+.kokmyyntipv, .kokmyyntikk, .kokmyyntivuosi{
+  text-align: center;
+  
+}
+
+/*myyjan kilpailu*/
+#myyjasaannot{
+  padding-top: 10px;
+  padding-left:10px;
+  margin-top: 5px;
+  height: 100px;
+  border:2px solid;
+  border-radius:25px;
+  text-align:left;
+  background-color: white; 
+  margin-bottom: 10px;
+}
+#kilpailusaannot{
+  text-align: center;
+  
+}

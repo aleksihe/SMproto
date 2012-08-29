@@ -1,0 +1,97 @@
+<div class ="row-fluid">
+<div class="span4"><h4><%=@kilpailu.nimi%></h4></div><div class="span8"><h4><%=paiva_klo(@kilpailu.alku)%> - <%= paiva_klo(@kilpailu.loppu)%></h4></div>
+</div>
+<div class="row-fluid">
+	<div class="span8">
+		<table class="table table-bordered table-condensed">
+			<colgroup>
+			  <col class="span1">
+		      <col class="span8">
+		      <col class="span3">  	         
+		    </colgroup>
+		    <% @counter = 1%>
+		    <% if @kilpailu.logiikka == 1 %>
+			    <%@osallistujat.sort!{|a,b| b.sales_sum(@kilpailu.alku,@kilpailu.loppu) <=> a.sales_sum(@kilpailu.alku,@kilpailu.loppu)} %>
+				<thead>
+					<tr>
+						<th>#</th><th>Myyjä</th><th>Myynti €</th>
+					</tr>	
+				</thead>
+				<% @osallistujat.each do |o| %>
+						<td><%= @counter %></td>
+						<td><%= o.nimi %></td>
+						<td><%= o.sales_sum(@kilpailu.alku, @kilpailu.loppu)%></td>				
+													
+					</tr>
+					<%@counter += 1%>
+				<% end %>
+			<% elsif @kilpailu.logiikka == 2 %>
+		        <% @osallistujat.sort!{|a,b| b.orders_count(@kilpailu.alku,@kilpailu.loppu) <=> a.orders_count(@kilpailu.alku,@kilpailu.loppu)} %>	
+		        <thead>
+					<tr>
+						<th>#</th><th>Myyjä</th><th>Kaupat kpl</th>
+					</tr>	
+				</thead>
+				<% @osallistujat.each do |o| %>
+						<td><%= @counter %></td>
+						<td><%= o.nimi %></td>
+						<td><%= o.orders_count(@kilpailu.alku, @kilpailu.loppu)%></td>				
+														
+					</tr>
+					<%@counter += 1%>
+				<% end %>
+				<% elsif @kilpailu.logiikka == 3 %>
+		        <% @osallistujat.sort!{|a,b| b.provisio_sum(@kilpailu.alku,@kilpailu.loppu) <=> a.provisio_sum(@kilpailu.alku,@kilpailu.loppu)} %>
+		        <thead>
+					<tr>
+						<th>#</th><th>Myyjä</th><th>Provisio €</th>
+					</tr>	
+				</thead>
+				<% @osallistujat.each do |o| %>
+						<td><%= @counter %></td>
+						<% if o.id == current_user.id %>
+							<td><font color="green"><%= o.nimi %></font></td>
+							<td><font color="green"><%= o.provisio_sum(@kilpailu.alku, @kilpailu.loppu)%></font></td>
+						<% else %>
+						<td><%= o.nimi %></td>
+						<td><%= o.provisio_sum(@kilpailu.alku, @kilpailu.loppu)%></td>
+						<% end %>				
+												
+					</tr>
+					<%@counter += 1%>		
+				<% end %>
+		      <% end %>
+		</table>
+	</div>
+	<div class="span4">
+		<div class="row-fluid" id="kilpailusaannot">
+			<h4>Kilpailun säännöt</h4>
+			<div id="myyjasaannot">
+				<p><%=@saannot%></p>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<table class="table table-bordered table-condensed">
+			<colgroup>
+		      <col class="span2">
+		      <col class="span2">
+		      <col class="span2">    	         
+		    </colgroup>
+			<thead>
+				<tr>
+					<th>#</th><th>Palkinto</th><th>Arvo €</th>
+				</tr>	
+			</thead>
+			<% @counter = 1 %>
+			<% @palkinnot.each do |p| %>
+				<tr>
+					<td><%= @counter %></td>
+					<td><%= p.kuvaus %></td>		
+					<td><%= p.arvo %></td>							
+				</tr>
+				<% @counter += 1%>
+			<% end %>
+			</table>
+		</div>
+	</div>
+</div>

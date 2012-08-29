@@ -1,0 +1,35 @@
+<% @sales = Order.where('created_at >=  ? and created_at <= ?', alku, loppu).sum('hinta')%>
+<div class="row-fluid">					
+	<div class="span4" id="<%= aika %>" style="width:200px; height:300px">
+	</div>
+	<p><%= @sales%> €</p>
+</div>
+
+<script type="text/javascript">
+$(function () {
+	
+    var d1 = [[0, <%= @sales %>]];
+   
+   
+    
+    $.plot($("#<%=aika%>"), [
+    {	
+    	data: d1,
+    	bars: { show: true },
+    	color: "#E01B1B"
+    } 
+    ], {
+    	xaxis: {
+    		show: false
+    	},
+    	
+    	yaxis: {
+    		ticks: 10,
+    		min: 0,
+    		max: 44000,
+    	}
+    });
+    
+        
+});
+</script>

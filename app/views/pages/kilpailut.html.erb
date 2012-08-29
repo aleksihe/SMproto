@@ -1,4 +1,29 @@
-<%= render 'esimies_shared/vasenpalkki' %>
-<h2>Yritys</h2>
-<%= render 'esimies_shared/oikeapalkki' %>
-<p>kilpailut.html</p>
+<%= render 'myyja_shared/vasenpalkki' %>
+<div class="span10">
+	<div class="row">
+		<div class="span2 offset1">
+			<%= link_to image_tag("myynti_pieni.jpg", :mouseover => "myynti_pieni_hover.JPG"), myyja_main_path %>
+		</div>
+		<div class="span3">
+			<%= image_tag "kilpailut_iso.JPG" %>
+		</div>
+		<div class="span2">
+			<%= image_tag "myyja_placeholder_pieni.jpg" %>
+		</div>
+		<div class="span3">
+			<%= render 'myyja_shared/oikeapalkki'%>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<% if !@kilpailut.empty?%>		
+				<div id="kilpailuvalinta">
+					<%= render 'myyja_shared/kilpailuvalinta'%>
+				</div>	
+		<% else %>
+			<p>Et ole tällä hetkellä mukana yhdessäkään kilpailussa.</p>
+		<% end %>
+	</div>
+	<div class="row-fluid">
+		<%= render 'myyja_shared/kilpailu'%>
+	</div>	
+</div>
