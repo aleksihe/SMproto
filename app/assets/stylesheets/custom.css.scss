@@ -290,7 +290,19 @@ input, textarea, select, .uneditable-input {
   margin-left: 33px;
 }
 
-
+#provisiokertyma{
+  
+  padding-top: 10px;
+  margin-top: 5px;
+  height: 100px;
+  border:2px solid;
+  border-radius:25px;
+  text-align: center;
+  h3{
+    color: green;
+    font-size:16px;
+  }
+}
 
 /*kilpailun luonti*/
 

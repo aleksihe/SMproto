@@ -1,6 +1,9 @@
 $("#myyjakilpailu").html("<%= escape_javascript(render('myyja_shared/kilpailu')) %>");
-$("#oikeapalkki").html("<%= escape_javascript(render('myyja_shared/oikeapalkki')) %>");
+
 $("#vasenpalkki").html("<%= escape_javascript(render('myyja_shared/vasenpalkki')) %>");
 $("#tanagraph").html("<%= escape_javascript(render :partial => 'shared/graph_tanaan', :locals => { :myyja => current_user, :width => 84, :height => 300}) %>");
 $("#kkgraph").html("<%= escape_javascript(render :partial => 'shared/graph_kuukausi', :locals => { :myyja => current_user, :width => 84, :height => 300}) %>");
 $("#osaamisluvut").html("<%= escape_javascript(render('myyja_shared/osaamisluvut')) %>");
+<% if @tilaus == 1 %>
+$("#oikeapalkki").html("<%= escape_javascript(render('myyja_shared/oikeapalkki')) %>");
+<% end %>

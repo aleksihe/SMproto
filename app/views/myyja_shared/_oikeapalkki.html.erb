@@ -7,8 +7,26 @@
 	</div>
 </div>
 <div class="row-fluid">
-	<div class="span12">
+	<div class="span12" id="provisiokertyma">
 		<p>Provisiokertymä palkkakaudella</p><br />
-		<h3><%= @provisio_month %> €</h3> 
+		<h3 id="palkka"><%= @provisio_month %> €</h3>
+		 
 	</div>
 </div>
+<% if @tilaus == 1%>
+	<script>
+	$( "#provisiokertyma" ).ready(function(){
+	   $( "#provisiokertyma" ).animate( { queue: false, duration: 4000 })
+	     .animate({ fontSize: "24px", color: "yellow" }, 500 )
+	     .animate({ fontSize: "16px", color: "green" }, 500 )
+	     .animate({ fontSize: "24px", color: "yellow" }, 500 )
+	     .animate({ fontSize: "16px", color: "green" }, 500 )
+	     .animate({ fontSize: "24px", color: "yellow" }, 500 )
+	     .animate({ fontSize: "16px", color: "green" }, 500 )
+	     .animate({ fontSize: "24px", color: "yellow" }, 500 )
+	     .animate({ fontSize: "16px", color: "green" }, 500 );
+	  });
+	
+	</script>
+	
+<% end %>

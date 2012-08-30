@@ -3,7 +3,7 @@
 		<tr> <td><h3>Kontaktit</h3></td></tr>
 		<tr>
 			<td><%= form_tag '/contacts', remote: true do %>
-				<%= image_submit_tag "tilaus.jpg", :onmouseover =>"this.src='assets/tilaus_hover.JPG'", :onmouseout => "this.src='assets/tilaus.jpg'" %>
+			<div id="kauppa">	<%= image_submit_tag "tilaus.jpg", :onmouseover =>"this.src='assets/tilaus_hover.JPG'", :onmouseout => "this.src='assets/tilaus.jpg'" %></div>
 				<%= hidden_field_tag 'user_id', current_user.id %>
 				<%= hidden_field_tag 'salegroup_id', current_user.salegroup_id %>
 				<%= hidden_field_tag 'tilaus', true %>

@@ -12,7 +12,8 @@ class ContactsController < ApplicationController
           @product = Product.find(params[:tuote])
           @order = Order.new(:contact_id => @contact.id, :hinta => @product.hinta, :provisio => @product.provisio, :kuvaus => @product.kuvaus, :user_id => @contact.user_id)
           
-          if @order.save        
+          if @order.save   
+            @tilaus = 1     
               flash.now[:notice] = "Tilaus tallennettu"
           else    
               flash.now[:error] = "Tilauksen tallentaminen epaonnistui!"
