@@ -1,5 +1,6 @@
-
+<div class="span2" id="vasenpalkki">
 <%= render 'myyja_shared/vasenpalkki' %>
+</div>
 <div class="span10">
 	<div class="row">
 		<div class="span3 offset1">
@@ -11,7 +12,7 @@
 		<div class="span2">
 			<%= image_tag "myyja_placeholder_pieni.jpg" %>
 		</div>
-		<div class="span3">
+		<div class="span3" id="oikeapalkki">
 			<%= render 'myyja_shared/oikeapalkki'%>
 		</div>
 	</div>
@@ -21,7 +22,9 @@
 				<div class="row">
 					<h3>Tänään</h3><br />
 				</div>
-				 <%= render :partial => 'shared/graph_tanaan', :locals => { :myyja => current_user, :width => 84, :height => 300} %>
+				<div id="tanagraph">
+				 	<%= render :partial => 'shared/graph_tanaan', :locals => { :myyja => current_user, :width => 84, :height => 300} %>
+				 </div>
 			</div>
 		</div>
 		<div class="span4">
@@ -29,64 +32,14 @@
 				<div class="row">
 					<h3>Tässä kuussa</h3><br />
 				</div>
-				<%= render :partial => 'shared/graph_kuukausi', :locals => { :myyja => current_user, :width => 84, :height => 300} %>
+				<div id="kkgraph">
+					<%= render :partial => 'shared/graph_kuukausi', :locals => { :myyja => current_user, :width => 84, :height => 300} %>
+				</div>
 			</div>
 		</div>
 		<div class="span4">
-			<div class="osaamisluvut">
-				<div class="row-fluid">
-					<h3>Osaamisluvut</h3><br />	
-				</div>
-				<div class="row">
-					<div class="span10 osaamistoday">
-						<table class="table table-bordered table-condensed">
-							<colgroup>
-					          <col class="span4">
-					          <col class="span4">				                
-					        </colgroup>
-							<thead>
-								<tr>
-									<th>Tänään</th><th><%= Date.today %></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Pull%</td><td><%= @pull_today %></td>
-								</tr>
-								<tr>
-									<td>Provisio ka. (€)</td><td><%= @kmprovisio_today %></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="row">
-					<div class="span10 osaamismonth">
-						<table class="table table-bordered table-condensed">
-							<colgroup>
-					          <col class="span4">
-					          <col class="span4">						                      
-					        </colgroup>
-							<thead>
-								<tr>
-									<th>Tässä kuussa</th><th><%= Date.today %></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Pull%</td><td><%= @pull_month %></td>
-								</tr>
-								<tr>
-									<td>Provisio ka. (€)</td><td><%= @kmprovisio_month %></td>
-								</tr>
-								<tr>
-									<td>Kontaktit/pv</td><td><%= @contacts_avg_month %></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<%= @provisio_arvio.round(1) %>
-				</div>
+			<div class="osaamisluvut" id="osaamisluvut">
+				<%= render 'myyja_shared/osaamisluvut'%>
 			</div>
 		</div>
 	</div>	

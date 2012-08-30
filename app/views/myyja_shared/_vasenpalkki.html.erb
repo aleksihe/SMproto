@@ -1,8 +1,8 @@
-<div class="span2">	
+
 	<div class="vasenpalkki_myyja">
 		<tr> <td><h3>Kontaktit</h3></td></tr>
 		<tr>
-			<td><%= form_tag('/contacts') do %>
+			<td><%= form_tag '/contacts', remote: true do %>
 				<%= image_submit_tag "tilaus.jpg", :onmouseover =>"this.src='assets/tilaus_hover.JPG'", :onmouseout => "this.src='assets/tilaus.jpg'" %>
 				<%= hidden_field_tag 'user_id', current_user.id %>
 				<%= hidden_field_tag 'salegroup_id', current_user.salegroup_id %>
@@ -14,7 +14,7 @@
 			</td>	
 		</tr>
 		<tr>
-			<td><%= form_tag('/contacts') do %>
+			<td><%= form_tag '/contacts', remote: true do %>
 				<%= image_submit_tag "ei_tilausta.jpg", :onmouseover =>"this.src='assets/ei_tilausta_hover.JPG'", :onmouseout => "this.src='assets/ei_tilausta.jpg'" %>
 				<%= hidden_field_tag 'user_id', current_user.id %>
 				<%= hidden_field_tag 'salegroup_id', current_user.salegroup_id %>
@@ -26,4 +26,3 @@
 
 	<%= render 'shared/messages'%>
 
-</div>

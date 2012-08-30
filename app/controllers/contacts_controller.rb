@@ -2,9 +2,7 @@
 class ContactsController < ApplicationController
   def create
     if params[:tilaus] && params[:tuote] == ""
-      flash[:error] = "Valitse tuote!"
-      redirect_to myyja_main_path
-      
+      flash.now[:error] = "Valitse tuote!"
     else
     
       @contact = Contact.new(:tilaus => params[:tilaus], :user_id => params[:user_id], :salegroup_id => params[:salegroup_id])
@@ -15,17 +13,45 @@ class ContactsController < ApplicationController
           @order = Order.new(:contact_id => @contact.id, :hinta => @product.hinta, :provisio => @product.provisio, :kuvaus => @product.kuvaus, :user_id => @contact.user_id)
           
           if @order.save        
-              redirect_to(:back)
+              flash.now[:notice] = "Tilaus tallennettu"
           else    
-              flash[:error] = "Tilauksen tallentaminen epaonnistui!"
+              flash.now[:error] = "Tilauksen tallentaminen epaonnistui!"
           end
         else
-            redirect_to(:back)    
+            flash.now[:notice] = "Kontaktin tallentaminen onnistui!"
         end
        else
-         flash[:error] = "Kontaktin tallentaminen epaonnistui!"
-         redirect_to(:back)                 
+         flash.now[:error] = "Kontaktin tallentaminen epaonnistui!"                 
        end  
+     end
+    @products = Category.find(Salegroup.find(current_user.salegroup_id).category_id).products
+    @contacts_today = current_user.contacts_count(Date.today, nil)
+    @sales_today = current_user.sales_sum(Date.today, nil)
+    @provisio_today = current_user.provisio_sum(Date.today, nil)
+    @provisio_month = current_user.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
+    @sales_month = current_user.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
+    @contacts_month = current_user.contacts_count(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
+    @pull_today = current_user.pull(Date.today, nil)
+    @kmprovisio_today = current_user.kmprovisio(Date.today, nil)
+    @pull_month = current_user.pull(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
+    @kmprovisio_month = current_user.kmprovisio(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
+    @contacts_avg_month = current_user.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today)
+    @provisio_arvio = current_user.provisio_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
+     @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)
+      if !@kilpailut.empty?
+       if !cookies[:kilpailu_id].nil?
+         @kilpailu = Competition.find(cookies[:kilpailu_id])
+       else
+        @kilpailu = @kilpailut.first
+       end
+       
+       @osallistujat = @kilpailu.users
+       @saannot = @kilpailu.saannot
+       @palkinnot = @kilpailu.prizes
+       @palkinnot.sort!{|a,b| b.arvo <=> a.arvo }
+     end
+     respond_to do |format|
+      format.js
      end
   end
 
