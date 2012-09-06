@@ -5,6 +5,8 @@ SMproto::Application.routes.draw do
   
 
 
+
+ resources :goals
  resources :competitions
  resources :categories
  resources :products
@@ -36,6 +38,7 @@ SMproto::Application.routes.draw do
   match '/competitions', to: "competitions#index"
   match '/kilpailuvaihto', to: "competitions#kilpailuvaihto"
   match '/kilpailuvaihto_myyja', to: "pages#kilpailuvaihto"
+  match '/tavoite_myyjavaihto', to: "goals#tavoite_myyjavaihto"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

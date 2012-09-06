@@ -1,0 +1,3 @@
+<%= form_tag '/tavoite_myyjavaihto', remote: true, :id => 'myyjavalinta_formi'  do %>
+	<div id="myyjavalinta" class="input-medium"><%= select_tag "user_id", options_from_collection_for_select(@users,"id", "nimi", @user.id) %></div>
+<% end %>

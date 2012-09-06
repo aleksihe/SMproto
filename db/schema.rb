@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823113730) do
+ActiveRecord::Schema.define(:version => 20120905114809) do
 
   create_table "categories", :force => true do |t|
     t.text     "kuvaus"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(:version => 20120823113730) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "salegroup_id"
+  end
+
+  create_table "goals", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "salegroup_id"
+    t.string   "kohde"
+    t.datetime "alku"
+    t.datetime "loppu"
+    t.string   "tyyppi"
+    t.decimal  "maara"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "orders", :force => true do |t|

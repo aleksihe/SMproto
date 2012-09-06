@@ -1,0 +1,30 @@
+
+<%= render 'esimies_shared/vasenpalkki' %>
+<div class="span10">
+	<div class="row-fluid">
+		<div class="span5">
+			<h3>Tavoitteen luominen</h3>
+			
+			<div id="tavoitteen_luonti">
+				<p>Valitse myyjä jolle tavoite luodaan:</p>
+				<div id="myyjavalinta">
+					<%= render 'myyjavalinta'%>
+				</div>	
+				<div id="goal_form">	
+				<%= render 'goal_form'%>
+				</div>	
+			</div>
+		</div>
+		<div class="span7">
+			<div id="user_goals">
+				<%= render 'goals' %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+  $('#myyjavalinta').change(function(){
+  	$('#myyjavalinta_formi').submit()
+  });
+</script>

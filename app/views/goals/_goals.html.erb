@@ -1,0 +1,32 @@
+<h3><%= @user.nimi %></h3>
+<% if @user.goals.empty? %>
+<p> Ei tavoitteita</p>
+<% else %>
+<p>Tavoitteet:</p>
+<div class ="row-fluid">
+	<table class="table table-bordered table-condensed">
+		<colgroup>
+		  <col class="span3">
+	      <col class="span3">
+	      <col class="span2">
+	      <col class="span3">
+	      <col class="span1">
+	  	         
+	    </colgroup>
+	    		<thead>
+				<tr>
+					<th>Alku</th><th>Loppu</th><th>Tyyppi</th><th>Määrä</th><th></th>
+				</tr>	
+			</thead>
+			<% @user.goals.each do |g| %>
+				<tr>
+					<td><%= paiva_klo(g.alku) %></td>
+					<td><%= paiva_klo(g.loppu) %></td>
+					<td><%= g.tyyppi %></td>				
+					<td><%= g.maara %></td>		
+					<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), g, method: :delete,  data: { confirm: "Poistetaanko tavoite?" } %></td>					
+				</tr>
+			<% end %>	
+	</table>
+</div>
+<% end %>
