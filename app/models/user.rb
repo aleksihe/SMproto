@@ -1,3 +1,4 @@
+#coding: utf-8
 class User < ActiveRecord::Base
   attr_accessible :esimies, :nimi, :password, :password_confirmation, :tunnus, :salegroup_id
   belongs_to :salegroup
@@ -72,11 +73,13 @@ class User < ActiveRecord::Base
     end 
       
     def contacts_avg(first, last)
+      last = last + 1
       (self.contacts.where('created_at >= ? and created_at <= ?', first, last).count / first.business_days_until(last).to_f).round(1)
     end
     
     def provisio_arvio(first, last)
-      date = Date.today
+      last = last + 1
+      date = Date.today + 1
       self.provisio_sum(first, last) + (self.contacts_avg(first, date) * (self.pull(first, date)/100.0) * self.kmprovisio(first, date) * date.business_days_until(last) )
     end
     
@@ -84,4 +87,18 @@ class User < ActiveRecord::Base
        self.orders.where('created_at >= ? and created_at <= ?', first, last).count
     end
     
+    #tavoitelaskelmat
+    def tavoite(first,last,tyyppi)
+      goal = self.goals.where('alku < ? and loppu > ? and tyyppi == ?', DateTime.now, DateTime.now, tyyppi)
+      if goal.empty?
+        return 0
+      else
+        goal_alku = Date.new(goal.first.alku.year, goal.first.alku.month, goal.first.alku.day)
+        goal_loppu = Date.new(goal.first.loppu.year, goal.first.loppu.month, goal.first.loppu.day)+ 1.day
+        first = Date.new(first.year, first.month, first.day)
+        last = Date.new(last.year, last.month, last.day)+ 1.day 
+        return ((goal.first.maara / goal_alku.business_days_until(goal_loppu)) * first.business_days_until(last)).round(1)
+      end
+      
+    end
 end

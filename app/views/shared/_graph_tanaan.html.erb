@@ -1,6 +1,25 @@
 <% @sales_today = myyja.sales_sum(Date.today, nil) %>
+<% @sales_today_tavoite = myyja.tavoite(Time.zone.now, Time.zone.now, "Myynti(e)")%>
 <% @contacts_today = myyja.contacts_count(Date.today, nil) %>
+<% @contacts_today_tavoite = myyja.tavoite(Time.zone.now, Time.zone.now, "Kontaktit(kpl)")%>
 <% @provisio_today = myyja.provisio_sum(Date.today, nil) %>
+<% @provisio_today_tavoite = myyja.tavoite(Time.zone.now, Time.zone.now, "Provisio(e)")%>
+<% if @sales_today < @sales_today_tavoite%>
+	<% @sales_color = "#FA0213" %>
+<% else %>
+	<% @sales_color = "#02FA07" %>
+<% end %>
+<% if @contacts_today < @contacts_today_tavoite%>
+	<% @contacts_color = "#FA0213" %>
+<% else %>
+	<% @contacts_color = "#02FA07" %>
+<% end %>
+<% if @provisio_today < @provisio_today_tavoite%>
+	<% @provisio_color = "#FA0213" %>
+<% else %>
+	<% @provisio_color = "#02FA07" %>
+<% end %>
+
 <div class="row-fluid">					
 	<div class="span4" id="myyntipv" style="width:<%= width %>px; height:<%= height %>px">
 	</div>
@@ -12,36 +31,41 @@
 <div class="row-fluid">					
 	<div class="span4">
 		<p>Myynti</p>
-		<p><%= @sales_today %> €</p>
+		<p><%= @sales_today %> € /</p>
+		<p><%= @sales_today_tavoite %> €</p>
 	</div>
 	<div class="span4">
 		<p>Kontaktit</p>
-		<p><%= @contacts_today %> kpl </p> 
+		<p><%= @contacts_today %>  kpl /</p>
+		<p><%= @contacts_today_tavoite %> kpl </p> 
 	</div>
 	<div class="span4">
 		<p>Provisio</p>
-		<p><%= @provisio_today %> €</p>
+		<p><%= @provisio_today %> € /</p>
+		<p><%= @provisio_today_tavoite %>€</p>
 	</div>
 </div>
 <script type="text/javascript">
 $(function () {
 	
     var d1 = [[0, <%= @sales_today %>]];
-    var d1_tavoite = [[0, 1500]];
+    var d1_tavoite = [[0, <%= @sales_today_tavoite %>]];
     var d2 = [[0, <%= @contacts_today %>]];
+    var d2_tavoite = [[0, <%= @contacts_today_tavoite %>]];
     var d3 = [[0, <%= @provisio_today %>]];
+    var d3_tavoite = [[0, <%= @provisio_today_tavoite %>]];
    
     
     $.plot($("#myyntipv"), [
     {	
     	data: d1,
     	bars: { show: true },
-    	color: "#E01B1B"
+    	color: "<%= @sales_color %>"
     },
     {	
     	data: d1_tavoite,
     	bars: { show: true },
-    	color: "#D0E01B"
+    	color: "#FAF602"
     }
     ], {
     	xaxis: {
@@ -59,7 +83,12 @@ $(function () {
     {	
     	data: d2,
     	bars: { show: true },
-    	color: "#222"
+    	color: "<%= @contacts_color %>"
+    },
+    {	
+    	data: d2_tavoite,
+    	bars: { show: true },
+    	color: "#FAF602"
     }
     ], {
     	xaxis: {
@@ -77,7 +106,12 @@ $(function () {
     {	
     	data: d3,
     	bars: { show: true },
-    	color: "#111"
+    	color: "<%= @provisio_color %>"
+    },
+    {	
+    	data: d3_tavoite,
+    	bars: { show: true },
+    	color: "#FAF602"
     }
     ], {
     	xaxis: {

@@ -24,8 +24,7 @@ class ContactsController < ApplicationController
        else
          flash.now[:error] = "Kontaktin tallentaminen epaonnistui!"                 
        end  
-     end
-    @products = Category.find(Salegroup.find(current_user.salegroup_id).category_id).products
+       @products = Category.find(Salegroup.find(current_user.salegroup_id).category_id).products
     @contacts_today = current_user.contacts_count(Date.today, nil)
     @sales_today = current_user.sales_sum(Date.today, nil)
     @provisio_today = current_user.provisio_sum(Date.today, nil)
@@ -38,6 +37,8 @@ class ContactsController < ApplicationController
     @kmprovisio_month = current_user.kmprovisio(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
     @contacts_avg_month = current_user.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today)
     @provisio_arvio = current_user.provisio_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
+     end
+    
      @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)
       if !@kilpailut.empty?
        if !cookies[:kilpailu_id].nil?

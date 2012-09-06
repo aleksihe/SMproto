@@ -1,6 +1,24 @@
 <% @sales_month = myyja.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %>
+<% @sales_month_tavoite = myyja.tavoite(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month, "Myynti(e)")%>
 <% @contacts_month = myyja.contacts_count(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %>
+<% @contacts_month_tavoite =  myyja.tavoite(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month, "Kontaktit(kpl)")%>
 <% @provisio_month = myyja.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %>
+<% @provisio_month_tavoite = myyja.tavoite(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month, "Provisio(e)")%>
+<% if @sales_month < @sales_month_tavoite%>
+	<% @sales_color = "#FA0213" %>
+<% else %>
+	<% @sales_color = "#02FA07" %>
+<% end %>
+<% if @contacts_month < @contacts_month_tavoite%>
+	<% @contacts_color = "#FA0213" %>
+<% else %>
+	<% @contacts_color = "#02FA07" %>
+<% end %>
+<% if @provisio_month < @provisio_month_tavoite%>
+	<% @provisio_color = "#FA0213" %>
+<% else %>
+	<% @provisio_color = "#02FA07" %>
+<% end %>
 <div class="row-fluid">					
 	<div class="span4" id="myynti" style="width:<%= width %>px; height:<%= height %>px">
 	</div>
@@ -12,36 +30,40 @@
 <div class="row-fluid">					
 	<div class="span4">
 		<p>Myynti</p>
-		<p><%= @sales_month %> €</p>
+		<p><%= @sales_month %> € /</p>
+		<p> <%= @sales_month_tavoite %> €</p>
 	</div>
 	<div class="span4">
 		<p>Kontaktit</p>
-		<p><%= @contacts_month %> kpl </p> 
+		<p><%= @contacts_month%> kpl /</p>
+		<p> <%= @contacts_month_tavoite %> kpl </p> 
 	</div>
 	<div class="span4">
 		<p>Provisio</p>
-		<p><%= @provisio_month %> €</p>
+		<p><%= @provisio_month %> € /</p>
+		<p> <%= @provisio_month_tavoite %> €</p>
 	</div>
 </div>
 <script type="text/javascript">
 $(function () {
 	
     var d1 = [[0, <%= @sales_month %>]];
-    var d1_tavoite = [[0, 30000]];
+    var d1_tavoite = [[0,<%= @sales_month_tavoite %>]];
     var d2 = [[0, <%= @contacts_month %>]];
+    var d2_tavoite = [[0,<%= @contacts_month_tavoite %>]];
     var d3 = [[0, <%= @provisio_month %>]];
-   
+    var d3_tavoite = [[0, <%= @provisio_month_tavoite %>]]
     
     $.plot($("#myynti"), [
     {	
     	data: d1,
     	bars: { show: true },
-    	color: "#E01B1B"
+    	color: "<%= @sales_color %>"
     },
     {	
     	data: d1_tavoite,
     	bars: { show: true },
-    	color: "#D0E01B"
+    	color: "#FAF602"
     }
     ], {
     	xaxis: {
@@ -59,7 +81,12 @@ $(function () {
     {	
     	data: d2,
     	bars: { show: true },
-    	color: "#222"
+    	color: "<%= @contacts_color %>"
+    },
+    {	
+    	data: d2_tavoite,
+    	bars: { show: true },
+    	color: "#FAF602"
     }
     ], {
     	xaxis: {
@@ -77,7 +104,12 @@ $(function () {
     {	
     	data: d3,
     	bars: { show: true },
-    	color: "#111"
+    	color: "<%= @provisio_color %>"
+    },
+    {	
+    	data: d3_tavoite,
+    	bars: { show: true },
+    	color: "#FAF602"
     }
     ], {
     	xaxis: {

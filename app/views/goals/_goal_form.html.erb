@@ -5,8 +5,8 @@
 			<p>Riippumatta asetetusta aikavälistä tavoite näkyy myyjälle kuukausi-,viikko- ja päivätavoitteiksi jaoteltuna.</p>
 			<%= f.input :alku, :label => "Mistä:",  :as => :ui_date_time_picker%>					
 			<%= f.input :loppu, :label => "Mihin:", :as => :ui_date_time_picker%>	
-			<%= f.input :tyyppi, :label => "Tavoitteen tyyppi:", :as => :select, :collection => ["Kaupat(kpl)", "Kontaktit(kpl)", "Myynti(€)", "Provisio(€)"]%>	
-			<%= f.input :maara, :label => "Tavoite (kpl / €)"%>			
+			<%= f.input :tyyppi, :label => "Tavoitteen tyyppi:", :as => :select, :collection => ["Kaupat(kpl)", "Kontaktit(kpl)", "Myynti(e)", "Provisio(e)"]%>	
+			<%= f.input :maara, :label => "Tavoite (kpl / e)"%>			
 		</div>
 	<% end %> <!-- inputs -->	
 	<%= f.actions do %>
