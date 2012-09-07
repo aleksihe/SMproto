@@ -1,5 +1,8 @@
 <div class ="row-fluid">
 <% if !@kilpailu.nil? %>
+	<% if @kilpailu.loppu < Time.now %>
+		<p>Kilpailu on päättynyt!</p>
+	<% end %>
 <div class="span4"><h4><%=@kilpailu.nimi%></h4></div><div class="span8"><h4><%=paiva_klo(@kilpailu.alku)%> - <%= paiva_klo(@kilpailu.loppu)%></h4></div>
 </div>
 <div class="row-fluid">

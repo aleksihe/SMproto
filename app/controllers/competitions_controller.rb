@@ -26,14 +26,22 @@ class CompetitionsController < ApplicationController
   end
 
   def index
-    @competitions = Competition.all
+    @competitions = Competition.where("loppu > ?", Time.now)  
+    @old_competitions = Competition.where("loppu < ?", Time.now) 
     if !@competitions.empty?
-      @competition = Competition.last
-      @osallistujat = @competition.users
-      @saannot = @competition.saannot
-      @palkinnot = @competition.prizes
+      @competition = @competitions.first
+    end
+    if !@old_competitions.empty?
+      @old_competition = @old_competitions.first  
+    end
+    @old_competition = @old_competitions.first     
+     @show_competition =  Competition.last
+     if !@show_competition.nil?
+      @osallistujat = @show_competition.users
+      @saannot = @show_competition.saannot
+      @palkinnot = @show_competition.prizes
       @palkinnot.sort!{|a,b| b.arvo <=> a.arvo }
-    end  
+    end
       
   end
   def stringtodate(foo)
@@ -44,11 +52,12 @@ class CompetitionsController < ApplicationController
   end
   
   def kilpailuvaihto
-    @competitions = Competition.all
-    @competition = Competition.find(params[:competition_id])
-    @osallistujat = @competition.users
-    @saannot = @competition.saannot
-    @palkinnot = @competition.prizes
+    @competitions = Competition.where("loppu > ?", Time.now)
+    @old_competitions = Competition.where("loppu < ?", Time.now)
+    @show_competition = Competition.find(params[:competition_id])
+    @osallistujat = @show_competition.users
+    @saannot = @show_competition.saannot
+    @palkinnot = @show_competition.prizes
     @palkinnot.sort!{|a,b| a.arvo <=> b.arvo }
     respond_to do |format|
       format.js

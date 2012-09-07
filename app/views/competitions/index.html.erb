@@ -14,16 +14,24 @@
 			<%= link_to image_tag("kontaktit_pieni.jpg" , :alt => "Kontaktit", :mouseover => "kontaktit_pieni_hover.JPG"), kontaktit_path %>			
 		</div>		
 	</div>
-	<% if !@competitions.empty?%>	
 	<div class="row-fluid">
 		<div class="span3">
+			<% if @competitions.empty? %>
+			<p>Meneillään olevia kilpailuja ei ole. Siirry luomaan kilpailuja <%= link_to "täältä.", competitions_new_path %></p>
+			<% else %>
 			<div id="kilpailuvalinta">
-				<p>Kilpailu:</p>
 				<%= render 'kilpailuvalinta' %>
 			</div>
+			<% end %>
+			<% if !@old_competitions.empty?%>
+			<div id="kilpailuvalinta2">
+				<%= render 'kilpailuvalinta2'%>				
+			</div>
+			<% end %>
 		</div>
 		<div class="span9">
 			<div class="row-fluid">
+				
 				<div id="kilpailutaulu">
 					<%= render 'kilpailutaulu' %>
 				</div> 
@@ -38,9 +46,6 @@
 			<%= render 'palkinnot'%>
 		</div>
 	</div>	
-	<% else %>
-	<p>Kilpailuja ei löytynyt. Siirry luomaan kilpailuja <%= link_to "täältä.", competitions_new_path %></p>
-	<% end %>
 </div>
 <div class="span2">
 <%= render 'esimies_shared/oikeapalkki' %>
@@ -49,6 +54,8 @@
   $('#kilpailuvalinta').change(function(){
   	$('#kilpailuvalinta_formi').submit()
   });
-
+  $('#kilpailuvalinta2').change(function(){
+  	$('#kilpailuvalinta_formi2').submit()
+  });
 </script>
 

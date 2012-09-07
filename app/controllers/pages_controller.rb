@@ -37,7 +37,7 @@ class PagesController < ApplicationController
   def kilpailut
      @products = Category.find(Salegroup.find(current_user.salegroup_id).category_id).products
      @provisio_month = current_user.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
-     @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)
+     @kilpailut = current_user.competitions.all
       if !@kilpailut.empty?
        if !cookies[:kilpailu_id].nil?
          @kilpailu = Competition.find(cookies[:kilpailu_id])
@@ -53,7 +53,7 @@ class PagesController < ApplicationController
   end
   
   def kilpailuvaihto
-    @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)
+    @kilpailut = current_user.competitions.all
     @kilpailu = Competition.find(params[:competition_id])
       cookies[:kilpailu_id] = params[:competition_id]
     @osallistujat = @kilpailu.users

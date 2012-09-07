@@ -1,0 +1,4 @@
+<%= form_tag '/kilpailuvaihto', remote: true, :id => 'kilpailuvalinta_formi2'  do %>
+	<div id="kilpailuvalinta2" class="input-medium"><%= select_tag "competition_id", options_from_collection_for_select(@old_competitions,"id", "nimi"),
+	:prompt => "Päättyneet" %></div>
+<% end %>
