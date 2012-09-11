@@ -2,6 +2,7 @@ class Salegroup < ActiveRecord::Base
   has_many :users, :dependent => :nullify
   has_many :contacts
   has_many :goals
+  has_many :bonuslevels
   has_one :category
   attr_accessible :nimi, :category_id
   validates :nimi, presence: true, :uniqueness => true

@@ -1,13 +1,20 @@
 business_time:
-  beginning_of_workday: 9:00 am
-  end_of_workday: 5:00 pm
+  beginning_of_workday: 8:00 am
+  end_of_workday: 4:00 pm
   holidays:
     - December 6th, 2012
     - Decemebr 25th, 2012
     - December 26th, 2012
+    - January 6th, 2012
+    - April 6th, 2012
+    - April 9th, 2012
+    - May 1st, 2012
+    - May 17th, 2012
+    - June 22th, 2012
   work_week:
     - mon
     - tue
     - wed
     - thu
     - fri
+  

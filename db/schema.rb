@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905114809) do
+ActiveRecord::Schema.define(:version => 20120910073616) do
+
+  create_table "bonuslevels", :force => true do |t|
+    t.string   "kriteeri"
+    t.integer  "ehto"
+    t.integer  "bonus_maara"
+    t.string   "laji"
+    t.integer  "tasonro"
+    t.integer  "salegroup_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.text     "kuvaus"

@@ -1,0 +1,3 @@
+<%= form_tag '/lajivaihto', remote: true, :id => 'lajivalinta_formi'  do %>
+	<div id="lajivalinta" class="input-medium"><%= select_tag "laji", options_for_select([["Kuukausi bonus", "kkbonus"], ["ToDo", "todo"]], :disabled => "todo") %></div>
+<% end %>

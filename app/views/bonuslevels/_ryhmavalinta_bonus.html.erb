@@ -1,0 +1,3 @@
+<%= form_tag '/bonus_ryhmavaihto', :id => 'ryhmavalinta_formi'  do %>
+	<div id="ryhmavalinta" class="input-medium"><%= select_tag "salegroup_id", options_from_collection_for_select(@salegroups,"id", "nimi", @salegroup.id) %></div>
+<% end %>

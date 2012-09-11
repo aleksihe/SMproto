@@ -1,0 +1,2 @@
+module BonuslevelHelper
+end
