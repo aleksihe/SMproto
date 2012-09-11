@@ -1,12 +1,5 @@
 SMproto::Application.routes.draw do
 
-
-
-  
-
-
-
- 
  resources :bonuslevels
  resources :goals
  resources :competitions

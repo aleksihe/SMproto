@@ -58,7 +58,7 @@ class CompetitionsController < ApplicationController
     @osallistujat = @show_competition.users
     @saannot = @show_competition.saannot
     @palkinnot = @show_competition.prizes
-    @palkinnot.sort!{|a,b| a.arvo <=> b.arvo }
+    @palkinnot.sort!{|a,b| b.arvo <=> a.arvo }
     respond_to do |format|
       format.js
     end
