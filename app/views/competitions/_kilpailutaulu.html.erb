@@ -1,60 +1,62 @@
-<div class ="row-fluid">
-<div class="span3"><h4><%=@show_competition.nimi%></h4></div><div class="span8"><h4><%=paiva_klo(@show_competition.alku)%> - <%= paiva_klo(@show_competition.loppu)%></h4></div>
-<div class="span1"><%= link_to image_tag( "roskis.jpg", alt: "delete"), @show_competition, method: :delete,  data: { confirm: "Poistetaanko kilpailu?" } %></div>
-</div>
-<table class="table table-bordered table-condensed">
-	<colgroup>
-	  <col class="span1">
-      <col class="span5">
-      <col class="span4">
-      <col class="span2">   	         
-    </colgroup>
-    <% @counter = 1%>
-    <% if @show_competition.logiikka == 1 %>
-	    <%@osallistujat.sort!{|a,b| b.sales_sum(@show_competition.alku,@show_competition.loppu) <=> a.sales_sum(@show_competition.alku,@show_competition.loppu)} %>
-		<thead>
-			<tr>
-				<th>#</th><th>Myyjä</th><th>Myynti €</th><th></th>
-			</tr>	
-		</thead>
-		<% @osallistujat.each do |o| %>
-				<td><%= @counter %></td>
-				<td><%= o.nimi %></td>
-				<td><%= o.sales_sum(@show_competition.alku, @show_competition.loppu)%></td>				
-				<td> </td>							
-			</tr>
-			<%@counter += 1%>
-		<% end %>
-	<% elsif @show_competition.logiikka == 2 %>
-        <% @osallistujat.sort!{|a,b| b.orders_count(@show_competition.alku,@show_competition.loppu) <=> a.orders_count(@show_competition.alku,@show_competition.loppu)} %>	
-        <thead>
-			<tr>
-				<th>#</th><th>Myyjä</th><th>Kaupat kpl</th><th></th>
-			</tr>	
-		</thead>
-		<% @osallistujat.each do |o| %>
-				<td><%= @counter %></td>
-				<td><%= o.nimi %></td>
-				<td><%= o.orders_count(@show_competition.alku, @show_competition.loppu)%></td>				
-				<td> </td>								
-			</tr>
-			<%@counter += 1%>
-		<% end %>
-		<% elsif @show_competition.logiikka == 3 %>
-        <% @osallistujat.sort!{|a,b| b.provisio_sum(@show_competition.alku,@show_competition.loppu) <=> a.provisio_sum(@show_competition.alku,@show_competition.loppu)} %>
-        <thead>
-			<tr>
-				<th>#</th><th>Myyjä</th><th>Provisio €</th><th></th>
-			</tr>	
-		</thead>
-		<% @osallistujat.each do |o| %>
-				<td><%= @counter %></td>
-				<td><%= o.nimi %></td>
-				<td><%= o.provisio_sum(@show_competition.alku, @show_competition.loppu)%></td>				
-				<td> </td>						
-			</tr>
-			<%@counter += 1%>		
-		<% end %>
-      <% end %>
-</table>
-<p>TODO "lisää osallistuja"</p>
+
+	<div class ="row-fluid">
+	<div class="span3"><h4><%=@show_competition.nimi%></h4></div><div class="span8"><h4><%=paiva_klo(@show_competition.alku)%> - <%= paiva_klo(@show_competition.loppu)%></h4></div>
+	<div class="span1"><%= link_to image_tag( "roskis.jpg", alt: "delete"), @show_competition, method: :delete,  data: { confirm: "Poistetaanko kilpailu?" } %></div>
+	</div>
+	<table class="table table-bordered table-condensed">
+		<colgroup>
+		  <col class="span1">
+	      <col class="span5">
+	      <col class="span4">
+	      <col class="span2">   	         
+	    </colgroup>
+	    <% @counter = 1%>
+	    <% if @show_competition.logiikka == 1 %>
+		    <%@osallistujat.sort!{|a,b| b.sales_sum(@show_competition.alku,@show_competition.loppu) <=> a.sales_sum(@show_competition.alku,@show_competition.loppu)} %>
+			<thead>
+				<tr>
+					<th>#</th><th>Myyjä</th><th>Myynti €</th><th></th>
+				</tr>	
+			</thead>
+			<% @osallistujat.each do |o| %>
+					<td><%= @counter %></td>
+					<td><%= o.nimi %></td>
+					<td><%= o.sales_sum(@show_competition.alku, @show_competition.loppu)%></td>				
+					<td> </td>							
+				</tr>
+				<%@counter += 1%>
+			<% end %>
+		<% elsif @show_competition.logiikka == 2 %>
+	        <% @osallistujat.sort!{|a,b| b.orders_count(@show_competition.alku,@show_competition.loppu) <=> a.orders_count(@show_competition.alku,@show_competition.loppu)} %>	
+	        <thead>
+				<tr>
+					<th>#</th><th>Myyjä</th><th>Kaupat kpl</th><th></th>
+				</tr>	
+			</thead>
+			<% @osallistujat.each do |o| %>
+					<td><%= @counter %></td>
+					<td><%= o.nimi %></td>
+					<td><%= o.orders_count(@show_competition.alku, @show_competition.loppu)%></td>				
+					<td> </td>								
+				</tr>
+				<%@counter += 1%>
+			<% end %>
+			<% elsif @show_competition.logiikka == 3 %>
+	        <% @osallistujat.sort!{|a,b| b.provisio_sum(@show_competition.alku,@show_competition.loppu) <=> a.provisio_sum(@show_competition.alku,@show_competition.loppu)} %>
+	        <thead>
+				<tr>
+					<th>#</th><th>Myyjä</th><th>Provisio €</th><th></th>
+				</tr>	
+			</thead>
+			<% @osallistujat.each do |o| %>
+					<td><%= @counter %></td>
+					<td><%= o.nimi %></td>
+					<td><%= o.provisio_sum(@show_competition.alku, @show_competition.loppu)%></td>				
+					<td> </td>						
+				</tr>
+				<%@counter += 1%>		
+			<% end %>
+	      <% end %>
+	</table>
+	<p>TODO "lisää osallistuja"</p>
+

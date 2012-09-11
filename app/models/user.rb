@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
     
     #tavoitelaskelmat
     def tavoite(first,last,tyyppi)
-      goal = self.goals.where('alku < ? and loppu > ? and tyyppi == ?', DateTime.now, DateTime.now, tyyppi)
+      goal = self.goals.where('alku < ? and loppu > ? and tyyppi = ?', DateTime.now, DateTime.now, tyyppi)
       if goal.empty?
         return 0
       else

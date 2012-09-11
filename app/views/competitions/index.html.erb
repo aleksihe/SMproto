@@ -30,21 +30,24 @@
 			<% end %>
 		</div>
 		<div class="span9">
-			<div class="row-fluid">
-				
+			<% if !@show_competition.nil? %>
+			<div class="row-fluid">				
 				<div id="kilpailutaulu">
 					<%= render 'kilpailutaulu' %>
 				</div> 
 			</div>
+			<% end %>
 		</div>
 	</div>	
 	<div class="row-fluid">
+		<% if !@show_competition.nil? %>
 		<div class="span6" id="saannot">
 			<%= render 'saannot' %>
 		</div>
 		<div class="span6" id="palkinnot">
 			<%= render 'palkinnot'%>
 		</div>
+		<% end %>
 	</div>	
 </div>
 <div class="span2">
