@@ -71,6 +71,22 @@ class User < ActiveRecord::Base
         end
       end        
     end 
+    
+    def kmmyynti(first,last)
+      if last.nil?
+        if self.orders.where('DATE(created_at) = ?', first).count == 0
+          0
+        else
+          self.orders.where('DATE(created_at) = ?', first).average('hinta').to_f.round(1)
+        end 
+      else
+        if self.orders.where('created_at >= ? and created_at <= ?', first, last).count == 0
+          0
+        else
+          self.orders.where('created_at >= ? and created_at <= ?', first, last).average('hinta').to_f.round(1)
+        end
+      end       
+    end
       
     def contacts_avg(first, last)
       last = last + 1
@@ -81,6 +97,22 @@ class User < ActiveRecord::Base
       last = last + 1
       date = Date.today + 1
       self.provisio_sum(first, last) + (self.contacts_avg(first, date) * (self.pull(first, date)/100.0) * self.kmprovisio(first, date) * date.business_days_until(last) )
+    end
+    
+    def kkbonus_arvio(first, last, kriteeri)
+      last = last + 1
+      date = Date.today + 1
+      bonus = 0
+      bonustasot = self.salegroup.bonuslevels.where("laji = ? and kriteeri = ?", "kkbonus", kriteeri)
+      if kriteeri == "myynti(e)"
+        myynti = self.sales_sum(first, last) + (self.contacts_avg(first, date) * (self.pull(first, date)/100.0) * self.kmmyynti(first, date) * date.business_days_until(last) )
+        bonustasot.each do |b|
+          if b.ehto <= myynti
+            bonus = bonus + b.bonus_maara
+          end
+        end       
+      end
+      return bonus
     end
     
     def orders_count(first,last)

@@ -35,8 +35,10 @@ class ContactsController < ApplicationController
     @kmprovisio_today = current_user.kmprovisio(Date.today, nil)
     @pull_month = current_user.pull(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
     @kmprovisio_month = current_user.kmprovisio(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
+    @kmmyynti_month = current_user.kmmyynti(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
     @contacts_avg_month = current_user.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today)
     @provisio_arvio = current_user.provisio_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
+    @bonus_arvio = current_user.kkbonus_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1), "myynti(e)")
      end
     
      @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)

@@ -44,11 +44,14 @@
 					<td>Provisio ka. (€)</td><td><%= @kmprovisio_month %></td>
 				</tr>
 				<tr>
+					<td>Myynti ka. (€)</td><td><%= @kmmyynti_month %></td>
+				</tr>				
+				<tr>
 					<td>Kontaktit/pv</td><td><%= @contacts_avg_month %></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<p>Kuukausipalkka arvio nykyvauhdilla</p>
-	<h4><%= @provisio_arvio.round(1) %></h4>
+	<p>Kuukausipalkka-arvio nykyvauhdilla:</p>
+	<h4><%= @provisio_arvio.round(1) %> € + Bonus <%= @bonus_arvio%> €</h4>
 </div>
