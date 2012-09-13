@@ -7,6 +7,9 @@ namespace :db do
     make_salegroups
     make_users
     make_contacts
+    make_goals
+    make_competitions
+    make_bonuses
   end
 end
 
@@ -123,12 +126,12 @@ def make_contacts
   liittymamyyjat = User.where(:salegroup_id => ryhma2.id)
   tuotteet2 = Product.where(:category_id => ryhma2.category_id)
   
-  paivat = 6
+  paivat = 45
   
   
   
   paivat.times do
-    paiva = paivat.business_days.ago
+    paiva = paivat.business_days.ago + 1.day
     lehtimyyjat.each do |myyja|
       kontaktit = rand(20..50)
       pull = rand(0..25)
@@ -199,5 +202,122 @@ def make_contacts
     end
     paivat = paivat - 1 
   end
+end
+
+def make_goals
+  myyjat = User.where(:esimies => false)
   
+  myyjat.each do |m|
+    Goal.create!(
+      user_id: m.id,
+      salegroup_id: m.salegroup.id,
+      alku: Time.zone.now.beginning_of_month,
+      loppu: Time.zone.now.end_of_month,
+      tyyppi: "Provisio(e)",
+      maara: 2700.0
+    )
+    Goal.create!(
+      user_id: m.id,
+      salegroup_id: m.salegroup.id,
+      alku: Time.zone.now.beginning_of_month,
+      loppu: Time.zone.now.end_of_month,
+      tyyppi: "Myynti(e)",
+      maara: 30000.0
+    )
+    Goal.create!(
+      user_id: m.id,
+      salegroup_id: m.salegroup.id,
+      alku: Time.zone.now.beginning_of_month,
+      loppu: Time.zone.now.end_of_month,
+      tyyppi: "Kontaktit(kpl)",
+      maara: 800
+    )
+  end
+end
+
+def make_competitions
+   #meneillään oleva kisa
+   Competition.create!(
+    nimi: "Riihikuivaa!",
+    alku: Time.zone.now.beginning_of_month,
+    loppu: Time.zone.now.end_of_month,
+    saannot: "Kolme eniten provisiota ansainnutta myyjää palkitaan kuukauden lopussa riihikuivalla!",
+    logiikka: 3
+   )
+   Prize.create!(
+    competition_id: Competition.last.id,
+    kuvaus: "500€",
+    arvo: 500.0
+   )
+   Prize.create!(
+    competition_id: Competition.last.id,
+    kuvaus: "300€",
+    arvo: 300.0
+   )
+   Prize.create!(
+    competition_id: Competition.last.id,
+    kuvaus: "150€",
+    arvo: 150.0
+   )
+   myyjat = User.where(:esimies => false)
+   
+   myyjat.each do |m|
+     m.competitions = [Competition.last]
+   end
+   
+   #päättynyt kisa  
+   Competition.create!(
+    nimi: "Lahjakorttiskaba",
+    alku: Time.zone.now.beginning_of_month - 1.month,
+    loppu: Time.zone.now.end_of_month - 1.month,
+    saannot: "Kolme eniten myyntiä tehnyttä myyjää palkitaan mahtavilla lahjakorteilla!",
+    logiikka: 1
+   )
+   Prize.create!(
+    competition_id: Competition.last.id,
+    kuvaus: "Lahjakortti S-ryhmän kauppoihin 400€",
+    arvo: 400.0
+   )
+   Prize.create!(
+    competition_id: Competition.last.id,
+    kuvaus: "Lahjakortti S-ryhmän kauppoihin 200€",
+    arvo: 200.0
+   )
+   Prize.create!(
+    competition_id: Competition.last.id,
+    kuvaus: "Lahjakortti S-ryhmän kauppoihin 150€",
+    arvo: 150.0
+   )
+   
+   myyjat.each do |m|
+     m.competitions = m.competitions << Competition.last
+   end
+end
+
+def make_bonuses
+  salegroups = Salegroup.all
+  
+  salegroups.each do |s|
+    Bonuslevel.create!(
+      kriteeri: "myynti(e)",
+      ehto: 5000,
+      bonus_maara: 150,
+      laji: "kkbonus",
+      salegroup_id: s.id
+    )
+    Bonuslevel.create!(
+      kriteeri: "myynti(e)",
+      ehto: 10000,
+      bonus_maara: 300,
+      laji: "kkbonus",
+      salegroup_id: s.id
+    )
+    Bonuslevel.create!(
+      kriteeri: "myynti(e)",
+      ehto: 15000,
+      bonus_maara: 500,
+      laji: "kkbonus",
+      salegroup_id: s.id
+    )     
+  end
 end
