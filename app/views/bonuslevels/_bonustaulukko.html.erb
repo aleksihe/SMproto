@@ -1,45 +1,79 @@
+<% if !@bonustasot.empty? %>
 <h4><%= @salegroup.nimi%> bonustasot </h4>
-<table class="table table-bordered table-condensed">
-	<colgroup>
-	  <col class="span1">
-      <col class="span3">
-      <col class="span4">
-      <col class="span2">
-      <col class="span2">   	         
-    </colgroup>
-   		<thead>
-			<tr>
-				<th>Bonustaso</th><th>Myynti (€)</th><th>Bonuksen määrä (€)</th><th></th><th></th>
-			</tr>	
-		</thead>
-		<% @counter = 1%>
-		<% if !@bonustasot.empty? %>			
-			<% for @bonustaso in @bonustasot %>
-				<%= form_for @bonustaso, :url => bonuslevel_path(@bonustaso), :method => :put  do |f|  %>
-				<tr>
-					<td># <%= @counter %></td>
-					<td><%= f.text_field :ehto %></td>
-					<td><%= f.text_field :bonus_maara%></td>				
-					<td><%= f.hidden_field :salegroup_id, :value => @salegroup.id %>
+	<div class="row-fluid">
+		<div class="span8">
+					
+			<table class="table table-bordered table-condensed">
+				<colgroup>
+				  <col class="span1">
+			      <col class="span3">
+			      <col class="span3">
+			      <col class="span1">			   	         
+			    </colgroup>
+		   		<thead>
+					<tr>
+						<th>Bonustaso</th><th>Myynti (€)</th><th>Bonuksen määrä (€)</th><th></th>
+					</tr>	
+				</thead>
+				<% @counter = 1%>					
+				<% for @bonustaso in @bonustasot %>
+					<%= form_for @bonustaso, remote: true do |f|  %>
+						<tr>
+							<td># <%= @counter %></td>
+							<td><%= f.text_field :ehto, :class => "edit" %></td>
+							<td><%= f.text_field :bonus_maara, :class => "edit" %></td>				
+																									
+						<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), @bonustaso, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
+						</tr>
+						<%= f.hidden_field :salegroup_id, :value => @salegroup.id %>
 						<%= f.hidden_field :kriteeri, :value => "myynti(e)"%>
 						<%= f.hidden_field :laji, :value => "kkbonus" %>
-						<%= f.submit :value => "Tallenna muutokset" %></td>																					
-				<%@counter += 1%>
+						<%@counter += 1%>
+					<% end %>
 				<% end %>
-				<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), @bonustaso, method: :delete,  data: { confirm: "Oletko varma?" } %></td>
-				</tr>
-			<% end %>	
-		<% end %>	
-		<%= form_for @new_bonustaso do |f| %>
-			<tr>
-					<td>Uusi</td>
-					<td><%= f.text_field :ehto %></td>
-					<td><%= f.text_field :bonus_maara%></td>	
-					<%= f.hidden_field :salegroup_id, :value => @salegroup.id %>
-						<%= f.hidden_field :kriteeri, :value => "myynti(e)"%>
-						<%= f.hidden_field :laji, :value => "kkbonus" %>			
-					<td><%= f.submit :value => "Lisää bonustaso" %></td>	
-						<td></td>						
-				</tr>	
-		<% end %>
-</table>
+			</table>
+		</div>	
+				<div class="span4" id="submit_button"><%= submit_tag "Tallenna muutokset", :class => "btn btn-inverse edit_submit", :disabled => true  %></div>							
+	</div>
+<% end %>
+<div class="row-fluid">
+	<div class="span8">
+		<table class="table table-bordered table-condensed">
+				<colgroup>
+				  <col class="span1">
+			      <col class="span3">
+			      <col class="span4">         
+			    </colgroup>
+			   		<thead>
+						<tr>
+							<th>Bonustaso</th><th>Myynti (€)</th><th>Bonuksen määrä (€)</th>
+						</tr>	
+					</thead>
+				<%= form_for @new_bonustaso do |f| %>
+					<tr>
+						<td>Uusi</td>
+						<td><%= f.text_field :ehto %></td>
+						<td><%= f.text_field :bonus_maara%></td>														
+					</tr>
+							<%= f.hidden_field :salegroup_id, :value => @salegroup.id %>
+							<%= f.hidden_field :kriteeri, :value => "myynti(e)"%>
+							<%= f.hidden_field :laji, :value => "kkbonus" %>	
+				<% end %>
+		</table>
+	</div>
+	<div class="span4" id="new_submit_button"><%= submit_tag "Lisää bonustaso", :class => "btn btn-inverse"%></div>
+</div>
+<script>
+	$("#submit_button").click(function(){
+	<% @bonustasot.each do |b| %>
+		$("#edit_bonuslevel_<%=b.id %>").submit();
+	<% end %>
+		$(".edit_submit").attr('disabled','true');
+	});
+	$("#new_submit_button").click(function(){
+		$("#new_bonuslevel").submit();
+	});
+	$(".edit").keyup(function(){
+		$(".edit_submit").removeAttr('disabled');
+	});
+</script>

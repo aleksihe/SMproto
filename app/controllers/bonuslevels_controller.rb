@@ -40,17 +40,15 @@ class BonuslevelsController < ApplicationController
 
   def update
     @bonustaso = Bonuslevel.find(params[:id])
-    if @bonustaso.update_attributes(params[:bonuslevel])
+     @bonustaso.update_attributes(params[:bonuslevel])
       if cookies[:salegroup_id].nil?    
       @salegroup = Salegroup.first
       else
         @salegroup = Salegroup.find(cookies[:salegroup_id])
       end
      
-      redirect_to new_bonuslevel_path
-    else
-      flash[:error] = "Bonustason päivittäminen epäonnistui"
-      redirect_to new_bonuslevel_path
+     respond_to do |format|
+      format.js
     end
   end
 end

@@ -2,7 +2,7 @@
 	<%= f.inputs do %>	
 		<div class="row-fluid">
 			<%= f.input :user_id , :as => :hidden, :value => @user.id%>
-			<p>Riippumatta asetetusta aikavälistä tavoite näkyy myyjälle kuukausi-,viikko- ja päivätavoitteiksi jaoteltuna.</p>
+			<p>Riippumatta asetetusta aikavälistä tavoite näkyy myyjälle kuukausi-ja päivätavoitteiksi jaoteltuna.</p>
 			<%= f.input :alku, :label => "Mistä:",  :as => :ui_date_time_picker%>					
 			<%= f.input :loppu, :label => "Mihin:", :as => :ui_date_time_picker%>	
 			<%= f.input :tyyppi, :label => "Tavoitteen tyyppi:", :as => :select, :collection => ["Kaupat(kpl)", "Kontaktit(kpl)", "Myynti(e)", "Provisio(e)"]%>	
@@ -10,7 +10,7 @@
 		</div>
 	<% end %> <!-- inputs -->	
 	<%= f.actions do %>
-		<%= f.submit 'Luo tavoite!' %>	
+		<%= f.submit 'Luo tavoite!', :class => " btn btn-inverse" %>	
 	<% end %>
 <% end %> <!-- goal form -->
 
