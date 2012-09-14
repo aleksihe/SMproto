@@ -33,7 +33,7 @@
 	        </colgroup>
 			<thead>
 				<tr>
-					<th>Tässä kuussa</th><th><%= Date.today %></th>
+					<th>Tässä kuussa</th><th><%= kuukausi_string(Date.today) %></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,9 +43,6 @@
 				<tr>
 					<td>Provisio ka. (€)</td><td><%= @kmprovisio_month %></td>
 				</tr>
-				<tr>
-					<td>Myynti ka. (€)</td><td><%= @kmmyynti_month %></td>
-				</tr>				
 				<tr>
 					<td>Kontaktit/pv</td><td><%= @contacts_avg_month %></td>
 				</tr>

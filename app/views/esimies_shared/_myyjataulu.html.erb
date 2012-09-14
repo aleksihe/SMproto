@@ -1,5 +1,9 @@
-<%= @salegroup.nimi %>
-<%= @aika %>
+<p><%= @salegroup.nimi %>
+<% if @aika == "Tänään" %>
+	<%=paiva(Time.zone.now)%></p>
+<% else %>
+	<%=paiva(Time.zone.now.beginning_of_month)%> - <%=paiva(Time.zone.now.end_of_month)%> </p>
+<% end %>
 <table class="table table-condensed table-bordered table-pieni">
 	<colgroup>
       <col class="span1">

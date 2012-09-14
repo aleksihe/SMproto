@@ -1,7 +1,12 @@
-<%= @aika %>
-<%= @myyja_valittu.nimi %>
+<p><%= @myyja_valittu.nimi %><p>
+<p>
 <% if @aika == "Tänään" %>
- <%= render :partial => 'shared/graph_tanaan', :locals => { :myyja => @myyja_valittu, :width => 50, :height => 200} %>
+	<%=paiva(Time.zone.now)%></p>
+<% else %>
+	<%=paiva(Time.zone.now.beginning_of_month)%> - <%=paiva(Time.zone.now.end_of_month)%> </p>
+<% end %>
+<% if @aika == "Tänään" %>
+ <%= render :partial => 'shared/graph_tanaan', :locals => { :myyja => @myyja_valittu, :width => 70, :height => 200} %>
 <% elsif @aika == "Tämä kuu" %>
- <%= render :partial => 'shared/graph_kuukausi', :locals => { :myyja => @myyja_valittu, :width => 50, :height => 200} %>
+ <%= render :partial => 'shared/graph_kuukausi', :locals => { :myyja => @myyja_valittu, :width => 70, :height => 200} %>
 <% end %>

@@ -222,7 +222,7 @@ def make_goals
       alku: Time.zone.now.beginning_of_month,
       loppu: Time.zone.now.end_of_month,
       tyyppi: "Myynti(e)",
-      maara: 30000.0
+      maara: 9000.0
     )
     Goal.create!(
       user_id: m.id,

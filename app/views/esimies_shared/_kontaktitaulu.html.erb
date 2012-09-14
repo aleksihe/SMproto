@@ -1,3 +1,9 @@
+<% if @aika == "Tänään"%>
+	<p>Kontakteja tänään <%=@contacts.count%> kpl.</p>
+<% elsif @aika == "Tämä kuu" %>
+	<p>Kontakteja tässä kuussa <%=@contacts.count%> kpl.</p>
+<% end %>
+
 <table class="table table-bordered table-condensed">
 	<colgroup>
       <col class="span2">
@@ -13,11 +19,8 @@
 	</thead>
 	<%if !@contacts.empty?%>
 		<% @contacts.each do |contact| %>
-			<% if contact.tilaus %>
-				<tr style= "background-color:green; height:20px;">
-					<% else %>
-				<tr style= "background-color:red; height:20px;">	
-				<% end %>			
+			
+				<tr>			
 				<td><%= contact.user.nimi %></td>
 				<td><%= paiva_klo(contact.created_at.time) %></td>
 				<% if contact.tilaus %>
@@ -27,13 +30,11 @@
 				<td>ei tilausta</td>	
 				<td></td>
 				<% end %>						
-				<td><%= link_to image_tag( "roskis.jpg", alt: "delete"), contact, method: :delete,  data: { confirm: "Oletko varma?" } %></td>							
+				<td><%=link_to image_tag( "roskis.jpg", alt: "delete"), contact, method: :delete,  data: { confirm: "Oletko varma?" } %></td>							
 			</tr>
 			
 		<% end %>
 
 	<% end %>	
 </table>
-<%if @contacts.empty?%>
-	<p>Kontakteja ei ole!</p>
-<% end %>
+

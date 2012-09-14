@@ -206,9 +206,17 @@ body {
 #kontaktitaulu{
   .table {
     display: block;
-    max-height: 500px;
+    max-height: 460px;
+    font-size: 10px;
+    line-height: 16px;
     overflow-y: auto;
     margin: 0px;
+    padding:0px;
+   }
+   img{
+     height: 20px;
+     margin: 0px;
+     padding: 0px;
    }
 }
 
@@ -337,12 +345,31 @@ input, textarea, select, .uneditable-input {
   padding-top: 10px;
   padding-left:10px;
   margin-top: 5px;
-  height: 100px;
   border:2px solid;
   border-radius:25px;
   text-align:left;
   background-color: white; 
 
+}
+
+#kilpailutaulu{
+  table{
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
+
+/*Myyntiryhmät*/
+#myyjataulu{
+  table{
+    display: block;
+    max-height: 400px;
+    font-size: 10px;
+    line-height: 16px;
+    overflow-y: auto;
+  }
+  
 }
 
 /*kokonaismyynti*/
@@ -358,7 +385,7 @@ input, textarea, select, .uneditable-input {
   padding-top: 10px;
   padding-left:10px;
   margin-top: 5px;
-  height: 100px;
+ 
   border:2px solid;
   border-radius:25px;
   text-align:left;
