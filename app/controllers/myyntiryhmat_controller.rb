@@ -4,8 +4,8 @@ class MyyntiryhmatController < ApplicationController
   def ryhmavaihto
     @salegroups = Salegroup.order("LOWER(nimi)")
     @salegroup = Salegroup.find(params[:salegroup_id])
-    cookies[:salegroup_id] = params[:salegroup_id]
-    @aika = cookies[:aika] || "Tänään"
+    cookies[:salegroup_id_at_myyntiryhmat] = params[:salegroup_id]
+    @aika = cookies[:aika_at_myyntiryhmat] || "Tänään"
     @myyjat = User.where(:salegroup_id => @salegroup.id) 
     
     #myyjien järjestys
@@ -18,7 +18,7 @@ class MyyntiryhmatController < ApplicationController
     end
     
     @myyja_valittu = @myyjat.first
-    cookies[:myyja_id] = @myyja_valittu.id
+    cookies[:myyja_id_at_myyntiryhmat] = @myyja_valittu.id
     respond_to do |format|
       format.js
     end   
@@ -27,10 +27,10 @@ class MyyntiryhmatController < ApplicationController
 
   def aikavaihto
     @aika = params[:aika]
-    cookies[:aika] = params[:aika]
+    cookies[:aika_at_myyntiryhmat] = params[:aika]
     
-    if !cookies[:salegroup_id].nil?
-      @salegroup = Salegroup.find(cookies[:salegroup_id])
+    if !cookies[:salegroup_id_at_myyntiryhmat].nil?
+      @salegroup = Salegroup.find(cookies[:salegroup_id_at_myyntiryhmat])
     else
       @salegroup = Salegroup.first
     end
@@ -43,8 +43,8 @@ class MyyntiryhmatController < ApplicationController
       @myyjat.sort!{|myyja2, myyja1| myyja1.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) <=> myyja2.sales_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)}
     end
     
-    if !cookies[:myyja_id].nil?
-      @myyja_valittu = User.find(cookies[:myyja_id])
+    if !cookies[:myyja_id_at_myyntiryhmat].nil?
+      @myyja_valittu = User.find(cookies[:myyja_id_at_myyntiryhmat])
     else
       @myyja_valittu = @myyjat.first
     end
@@ -55,10 +55,10 @@ class MyyntiryhmatController < ApplicationController
   end
 
   def myyjavaihto
-    @aika = cookies[:aika] || "Tänään"
-    cookies[:myyja_id] = params[:myyja_id]
-    if !cookies[:salegroup_id].nil?
-      @salegroup = Salegroup.find(cookies[:salegroup_id])
+    @aika = cookies[:aika_at_myyntiryhmat] || "Tänään"
+    cookies[:myyja_id_at_myyntiryhmat] = params[:myyja_id]
+    if !cookies[:salegroup_id_at_myyntiryhmat].nil?
+      @salegroup = Salegroup.find(cookies[:salegroup_id_at_myyntiryhmat])
     else
       @salegroup = Salegroup.first
     end

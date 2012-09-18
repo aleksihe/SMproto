@@ -4,17 +4,17 @@ class GoalsController < ApplicationController
   def new
     @users = User.where(:esimies => false).order("LOWER(nimi)")
     
-    if cookies[:user_id].nil?
+    if cookies[:user_id_at_goals].nil?
       @user = User.where(:esimies => false).order("LOWER(nimi)").first
     else
-      @user = User.find(cookies[:user_id])
+      @user = User.find(cookies[:user_id_at_goals])
     end
     @goal = Goal.new
   end
 
   def tavoite_myyjavaihto
     @goal = Goal.new
-    cookies[:user_id] = params[:user_id]
+    cookies[:user_id_at_goals] = params[:user_id]
     @user = User.find(params[:user_id])
     
     respond_to do |format|

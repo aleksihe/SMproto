@@ -10,10 +10,10 @@ class PagesController < ApplicationController
   end
   
   def myyntiryhmat
-    @aika = cookies[:aika] || "Tänään"
+    @aika = cookies[:aika_at_pages] || "Tänään"
     @salegroups = Salegroup.all
-    if !cookies[:salegroup_id].nil?
-      @salegroup = Salegroup.find(cookies[:salegroup_id])
+    if !cookies[:salegroup_id_at_pages].nil?
+      @salegroup = Salegroup.find(cookies[:salegroup_id_at_pages])
     else
        @salegroup = Salegroup.first
     end
@@ -29,11 +29,11 @@ class PagesController < ApplicationController
     
     
     
-    if !cookies[:myyja_id].nil?
-      @myyja_valittu = User.find(cookies[:myyja_id])
+    if !cookies[:myyja_id_at_pages].nil?
+      @myyja_valittu = User.find(cookies[:myyja_id_at_pages])
     else
        @myyja_valittu = @myyjat.first
-       cookies[:myyja_id] = @myyja_valittu.id
+       cookies[:myyja_id_at_pages] = @myyja_valittu.id
     end   
   end
   
@@ -42,8 +42,8 @@ class PagesController < ApplicationController
      @provisio_month = current_user.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
      @kilpailut = current_user.competitions.all
       if !@kilpailut.empty?
-       if !cookies[:kilpailu_id].nil?
-         @kilpailu = Competition.find(cookies[:kilpailu_id])
+       if !cookies[:kilpailu_id_at_pages].nil?
+         @kilpailu = Competition.find(cookies[:kilpailu_id_at_pages])
        else
         @kilpailu = @kilpailut.first
        end
@@ -58,7 +58,7 @@ class PagesController < ApplicationController
   def kilpailuvaihto
     @kilpailut = current_user.competitions.all
     @kilpailu = Competition.find(params[:competition_id])
-      cookies[:kilpailu_id] = params[:competition_id]
+      cookies[:kilpailu_id_at_pages] = params[:competition_id]
     @osallistujat = @kilpailu.users
     @saannot = @kilpailu.saannot
     @palkinnot = @kilpailu.prizes
