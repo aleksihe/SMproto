@@ -126,7 +126,7 @@ def make_contacts
   liittymamyyjat = User.where(:salegroup_id => ryhma2.id)
   tuotteet2 = Product.where(:category_id => ryhma2.category_id)
   
-  paivat = 2
+  paivat = 45
   
   
   
@@ -307,14 +307,14 @@ def make_bonuses
     )
     Bonuslevel.create!(
       kriteeri: "myynti(e)",
-      ehto: 10000,
+      ehto: 8000,
       bonus_maara: 300,
       laji: "kkbonus",
       salegroup_id: s.id
     )
     Bonuslevel.create!(
       kriteeri: "myynti(e)",
-      ehto: 15000,
+      ehto: 11000,
       bonus_maara: 500,
       laji: "kkbonus",
       salegroup_id: s.id
