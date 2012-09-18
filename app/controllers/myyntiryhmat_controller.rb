@@ -1,6 +1,6 @@
 #coding: utf-8
 class MyyntiryhmatController < ApplicationController
-
+   before_filter :esimies_user, only: [:myyjavaihto, :aikavaihto, :ryhmavaihto]
   def ryhmavaihto
     @salegroups = Salegroup.order("LOWER(nimi)")
     @salegroup = Salegroup.find(params[:salegroup_id])
@@ -75,5 +75,9 @@ class MyyntiryhmatController < ApplicationController
      respond_to do |format|
       format.js 
      end
+  end
+   private
+  def esimies_user
+    redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
   end
 end

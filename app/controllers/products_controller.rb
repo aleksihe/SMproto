@@ -1,4 +1,6 @@
+#coding: utf-8
 class ProductsController < ApplicationController
+  before_filter :esimies_user, only: [:new, :create, :destroy]
   def new
     
   end
@@ -20,5 +22,9 @@ class ProductsController < ApplicationController
   def destroy
     Product.find(params[:id]).destroy
     redirect_to tuotehallinta_path
+  end
+   private
+  def esimies_user
+    redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
   end
 end

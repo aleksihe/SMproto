@@ -1,5 +1,6 @@
 #coding: utf-8
 class BonuslevelsController < ApplicationController
+  before_filter :esimies_user, only: [:new, :create, :destroy, :bonus_ryhmavaihto, :update]
   def new
     @salegroups = Salegroup.all
     if cookies[:salegroup_id].nil?    
@@ -50,6 +51,10 @@ class BonuslevelsController < ApplicationController
      respond_to do |format|
       format.js
     end
+  end
+  private
+  def esimies_user
+    redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
   end
 end
  

@@ -1,5 +1,6 @@
 #coding: utf-8
 class GoalsController < ApplicationController
+  before_filter :esimies_user, only: [:new, :tavoite_myyjavaihto, :create, :destroy, :update]
   def new
     @users = User.where(:esimies => false).order("LOWER(nimi)")
     
@@ -38,5 +39,8 @@ class GoalsController < ApplicationController
 
   def update
   end
- 
+ private
+  def esimies_user
+    redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
+  end
 end

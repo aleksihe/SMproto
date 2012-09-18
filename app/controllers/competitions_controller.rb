@@ -1,5 +1,6 @@
 #coding: utf-8
 class CompetitionsController < ApplicationController
+  before_filter :esimies_user, only: [:new, :create, :destroy, :index, :kilpailuvaihto ]
   def new
     @users = User.where(:esimies => false)
     @competition = Competition.new
@@ -62,5 +63,9 @@ class CompetitionsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+  private
+  def esimies_user
+     redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
   end
 end

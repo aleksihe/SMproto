@@ -1,4 +1,6 @@
+#coding: utf-8
 class SalegroupsController < ApplicationController
+   before_filter :esimies_user, only: [:create, :destroy, :myyjahallinta, :update]
   def myyjahallinta
     @myyjat = User.where(:esimies => false).order("salegroup_id, LOWER(nimi)")
     @myyja = User.new
@@ -34,5 +36,9 @@ class SalegroupsController < ApplicationController
   def destroy
     Salegroup.find(params[:id]).destroy
     redirect_to myyjahallinta_path
+  end
+  private
+  def esimies_user
+    redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
   end
 end

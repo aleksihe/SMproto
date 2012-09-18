@@ -1,4 +1,7 @@
+#coding: utf-8
 class CategoriesController < ApplicationController
+  before_filter :esimies_user, only: [:tuotehallinta, :create, :destroy]
+  
   def tuotehallinta
     @category = Category.new
     @categories = Category.order("LOWER(kuvaus)")
@@ -26,16 +29,11 @@ class CategoriesController < ApplicationController
     redirect_to tuotehallinta_path
   end
   
+  private
+  
+  def esimies_user
+      redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
+  end
 end
 
 
-#def create
-#    @user = User.new(params[:user])
-#    if @user.save
-#     sign_in @user
-#     flash[:success] = "Welcome to the Sample App!"
-#     redirect_to @user
-#    else
-#      render 'new'
-#    end
-#  end

@@ -1,4 +1,6 @@
+#coding: utf-8
 class UsersController < ApplicationController
+  before_filter :esimies_user, only: [:new, :create, :destroy, :index, :show, :update]
   def new
     @user = User.new
   end
@@ -40,4 +42,8 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     redirect_to myyjahallinta_path
   end  
+  private
+  def esimies_user
+    redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
+  end
 end

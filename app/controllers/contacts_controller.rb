@@ -1,5 +1,7 @@
 #coding: utf-8
 class ContactsController < ApplicationController
+  before_filter :esimies_user, only: [:index, :destroy, :contact_ryhmavaihto, :contact_myyjavaihto, :contact_aikavaihto]
+  
   def create
     if params[:tilaus] && params[:tuote] == ""
       flash.now[:error] = "Valitse tuote!"
@@ -63,6 +65,8 @@ class ContactsController < ApplicationController
   end
 
   def destroy
+    Contact.find(params[:id]).destroy
+    redirect_to contacts_path
   end
 
   def index    
@@ -167,8 +171,10 @@ class ContactsController < ApplicationController
     end 
     respond_to do |format|
       format.js
-    end
-    
+    end    
   end
-  
+  private
+  def esimies_user
+     redirect_to root_url, notice: "Kirjaudu sisään esimiehenä!" unless current_user.esimies == true
+  end
 end
