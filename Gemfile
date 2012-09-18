@@ -45,6 +45,7 @@ end
   
 group :production do
   gem 'pg', '0.12.2'
+  ruby "1.9.3"
 end  
 
 # To use ActiveModel has_secure_password
