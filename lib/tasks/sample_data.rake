@@ -133,7 +133,7 @@ def make_contacts
   paivat.times do
     paiva = paivat.business_days.ago + 1.day
     lehtimyyjat.each do |myyja|
-      kontaktit = rand(20..50)
+      kontaktit = rand(20..51)
       pull = rand(0..25)
       kontaktit.times do
         if rand(0..100) < pull
