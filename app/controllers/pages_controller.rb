@@ -1,6 +1,5 @@
 #coding: utf-8
 class PagesController < ApplicationController
-  before_filter :signed_in_user, only: [:kilpailut, :kilpailuvaihto, :myyja_main]
   before_filter :myyja_user, only: [:kilpailut, :kilpailuvaihto, :myyja_main]
   before_filter :esimies_user, only: [:esimies_main, :kokonaismyynti, :myyntiryhmät]
   
@@ -87,11 +86,7 @@ class PagesController < ApplicationController
     @bonus_arvio = current_user.kkbonus_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1), "myynti(e)")
   end
   private
-
-    def signed_in_user
-      redirect_to root_url, notice: "Ole hyvä ja kirjaudu sisään." unless signed_in?
-    end
-    
+     
     def myyja_user
       redirect_to root_url, notice: "Myyjien sivulle päästäksesi sinun tulee kirjautua sisään myyjänä." unless current_user.esimies == false
     end

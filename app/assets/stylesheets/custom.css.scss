@@ -48,13 +48,11 @@ body {
   background-image: url('alaraami.jpg');
     text-align: right;
   
-  h2 {
-    a{
+  h2, a{
       padding: 10px;
       font-style: italic;
       color: #800517;
-      text-decoration:none 
-    }
+      text-decoration:none    
   }
 }
 

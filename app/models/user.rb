@@ -90,6 +90,9 @@ class User < ActiveRecord::Base
       
     def contacts_avg(first, last)
       last = last + 1
+      if first < self.contacts.first.created_at.to_date
+        first = self.contacts.first.created_at.to_date
+      end
       (self.contacts.where('created_at >= ? and created_at <= ?', first, last).count / first.business_days_until(last).to_f).round(1)
     end
     
