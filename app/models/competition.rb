@@ -1,6 +1,6 @@
 #coding: utf-8
 class Competition < ActiveRecord::Base
-  attr_accessible :alku, :logiikka, :loppu, :nimi, :palkintosijat, :saannot, :user_ids, :prizes_attributes
+  attr_accessible :alku, :logiikka, :loppu, :nimi, :palkintosijat, :saannot, :user_ids, :prizes_attributes, :competition_id
   validates :alku, presence: true
   validates :logiikka, presence: true
   validates :loppu, presence: true
