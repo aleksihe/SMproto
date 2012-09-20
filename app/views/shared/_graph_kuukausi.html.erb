@@ -4,7 +4,9 @@
 <% @contacts_month_tavoite =  myyja.tavoite(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month, "Kontaktit(kpl)")%>
 <% @provisio_month = myyja.provisio_sum(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) %>
 <% @provisio_month_tavoite = myyja.tavoite(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month, "Provisio(e)")%>
-<% @bonustasot = myyja.salegroup.bonuslevels %>
+<% if !myyja.salegroup_id.nil? %>
+	<% @bonustasot = myyja.salegroup.bonuslevels %>
+<% end %>
 
 <% if @sales_month < @sales_month_tavoite%>
 	<% @sales_color = "#5E5D5E" %>
@@ -53,8 +55,11 @@ $(function () {
 	
     var d1 = [[0, <%= @sales_month %>]];
     var d1_tavoite = [[0,<%= @sales_month_tavoite %>]];
-    var d1_bonukset = [<% @bonustasot.each do |b| %>[0, <%= b.ehto %>], [1, <%= b.ehto %>]<% if b != @bonustasot.last %>, null,<% end %><% end %>];
-    
+    <% if !myyja.salegroup_id.nil? %>
+    	var d1_bonukset = [<% @bonustasot.each do |b| %>[0, <%= b.ehto %>], [1, <%= b.ehto %>]<% if b != @bonustasot.last %>, null,<% end %><% end %>];
+   	<% else %>
+   		var d1_bonukset = [[0, 0]];
+    <% end %>
     var d2 = [[0, <%= @contacts_month %>]];
     var d2_tavoite = [[0,<%= @contacts_month_tavoite %>]];
     var d3 = [[0, <%= @provisio_month %>]];

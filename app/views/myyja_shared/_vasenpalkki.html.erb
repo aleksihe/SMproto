@@ -1,27 +1,31 @@
 
 	<div class="vasenpalkki_myyja">
-		<tr> <td><h3>Kontaktit</h3></td></tr>
-		<tr>
-			<td><%= form_tag '/contacts', remote: true do %>
-			<div id="kauppa">	<%= image_submit_tag "tilaus.jpg", :onmouseover =>"this.src='assets/tilaus_hover.JPG'", :onmouseout => "this.src='assets/tilaus.jpg'" %></div>
-				<%= hidden_field_tag 'user_id', current_user.id %>
-				<%= hidden_field_tag 'salegroup_id', current_user.salegroup_id %>
-				<%= hidden_field_tag 'tilaus', true %>
-				<%= select_tag "tuote", options_from_collection_for_select(@products,"id", "kuvaus"),    
-									:prompt => 'Valitse tuote',
-									:class => 'input-medium' %> 
-				<% end %>
-			</td>	
-		</tr>
-		<tr>
-			<td><%= form_tag '/contacts', remote: true do %>
-				<%= image_submit_tag "ei_tilausta.jpg", :onmouseover =>"this.src='assets/ei_tilausta_hover.JPG'", :onmouseout => "this.src='assets/ei_tilausta.jpg'" %>
-				<%= hidden_field_tag 'user_id', current_user.id %>
-				<%= hidden_field_tag 'salegroup_id', current_user.salegroup_id %>
-				<%= hidden_field_tag 'tilaus', false %>
-				<% end %>
-			</td>	
-		</tr>
+		<% if !current_user.salegroup_id.nil? %>
+			<tr> <td><h3>Kontaktit</h3></td></tr>
+			<tr>
+				<td><%= form_tag '/contacts', remote: true do %>
+				<div id="kauppa">	<%= image_submit_tag "tilaus.jpg", :onmouseover =>"this.src='assets/tilaus_hover.JPG'", :onmouseout => "this.src='assets/tilaus.jpg'" %></div>
+					<%= hidden_field_tag 'user_id', current_user.id %>
+					<%= hidden_field_tag 'salegroup_id', current_user.salegroup_id %>
+					<%= hidden_field_tag 'tilaus', true %>
+					<%= select_tag "tuote", options_from_collection_for_select(@products,"id", "kuvaus"),    
+										:prompt => 'Valitse tuote',
+										:class => 'input-medium' %> 
+					<% end %>
+				</td>	
+			</tr>
+			<tr>
+				<td><%= form_tag '/contacts', remote: true do %>
+					<%= image_submit_tag "ei_tilausta.jpg", :onmouseover =>"this.src='assets/ei_tilausta_hover.JPG'", :onmouseout => "this.src='assets/ei_tilausta.jpg'" %>
+					<%= hidden_field_tag 'user_id', current_user.id %>
+					<%= hidden_field_tag 'salegroup_id', current_user.salegroup_id %>
+					<%= hidden_field_tag 'tilaus', false %>
+					<% end %>
+				</td>	
+			</tr>
+		<% else %>
+			<p>Sinä et kuulu mihinkään myyntiryhmään tällä hetkellä! </p>
+		<% end %>	
 	</div>
 
 	<%= render 'shared/messages'%>
