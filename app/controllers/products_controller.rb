@@ -1,6 +1,6 @@
 #coding: utf-8
 class ProductsController < ApplicationController
-  before_filter :esimies_user, only: [:new, :create, :destroy]
+  before_filter :esimies_user, only: [:new, :create, :destroy, :update]
   def new
     
   end
@@ -17,6 +17,15 @@ class ProductsController < ApplicationController
        @product = Product.new
        redirect_to tuotehallinta_path
      end
+  end
+
+  def update
+     @product = Product.find(params[:id])
+    if @product.update_attribute(:category_id, params[:product][:category_id])
+      redirect_to tuotehallinta_path
+    else
+      redirect_to tuotehallinta_path
+    end
   end
 
   def destroy

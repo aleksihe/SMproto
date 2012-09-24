@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
     @categories = Category.order("LOWER(kuvaus)")
     @product = Product.new
     @products = Product.order("category_id, LOWER(kuvaus)")
+    
   end
   
   def create
