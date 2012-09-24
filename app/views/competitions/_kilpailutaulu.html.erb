@@ -1,6 +1,7 @@
 
 <div class ="row-fluid">
 	<% if @show_competition.loppu < Time.zone.now %>
+	<h4><%=@show_competition.nimi%></h4>
 		<p>Kilpailu on päättynyt!          Poista kilpailu? ---> <%= link_to image_tag( "roskis.jpg", alt: "delete"), @show_competition, method: :delete,  data: { confirm: "Poistetaanko kilpailu?" } %></p>
 	<% else %>
 	<div class="span3"><h4><%=@show_competition.nimi%></h4></div><div class="span8"><h4><%=paiva_klo(@show_competition.alku)%> - <%= paiva_klo(@show_competition.loppu)%></h4></div>
