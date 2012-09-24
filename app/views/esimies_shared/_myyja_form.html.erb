@@ -5,7 +5,7 @@
       <%= f.text_field :nimi, class: "input-medium" %><br />
 
       <%= f.label :tunnus %>
-      <%= f.text_field :tunnus, class: "input-medium"  %><br />
+      <%= f.text_field :tunnus, class: "input-medium", :placeholder => "väh. 6 merkkiä"  %><br />
 	  
 	  <%= f.hidden_field :esimies, :value => false %>
 	  
@@ -13,10 +13,10 @@
 	  <%= select_tag "user[salegroup_id]", options_from_collection_for_select(@salegroups,"id", "nimi"), :class => 'input-medium', :prompt => "Valitse ryhmä" %><br />
 	  
       <%= f.label :salasana%>
-      <%= f.password_field :password, class: "input-medium"  %><br />
+      <%= f.password_field :password, class: "input-medium", :placeholder => "väh. 6 merkkiä"  %><br />
 
       <%= f.label :password_confirmation, "Salasana uudelleen" %>
-      <%= f.password_field :password_confirmation, class: "input-medium"  %><br />
+      <%= f.password_field :password_confirmation, class: "input-medium", :placeholder => "väh. 6 merkkiä"  %><br />
 
       <%= f.submit "Luo myyjä", class: "btn btn-inverse" %>
     <% end %>
