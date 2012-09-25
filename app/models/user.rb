@@ -95,11 +95,11 @@ class User < ActiveRecord::Base
           first = self.contacts.first.created_at.to_date
         end
       end   
-      (self.contacts.where('created_at >= ? and created_at <= ?', first, last).count / first.business_days_until(last).to_f).round(1)
+      (self.contacts.where('created_at >= ? and created_at <= ?', first, last).count / first.business_days_until(Date.today+1).to_f).round(1)
     end
     
     def provisio_arvio(first, last)
-      last = last + 1
+      
       date = Date.today + 1
       self.provisio_sum(first, last) + (self.contacts_avg(first, date) * (self.pull(first, date)/100.0) * self.kmprovisio(first, date) * date.business_days_until(last) )
     end

@@ -3,9 +3,7 @@ class GoalsController < ApplicationController
   before_filter :esimies_user, only: [:new, :tavoite_myyjavaihto, :create, :destroy, :update]
   def new
     @users = User.where(:esimies => false).order("LOWER(nimi)")
-    
     @user = User.find_by_id(cookies[:user_id_at_goals]) || User.where(:esimies => false).order("LOWER(nimi)").first
-  
     @goal = Goal.new
   end
 
