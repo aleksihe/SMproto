@@ -4,11 +4,8 @@ class GoalsController < ApplicationController
   def new
     @users = User.where(:esimies => false).order("LOWER(nimi)")
     
-    if cookies[:user_id_at_goals].nil?
-      @user = User.where(:esimies => false).order("LOWER(nimi)").first
-    else
-      @user = User.find(cookies[:user_id_at_goals])
-    end
+    @user = User.find_by_id(cookies[:user_id_at_goals]) || User.where(:esimies => false).order("LOWER(nimi)").first
+  
     @goal = Goal.new
   end
 
