@@ -60,7 +60,7 @@ class PagesController < ApplicationController
   def kilpailuvaihto
     @kilpailut = current_user.competitions.all
     @kilpailu = Competition.find(params[:competition_id])
-      cookies[:kilpailu_id_at_pages] = params[:competition_id]
+      cookies[:kilpailu_id_myyja] = params[:competition_id]
     @osallistujat = @kilpailu.users
     @saannot = @kilpailu.saannot
     @palkinnot = @kilpailu.prizes

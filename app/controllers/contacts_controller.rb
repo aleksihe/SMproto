@@ -45,8 +45,8 @@ class ContactsController < ApplicationController
     
      @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)
       if !@kilpailut.empty?
-       if !cookies[:kilpailu_id_at_contacts].nil?
-         @kilpailu = Competition.find(cookies[:kilpailu_id_at_contacts])
+       if !cookies[:kilpailu_id_myyja].nil?
+         @kilpailu = Competition.find(cookies[:kilpailu_id_myyja])
        else
         @kilpailu = @kilpailut.first
        end
