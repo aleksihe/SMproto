@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
       flash.now[:error] = "Valitse tuote!"
     else
     
-      @contact = Contact.new(:tilaus => params[:tilaus], :user_id => params[:user_id], :salegroup_id => params[:salegroup_id])
+      @contact = Contact.new(:tilaus => params[:tilaus], :user_id => params[:user_id], :salegroup_id => params[:salegroup_id], :tekija => User.find(params[:user_id]).nimi)
       
       if @contact.save
         if @contact.tilaus
@@ -106,7 +106,7 @@ class ContactsController < ApplicationController
     cookies[:salegroup_id_at_contacts] = params[:salegroup_id]
     cookies[:user_id_at_contacts] = ""
     @salegroup = Salegroup.find(params[:salegroup_id])        
-    @aika = cookies[:aika] || "Tänään"
+    @aika = cookies[:aika_at_contacts] || "Tänään"
     date = Date.today
     if @aika == "Tänään"
       @contacts = Contact.where("salegroup_id = ? AND created_at >= ?", params[:salegroup_id], date).order("created_at DESC")

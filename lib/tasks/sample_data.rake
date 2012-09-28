@@ -142,6 +142,7 @@ def make_contacts
                     tilaus: true,
                     salegroup_id: myyja.salegroup_id,
                     user_id: myyja.id,
+                    tekija: myyja.nimi,
                     created_at: paiva,
                     updated_at: paiva                                     
           )
@@ -160,6 +161,7 @@ def make_contacts
                     tilaus: false,
                     salegroup_id: myyja.salegroup_id,
                     user_id: myyja.id,
+                    tekija: myyja.nimi,
                     created_at: paiva,
                     updated_at: paiva                                     
           )
@@ -176,6 +178,7 @@ def make_contacts
                     tilaus: true,
                     user_id: myyja.id,
                     salegroup_id: myyja.salegroup_id,
+                    tekija: myyja.nimi,
                     created_at: paiva,
                     updated_at: paiva                                     
           )
@@ -194,6 +197,7 @@ def make_contacts
                     tilaus: false,
                     user_id: myyja.id,
                     salegroup_id: myyja.salegroup_id,
+                    tekija: myyja.nimi,
                     created_at: paiva,
                     updated_at: paiva                                     
           )

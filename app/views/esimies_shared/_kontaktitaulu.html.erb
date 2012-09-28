@@ -21,7 +21,7 @@
 		<% @contacts.each do |contact| %>
 			
 				<tr>			
-				<td><%= contact.user.nimi %></td>
+				<td><%= contact.tekija %></td>
 				<td><%= paiva_klo(contact.created_at.time) %></td>
 				<% if contact.tilaus %>
 				<td> Tilaus </td>	
