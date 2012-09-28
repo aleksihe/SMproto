@@ -25,7 +25,11 @@
 		</div>
 		<div class="span11">
 		  <div class="row-fluid">	
+		<%if browser.ie? %>
+		<p> Ohjelmisto ei tue Internet Explorer selainta. Tuetut selaimet: Google Chrome, Mozilla Firefox ja Opera. Suositus: Google Chrome</p>
+		<% else %>
 		      <%= yield %> 
+		      <% end %>
 		      
 	      </div>
 		</div>    

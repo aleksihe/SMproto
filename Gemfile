@@ -13,6 +13,7 @@ gem 'calendar_date_select'
 gem 'formtastic'
 gem 'cocoon'
 gem 'ui_datepicker-rails3'
+gem 'browser'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
