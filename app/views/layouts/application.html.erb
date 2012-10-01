@@ -53,5 +53,36 @@
 		</div>
 	  </div>
 	 </div>
+	 <% path = request.path %>
+	 <div class="page_info">	 		
+	 		<% if path == "/" %>
+	 			<%= render 'page_info/aloitussivu'%>
+	 		<% elsif path == "/esimies_main" %>
+	 			<%= render 'page_info/esimies_main'%>
+	 		<% elsif path == "/kokonaismyynti" %>
+	 			<%= render 'page_info/kokonaismyynti'%>
+	 		<% elsif path == "/myyntiryhmat" %>
+	 			<%= render 'page_info/myyntiryhmat'%>
+	 		<% elsif path == "/kontaktit" %>
+	 			<%= render 'page_info/kontaktit'%>
+	 		<% elsif path == "/competitions" %>
+	 			<%= render 'page_info/competitions'%>
+	 		<% elsif path == "/goals/new" %>
+	 			<%= render 'page_info/goals_new'%>
+	 		<% elsif path == "/competitions_new" %>
+	 			<%= render 'page_info/competitions_new'%>
+	 		<% elsif path == "/myyjahallinta" %>
+	 			<%= render 'page_info/myyjahallinta'%>
+	 		<% elsif path == "/tuotehallinta" %>
+	 			<%= render 'page_info/tuotehallinta'%>
+	 		<% elsif path == "/bonuslevels/new" %>
+	 			<%= render 'page_info/bonuslevels_new'%>
+	 		<% elsif path == "/myyja_main" %>
+	 			<%= render 'page_info/myyja_main'%>
+	 		<% elsif path == "/kilpailut" %>
+	 			<%= render 'page_info/kilpailut'%>						
+	 		<% end %>	
+	 	
+	 </div>
 	</body>
 </html>

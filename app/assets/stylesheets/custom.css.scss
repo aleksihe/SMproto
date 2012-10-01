@@ -401,3 +401,17 @@ input, textarea, select, .uneditable-input {
 
 /*datepicker*/
 #ui-datepicker-div { display: block; }
+
+/*page info*/
+.page_info{
+  position: fixed;
+  top: 10px;
+  right: 45px;
+  width: 400px;
+  border:2px solid;
+  border-radius:25px;
+  text-align:left;
+  background-color: #878385; 
+  padding: 10px;
+  
+}
