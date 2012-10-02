@@ -9,7 +9,7 @@
 <div class="row">
 <div class="span5 offset1">
 		<div class="signin">
-			<p>Valitse tunnus oikealla olevasta listasta ja kirjaudu sisään!</p>
+			<p>Valitse tunnus oikealla olevasta listasta ja kirjaudu sisään! Huom: Demomyyjien salasana on sama kuin tunnus.</p>
 			<%= form_for(:session, url: sessions_path) do |f| %>
 				
 				<%= f.label :tunnus %>
@@ -30,19 +30,17 @@
 			<table class="table table-bordered table-condensed">
 				<colgroup>
 		          <col class="span1">
-		          <col class="span1">
 		          <col class="span2">
 		          <col class="span1">
 		        </colgroup>
 				<thead>
 					<tr>
-						<th>Tunnus</th><th>Salasana</th><th>Nimi</th><th>Asema</th>
+						<th>Tunnus</th><th>Nimi</th><th>Asema</th>
 					</tr>	
 				</thead>
 				<% @users.each do |user| %>
 					<tr>
-						<td><%= user.tunnus %></td>
-						<td><%= user.tunnus %></td>
+						<td><%= user.tunnus %></td>					
 						<td><%= user.nimi %></td>
 						<td><% if user.esimies  %>
 							Esimies
