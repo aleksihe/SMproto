@@ -1,5 +1,15 @@
 SMproto::Application.routes.draw do
 
+  get "teoriat/tavoitteet"
+
+  get "teoriat/kannusteet"
+
+  get "teoriat/kilpailut"
+
+  get "teoriat/palaute"
+
+  get "teoriat/yleista"
+
  resources :bonuslevels
  resources :goals
  resources :competitions

@@ -81,8 +81,28 @@
 	 			<%= render 'page_info/myyja_main'%>
 	 		<% elsif path == "/kilpailut" %>
 	 			<%= render 'page_info/kilpailut'%>						
-	 		<% end %>	
-	 	
+	 		<% end %>		 	
 	 </div>
+	<% if path == "/" %>
+	<div class="page_teoria">
+		<%= render 'page_teoria/aloitussivu'%>
+	</div>	
+	<% elsif path == "/goals/new"%>
+	<div class="page_teoria">
+		<%= render 'page_teoria/tavoitteet'%>
+	</div>
+	<% elsif path == "/competitions_new"%>
+	<div class="page_teoria">
+		<%= render 'page_teoria/competitions_new'%>
+	</div>	
+	<% elsif path == "/myyja_main"%>
+	<div class="page_teoria">
+		<%= render 'page_teoria/myyja_main'%>
+	</div>
+	<% elsif path == "/kilpailut"%>
+	<div class="page_teoria">
+		<%= render 'page_teoria/competitions_new'%>
+	</div>	
+	<% end %>			 
 	</body>
 </html>
