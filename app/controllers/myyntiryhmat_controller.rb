@@ -4,7 +4,7 @@ class MyyntiryhmatController < ApplicationController
   def ryhmavaihto
     @salegroups = Salegroup.order("LOWER(nimi)")
     @salegroup = Salegroup.find(params[:salegroup_id])
-    cookies[:salegroup_id_at_myyntiryhmat] = params[:salegroup_id]
+    cookies[:salegroup_id_at_myyntiryhmat] = { :value => params[:salegroup_id], :expires => 10.minutes.from_now }
     @aika = cookies[:aika_at_myyntiryhmat] || "Tänään"
     @myyjat = User.where(:salegroup_id => @salegroup.id) 
     
@@ -17,8 +17,8 @@ class MyyntiryhmatController < ApplicationController
       end
     end
     
-    @myyja_valittu = @myyjat.first
-    cookies[:myyja_id_at_myyntiryhmat] = @myyja_valittu.id
+    @myyja_valittu =  @myyjat.first 
+    cookies[:myyja_id_at_myyntiryhmat] = { :value => @myyja_valittu.id, :expires => 10.minutes.from_now }
     respond_to do |format|
       format.js
     end   
@@ -27,7 +27,7 @@ class MyyntiryhmatController < ApplicationController
 
   def aikavaihto
     @aika = params[:aika]
-    cookies[:aika_at_myyntiryhmat] = params[:aika]
+    cookies[:aika_at_myyntiryhmat] = { :value => params[:aika], :expires => 10.minutes.from_now }
     
     if !cookies[:salegroup_id_at_myyntiryhmat].nil?
       @salegroup = Salegroup.find(cookies[:salegroup_id_at_myyntiryhmat])
@@ -56,7 +56,7 @@ class MyyntiryhmatController < ApplicationController
 
   def myyjavaihto
     @aika = cookies[:aika_at_myyntiryhmat] || "Tänään"
-    cookies[:myyja_id_at_myyntiryhmat] = params[:myyja_id]
+    cookies[:myyja_id_at_myyntiryhmat] = { :value => params[:myyja_id], :expires => 10.minutes.from_now }
     if !cookies[:salegroup_id_at_myyntiryhmat].nil?
       @salegroup = Salegroup.find(cookies[:salegroup_id_at_myyntiryhmat])
     else

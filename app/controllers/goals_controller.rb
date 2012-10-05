@@ -9,7 +9,7 @@ class GoalsController < ApplicationController
 
   def tavoite_myyjavaihto
     @goal = Goal.new
-    cookies[:user_id_at_goals] = params[:user_id]
+    cookies[:user_id_at_goals] = { :value => params[:user_id], :expires => 10.minutes.from_now }
     @user = User.find(params[:user_id])
     
     respond_to do |format|

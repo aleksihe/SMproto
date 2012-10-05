@@ -26,7 +26,7 @@ class BonuslevelsController < ApplicationController
   def bonus_ryhmavaihto
     @salegroups = Salegroup.all
     @salegroup = Salegroup.find(params[:salegroup_id])
-    cookies[:salegroup_id_at_bonuslevel] = params[:salegroup_id]  
+    cookies[:salegroup_id_at_bonuslevel] = { :value => params[:salegroup_id], :expires => 10.minutes.from_now }  
     @new_bonustaso = Bonuslevel.new
     @bonustasot = Bonuslevel.where("salegroup_id = ? and laji = ?", @salegroup.id, "kkbonus")
     @bonustasot.sort!{|taso1, taso2| taso1.bonus_maara <=> taso2.bonus_maara}

@@ -29,11 +29,11 @@ class PagesController < ApplicationController
     
     
     
-    if !cookies[:myyja_id_at_pages].nil?
-      @myyja_valittu = User.find(cookies[:myyja_id_at_pages])
+    if !cookies[:myyja_id_at_myyntiryhmat].nil?
+      @myyja_valittu = User.find(cookies[:myyja_id_at_myyntiryhmat])
     else
        @myyja_valittu = @myyjat.first
-       cookies[:myyja_id_at_pages] = @myyja_valittu.id
+       cookies[:myyja_id_at_myyntiryhmat] = { :value => @myyja_valittu.id, :expires => 10.minutes.from_now }
     end   
   end
   
@@ -60,7 +60,7 @@ class PagesController < ApplicationController
   def kilpailuvaihto
     @kilpailut = current_user.competitions.all
     @kilpailu = Competition.find(params[:competition_id])
-      cookies[:kilpailu_id_myyja] = params[:competition_id]
+      cookies[:kilpailu_id_myyja] = { :value => params[:competition_id], :expires => 10.minutes.from_now }
     @osallistujat = @kilpailu.users
     @saannot = @kilpailu.saannot
     @palkinnot = @kilpailu.prizes

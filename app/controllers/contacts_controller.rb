@@ -77,7 +77,7 @@ class ContactsController < ApplicationController
           @salegroup = Salegroup.find(cookies[:salegroup_id_at_contacts])
         else
           @salegroup = Salegroup.first
-          cookies[:salegroup_id_at_contacts] = @salegroup.id
+          cookies[:salegroup_id_at_contacts] = { :value => @salegroup.id, :expires => 10.minutes.from_now }
         end
         @myyjat = User.where(:salegroup_id => (cookies[:salegroup_id_at_contacts] || 1)).order("LOWER(nimi)")
         date = Date.today
@@ -103,7 +103,7 @@ class ContactsController < ApplicationController
   
   def contact_ryhmavaihto
     @salegroups = Salegroup.order("LOWER(nimi)")
-    cookies[:salegroup_id_at_contacts] = params[:salegroup_id]
+    cookies[:salegroup_id_at_contacts] = { :value => params[:salegroup_id], :expires => 10.minutes.from_now }
     cookies[:user_id_at_contacts] = ""
     @salegroup = Salegroup.find(params[:salegroup_id])        
     @aika = cookies[:aika_at_contacts] || "Tänään"
@@ -125,7 +125,7 @@ class ContactsController < ApplicationController
   
   def contact_myyjavaihto
     @salegroups = Salegroup.order("LOWER(nimi)")
-    cookies[:user_id_at_contacts] = params[:user_id] 
+    cookies[:user_id_at_contacts] = { :value => params[:user_id], :expires => 10.minutes.from_now } 
     @aika = cookies[:aika_at_contacts] || "Tänään"
        date = Date.today
     if params[:user_id] == "" || params[:user_id].nil?
@@ -152,7 +152,7 @@ class ContactsController < ApplicationController
   
   def contact_aikavaihto
     @aika = params[:aika]
-    cookies[:aika_at_contacts] = params[:aika]
+    cookies[:aika_at_contacts] = { :value => params[:aika], :expires => 10.minutes.from_now }
     date = Date.today
     alku = date.beginning_of_month
     loppu = (date+1.month).beginning_of_month
