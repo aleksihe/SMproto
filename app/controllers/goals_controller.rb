@@ -22,7 +22,7 @@ class GoalsController < ApplicationController
     if @goal.save
       redirect_to new_goal_path
     else
-      flash[:error] = "Tavoitteen luonti epäonnistui"
+      flash[:error] = "Tavoitteen luonti epäonnistui! Täytithän kaikki kentät? Huomioi myös, että tavoitteen loppuhetken tulee olla alkuhetken jälkeen!"
       redirect_to new_goal_path
     end
   end
