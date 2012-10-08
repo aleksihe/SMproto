@@ -15,7 +15,7 @@ class CompetitionsController < ApplicationController
      if @competition.save
        redirect_to competitions_path
      else
-       flash[:error] = "Kilpaulun luominen epäonnistui"
+       flash[:error] = "Kilpaulun luominen epäonnistui! Täytithän kaikki kentät? Kilpailussa täytyy olla myös vähintään yksi palkinto ja yksi osallistuja."
        redirect_to competitions_new_path
      end
      
