@@ -98,10 +98,19 @@ class User < ActiveRecord::Base
       (self.contacts.where('created_at >= ? and created_at <= ?', first, last).count / first.business_days_until(Date.today+1).to_f).round(1)
     end
     
-    def provisio_arvio(first, last)
-      
+    def provisio_arvio(first, last)    
       date = Date.today + 1
       self.provisio_sum(first, last) + (self.contacts_avg(first, date) * (self.pull(first, date)/100.0) * self.kmprovisio(first, date) * date.business_days_until(last) )
+    end
+    
+    def myynti_arvio(first, last)     
+      date = Date.today + 1
+      self.sales_sum(first, last) + (self.contacts_avg(first, date) * (self.pull(first, date)/100.0) * self.kmmyynti(first, date) * date.business_days_until(last) )
+    end
+    
+    def contacts_arvio(first, last)    
+      date = Date.today + 1
+      self.contacts_count(first, last) + (self.contacts_avg(first, date) * date.business_days_until(last) )
     end
     
     def kkbonus_arvio(first, last, kriteeri)

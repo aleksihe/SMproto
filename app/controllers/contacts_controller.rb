@@ -41,6 +41,8 @@ class ContactsController < ApplicationController
     @contacts_avg_month = current_user.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today)
     @provisio_arvio = current_user.provisio_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
     @bonus_arvio = current_user.kkbonus_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1), "myynti(e)")
+    @myynti_arvio = current_user.myynti_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
+    @contacts_arvio = current_user.contacts_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
      end
     
      @kilpailut = current_user.competitions.where('alku <= ? and loppu >= ?', Time.now, Time.now)

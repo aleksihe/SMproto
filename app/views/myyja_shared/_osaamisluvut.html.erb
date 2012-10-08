@@ -49,6 +49,16 @@
 			</tbody>
 		</table>
 	</div>
+</div>
+<div class="row">
+	<p>Kuukauden kontaktit nykyvauhdilla:</p>
+	<h5><%= @contacts_arvio.round(0) %> kpl</h5>	
+</div>
+<div class="row">
+	<p>Kuukausimyyntiarvio nykyvauhdilla:</p>
+	<h5><%= @myynti_arvio.round(1) %> € </h5>	
+</div>
+<div class="row">
 	<p>Kuukausipalkka-arvio nykyvauhdilla:</p>
-	<h4><%= @provisio_arvio.round(1) %> € + Bonus <%= @bonus_arvio%> €</h4>
+	<h5><%= @provisio_arvio.round(1) %> € + Bonus <%= @bonus_arvio%> €</h5>	
 </div>

@@ -88,7 +88,8 @@ class PagesController < ApplicationController
     @kmmyynti_month = current_user.kmmyynti(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
     @contacts_avg_month = current_user.contacts_avg(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.today)
     @provisio_arvio = current_user.provisio_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
-    
+    @myynti_arvio = current_user.myynti_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
+    @contacts_arvio = current_user.contacts_arvio(Date.new(Time.zone.now.year, Time.zone.now.month, 1), Date.new(Time.zone.now.year, Time.zone.now.month + 1, 1))
   end
   private
      
