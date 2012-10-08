@@ -23,10 +23,6 @@
 		<div id="aikavalinta">		
 			<%= render 'esimies_shared/aikavalinta' %>	
 		</div>
-		<div class="span2">
-		</div>
-		<div class="span2">
-		</div>
 	</div>
 	<div class="row-fluid">
 		<div class="span8">		
@@ -40,6 +36,8 @@
 			<div id="myyjastats">				
 				<%= render 'shared/graph'%>				
 			</div>
+			<p>Siirry myyjien ja myyntiryhmien hallintaan <%= link_to "tästä.", myyjahallinta_path %></p>
+			<p>Tavoitteita myyjille voit luoda <%= link_to "täältä.", new_goal_path %>
 		</div>
 	</div>
 </div>
