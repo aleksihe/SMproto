@@ -10,6 +10,10 @@
 <div class="span5 offset1">
 		<div class="signin">
 			<p>Valitse tunnus oikealla olevasta listasta ja kirjaudu sisään! Huom: Demo-myyjien ja demo-esimiehen salasana on sama kuin tunnus.</p>
+			<p>Jos tunnus näkyy listassa punaisella, on ko. henkilö jo kirjautunut sisään. Voit silti kirjautua sisään samoilla tunnuksilla mutta toiminnallisuudessa
+				voi tällöin esiintyä häiriöitä.</p>
+				<p>Muistathan kirjautua ulos lopettettuasi tutustumisen! Automaattinen uloskirjautuminen tapahtuu joka tapauksessa tunnin päästä sisäänkirjautumisesta 
+					käytännöllisyys syistä.</p>
 			<%= form_for(:session, url: sessions_path) do |f| %>
 				
 				<%= f.label :tunnus %>
@@ -40,7 +44,11 @@
 				</thead>
 				<% @users.each do |user| %>
 					<tr>
-						<td><%= user.tunnus %></td>					
+						<% if user.online %>						
+						<td><font color="#C91C33"> <%= user.tunnus %></font></td>	
+						<% else %>
+						<td><%= user.tunnus %></td>
+						<% end %>				
 						<td><%= user.nimi %></td>
 						<td><% if user.esimies  %>
 							Esimies

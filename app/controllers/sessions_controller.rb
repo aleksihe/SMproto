@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by_tunnus(params[:session][:tunnus])
     if user && user.authenticate(params[:session][:password])
       sign_in user
+      user.update_attribute(:online, true)
       if user.esimies
         redirect_to esimies_main_path
       else
@@ -20,6 +21,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    User.find_by_id(session[:remember_token]).update_attribute(:online, false)
     sign_out
     redirect_to root_path
   end

@@ -71,49 +71,56 @@ def make_users
                   password: "rairai",
                   password_confirmation: "rairai",
                   esimies: true,
-                  salegroup_id: nil
+                  salegroup_id: nil,
+                  online: false
                 )
    User.create!(  nimi: "Miroslav Klousaaja",
                   tunnus: "mirklo",
                   password: "mirklo",
                   password_confirmation: "mirklo",
                   esimies: false,
-                  salegroup_id: lehtimyyjat.id
+                  salegroup_id: lehtimyyjat.id,
+                  online: false
                 )
    User.create!(  nimi: "Sini Suloääni",
                   tunnus: "sinsul",
                   password: "sinsul",
                   password_confirmation: "sinsul",
                   esimies: false,
-                  salegroup_id: lehtimyyjat.id
+                  salegroup_id: lehtimyyjat.id,
+                  online: false
                 )
    User.create!(  nimi: "Veijo Vastaväittelijä",
                   tunnus: "veivas",
                   password: "veivas",
                   password_confirmation: "veivas",
                   esimies: false,
-                  salegroup_id: lehtimyyjat.id
+                  salegroup_id: lehtimyyjat.id,
+                  online: false
                 )
    User.create!(  nimi: "Arja Argumentoija",
                   tunnus: "arjarg",
                   password: "arjarg",
                   password_confirmation: "arjarg",
                   esimies: false,
-                  salegroup_id: lehtimyyjat.id
+                  salegroup_id: lehtimyyjat.id,
+                  online: false
                 ) 
    User.create!(  nimi: "Tenho Tehomyyjä",
                   tunnus: "tenteh",
                   password: "tenteh",
                   password_confirmation: "tenteh",
                   esimies: false,
-                  salegroup_id: lehtimyyjat.id
+                  salegroup_id: lehtimyyjat.id,
+                  online: false
                 )   
    User.create!(  nimi: "Kuisma Kuiskailija",
                   tunnus: "kuikui",
                   password: "kuikui",
                   password_confirmation: "kuikui",
                   esimies: false,
-                  salegroup_id: liittymamyyjat.id
+                  salegroup_id: liittymamyyjat.id,
+                  online: false
                 )                                                             
 end
 
