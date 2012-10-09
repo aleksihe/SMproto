@@ -222,24 +222,24 @@ def make_goals
     Goal.create!(
       user_id: m.id,
       salegroup_id: m.salegroup.id,
-      alku: Time.now.beginning_of_month,
-      loppu: Time.now.end_of_month,
+      alku: Time.zone.now.beginning_of_month,
+      loppu: Time.zone.now.end_of_month,
       tyyppi: "Provisio(e)",
       maara: 2700.0
     )
     Goal.create!(
       user_id: m.id,
       salegroup_id: m.salegroup.id,
-      alku: Time.now.beginning_of_month,
-      loppu: Time.now.end_of_month,
+      alku: Time.zone.now.beginning_of_month,
+      loppu: Time.zone.now.end_of_month,
       tyyppi: "Myynti(e)",
       maara: 9000.0
     )
     Goal.create!(
       user_id: m.id,
       salegroup_id: m.salegroup.id,
-      alku: Time.now.beginning_of_month,
-      loppu: Time.now.end_of_month,
+      alku: Time.zone.now.beginning_of_month,
+      loppu: Time.zone.now.end_of_month,
       tyyppi: "Kontaktit(kpl)",
       maara: 800
     )
@@ -250,8 +250,8 @@ def make_competitions
    #meneillään oleva kisa
    Competition.create!(
     nimi: "Riihikuivaa!",
-    alku: Time.now.beginning_of_month,
-    loppu: Time.now.end_of_month,
+    alku: Time.zone.now.beginning_of_month,
+    loppu: Time.zone.now.end_of_month,
     saannot: "Kolme eniten provisiota ansainnutta myyjää palkitaan kuukauden lopussa riihikuivalla!",
     logiikka: 3
    )
@@ -279,8 +279,8 @@ def make_competitions
    #päättynyt kisa  
    Competition.create!(
     nimi: "Lahjakorttiskaba",
-    alku: Time.now.beginning_of_month - 1.month,
-    loppu: Time.now.end_of_month - 1.month,
+    alku: Time.zone.now.beginning_of_month - 1.month,
+    loppu: Time.zone.now.end_of_month - 1.month,
     saannot: "Kolme eniten myyntiä tehnyttä myyjää palkitaan mahtavilla lahjakorteilla!",
     logiikka: 1
    )
