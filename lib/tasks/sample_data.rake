@@ -72,6 +72,7 @@ def make_users
                   password_confirmation: "rairai",
                   esimies: true,
                   salegroup_id: nil,
+                  last_seen: 2.hours.ago,
                   online: false
                 )
    User.create!(  nimi: "Miroslav Klousaaja",
@@ -80,6 +81,7 @@ def make_users
                   password_confirmation: "mirklo",
                   esimies: false,
                   salegroup_id: lehtimyyjat.id,
+                  last_seen: 2.hours.ago,
                   online: false
                 )
    User.create!(  nimi: "Sini Suloääni",
@@ -88,6 +90,7 @@ def make_users
                   password_confirmation: "sinsul",
                   esimies: false,
                   salegroup_id: lehtimyyjat.id,
+                  last_seen: 2.hours.ago,
                   online: false
                 )
    User.create!(  nimi: "Veijo Vastaväittelijä",
@@ -96,6 +99,7 @@ def make_users
                   password_confirmation: "veivas",
                   esimies: false,
                   salegroup_id: lehtimyyjat.id,
+                  last_seen: 2.hours.ago,
                   online: false
                 )
    User.create!(  nimi: "Arja Argumentoija",
@@ -104,6 +108,7 @@ def make_users
                   password_confirmation: "arjarg",
                   esimies: false,
                   salegroup_id: lehtimyyjat.id,
+                  last_seen: 2.hours.ago,
                   online: false
                 ) 
    User.create!(  nimi: "Tenho Tehomyyjä",
@@ -112,6 +117,7 @@ def make_users
                   password_confirmation: "tenteh",
                   esimies: false,
                   salegroup_id: lehtimyyjat.id,
+                  last_seen: 2.hours.ago,
                   online: false
                 )   
    User.create!(  nimi: "Kuisma Kuiskailija",
@@ -120,6 +126,7 @@ def make_users
                   password_confirmation: "kuikui",
                   esimies: false,
                   salegroup_id: liittymamyyjat.id,
+                  last_seen: 2.hours.ago,
                   online: false
                 )                                                             
 end

@@ -1,6 +1,6 @@
 #coding: utf-8
 class User < ActiveRecord::Base
-  attr_accessible :esimies, :nimi, :password, :password_confirmation, :tunnus, :salegroup_id, :online
+  attr_accessible :esimies, :nimi, :password, :password_confirmation, :tunnus, :salegroup_id, :online, :last_seen
   belongs_to :salegroup
   has_many :contacts
   has_many :orders

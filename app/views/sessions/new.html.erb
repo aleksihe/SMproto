@@ -14,6 +14,7 @@
 				voi tällöin esiintyä häiriöitä.</p>
 				<p>Muistathan kirjautua ulos lopettettuasi tutustumisen! Automaattinen uloskirjautuminen tapahtuu joka tapauksessa tunnin päästä sisäänkirjautumisesta 
 					käytännöllisyys syistä.</p>
+					
 			<%= form_for(:session, url: sessions_path) do |f| %>
 				
 				<%= f.label :tunnus %>
@@ -39,12 +40,11 @@
 		        </colgroup>
 				<thead>
 					<tr>
-						<th>Tunnus</th><th>Nimi</th><th>Asema</th>
 					</tr>	
 				</thead>
 				<% @users.each do |user| %>
 					<tr>
-						<% if user.online %>						
+						<% if (user.last_seen > 59.minutes.ago) && user.online %>						
 						<td><font color="#C91C33"> <%= user.tunnus %></font></td>	
 						<% else %>
 						<td><%= user.tunnus %></td>

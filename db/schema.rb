@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002090609) do
+ActiveRecord::Schema.define(:version => 20121010080421) do
 
   create_table "bonuslevels", :force => true do |t|
     t.string   "kriteeri"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20121002090609) do
     t.datetime "updated_at",      :null => false
     t.integer  "salegroup_id"
     t.boolean  "online"
+    t.datetime "last_seen"
   end
 
 end
