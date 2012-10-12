@@ -140,7 +140,7 @@ def make_contacts
   liittymamyyjat = User.where(:salegroup_id => ryhma2.id)
   tuotteet2 = Product.where(:category_id => ryhma2.category_id)
   
-  paivat = 30
+  paivat = 35
   
   
   
