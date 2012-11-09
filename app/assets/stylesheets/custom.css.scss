@@ -411,9 +411,9 @@ input, textarea, select, .uneditable-input {
 
 /*page info*/
 .page_info{
-  position: fixed;
+ position: absolute;
   top: 10px;
-  right: 45px;
+  left: 1170px;
   width: 400px;
   border:2px solid;
   border-radius:25px;
@@ -425,9 +425,9 @@ input, textarea, select, .uneditable-input {
 
 /*page teoria*/
 .page_teoria{
-  position: fixed;
+  position: absolute;
   top: 600px;
-  right: 45px;
+  left: 1170px;
   width: 400px;
   border:2px solid;
   border-radius:25px;
